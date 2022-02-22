@@ -54,8 +54,15 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 
-let logInUser = document.createElement("form", "textarea");
-let inputLogIn= document.createElement("div");
-logInUser.setAttribute("id", "userName");
-inputLogIn.appendChild(logInUser);
+let inputReg = document.getElementById("inputRegister");
+//let inputLogIn = document.createElement("form");
+//inputLogIn.setAttribute("class", "register");
+//inputRegister.appendChild(inputLogIn);
+
+let userName = document.createElement("input");
+userName.setAttribute("type", "text");
+//userName.setAttribute("placeholder", "example@mail.com");
+userName.setAttribute("value", "ingresa el korreo");
+inputReg.appendChild(userName);
+
 
