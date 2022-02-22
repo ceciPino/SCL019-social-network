@@ -3,7 +3,7 @@
 import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
+//import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
 // Import the functions you need from the SDKs you need
 
@@ -55,14 +55,16 @@ onAuthStateChanged(auth, (user) => {
 myFunction();
 
 let inputReg = document.getElementById("inputRegister");
-//let inputLogIn = document.createElement("form");
-//inputLogIn.setAttribute("class", "register");
-//inputRegister.appendChild(inputLogIn);
+let inputLogIn = document.createElement("form");
+inputLogIn.setAttribute("class", "register");
+inputReg.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
 userName.setAttribute("type", "text");
-//userName.setAttribute("placeholder", "example@mail.com");
-userName.setAttribute("value", "ingresa el korreo");
-inputReg.appendChild(userName);
+userName.setAttribute("placeholder", "example@mail.com");
+inputLogIn.appendChild(userName);
 
-
+let passwordIn = document.createElement("input");
+passwordIn.setAttribute("type", "password");
+passwordIn.setAttribute("placeholder", "xxxxxxxxx");
+inputLogIn.appendChild(passwordIn);
