@@ -23,20 +23,20 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth = getAuth();
 
-/*createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
-*/
+// createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+//   });
+
 
 onAuthStateChanged(auth, (user) => {
   if (user !== null) {
@@ -53,8 +53,13 @@ onAuthStateChanged(auth, (user) => {
 });
 
 myFunction();
-
+//Creación de campos de registro
 let inputReg = document.getElementById("inputRegister");
+
+let titleRegister = document.createElement("h1");
+titleRegister.textContent = "Bienvenida a (nombre app)";
+inputReg.appendChild(titleRegister);
+
 let inputLogIn = document.createElement("form");
 inputLogIn.setAttribute("class", "register");
 inputReg.appendChild(inputLogIn);
@@ -65,8 +70,41 @@ userName.setAttribute("placeholder", "example@mail.com");
 userName.setAttribute("id", "userName");
 inputLogIn.appendChild(userName);
 
+// let labelInputs = document.createElement("label");
+// labelInputs.setAttribute("for", "userName");
+// labelInputs.textContent = "Ingresa tus datos";
+// inputLogIn.appendChild(labelInputs);
+
 let passwordIn = document.createElement("input");
 passwordIn.setAttribute("type", "password");
-passwordIn.setAttribute("placeholder", "xxxxxxxxx");
+passwordIn.setAttribute("placeholder", "contraseña");
 passwordIn.setAttribute("id","passwordIn");
 inputLogIn.appendChild(passwordIn);
+
+let buttonSend = document.createElement("input");
+buttonSend.setAttribute("type", "submit");
+buttonSend.setAttribute("value", "Iniciar sesión");
+inputLogIn.appendChild(buttonSend);
+
+inputLogIn.addEventListener("submit", (send) => {
+send.preventDefault();
+let valueUserName = userName.value;
+let valuePassword = passwordIn.value;
+console.log(valueUserName + valuePassword);
+
+createUserWithEmailAndPassword(auth, valueUserName, valuePassword)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    // redirigir a muro
+    console.log(user);
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    
+    console.log(errorCode);
+    console.log(errorMessage);
+  });
+})
+
