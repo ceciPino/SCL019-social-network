@@ -60,11 +60,13 @@ inputLogIn.setAttribute("class", "register");
 inputReg.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
-userName.setAttribute("type", "text");
+userName.setAttribute("type", "email");
 userName.setAttribute("placeholder", "example@mail.com");
+userName.setAttribute("id", "userName");
 inputLogIn.appendChild(userName);
 
 let passwordIn = document.createElement("input");
 passwordIn.setAttribute("type", "password");
 passwordIn.setAttribute("placeholder", "xxxxxxxxx");
+passwordIn.setAttribute("id","passwordIn");
 inputLogIn.appendChild(passwordIn);
