@@ -2,7 +2,7 @@
 
 import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
 // Import the functions you need from the SDKs you need
@@ -54,15 +54,15 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 //Creación de campos de registro
-let inputReg = document.getElementById("inputRegister");
+let Register = document.getElementById("Register");
 
 let titleRegister = document.createElement("h1");
 titleRegister.textContent = "Bienvenida a (nombre app)";
-inputReg.appendChild(titleRegister);
+Register.appendChild(titleRegister);
 
 let inputLogIn = document.createElement("form");
 inputLogIn.setAttribute("class", "register");
-inputReg.appendChild(inputLogIn);
+Register.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
 userName.setAttribute("type", "email");
@@ -106,5 +106,23 @@ createUserWithEmailAndPassword(auth, valueUserName, valuePassword)
     console.log(errorCode);
     console.log(errorMessage);
   });
+
+  signInWithEmailAndPassword(auth, valueUserName, valuePassword)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    // ...
+    console.log("ingreso exitoso");
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+  });
 })
+
+
+
+
 
