@@ -54,15 +54,15 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 //Creación de campos de registro
-let inputReg = document.getElementById("inputRegister");
+let Register = document.getElementById("Register");
 
 let titleRegister = document.createElement("h1");
 titleRegister.textContent = "Bienvenida a (nombre app)";
-inputReg.appendChild(titleRegister);
+Register.appendChild(titleRegister);
 
 let inputLogIn = document.createElement("form");
 inputLogIn.setAttribute("class", "register");
-inputReg.appendChild(inputLogIn);
+Register.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
 userName.setAttribute("type", "email");
