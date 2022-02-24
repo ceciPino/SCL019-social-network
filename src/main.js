@@ -57,7 +57,7 @@ myFunction();
 let Register = document.getElementById("Register");
 
 let titleRegister = document.createElement("h1");
-titleRegister.textContent = "Bienvenida a (nombre app)";
+titleRegister.textContent = "Crear una cuenta";
 Register.appendChild(titleRegister);
 
 let inputLogIn = document.createElement("form");
@@ -65,10 +65,16 @@ inputLogIn.setAttribute("class", "register");
 Register.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
-userName.setAttribute("type", "email");
-userName.setAttribute("placeholder", "example@mail.com");
+userName.setAttribute("type", "text");
+userName.setAttribute("placeholder", "usuario");
 userName.setAttribute("id", "userName");
 inputLogIn.appendChild(userName);
+
+let email = document.createElement("input");
+email.setAttribute("type", "email");
+email.setAttribute("placeholder", "example@mail.com");
+email.setAttribute("id", "email");
+inputLogIn.appendChild(email);
 
 // let labelInputs = document.createElement("label");
 // labelInputs.setAttribute("for", "userName");
@@ -88,7 +94,7 @@ inputLogIn.appendChild(buttonSend);
 
 inputLogIn.addEventListener("submit", (send) => {
 send.preventDefault();
-let valueUserName = userName.value;
+let valueUserName = email.value;
 let valuePassword = passwordIn.value;
 console.log(valueUserName + valuePassword);
 
