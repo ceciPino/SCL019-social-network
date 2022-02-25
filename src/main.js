@@ -22,21 +22,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth();
-
-// createUserWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//     // ..
-//   });
-
 
 onAuthStateChanged(auth, (user) => {
   if (user !== null) {
@@ -54,27 +40,21 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 //Creación de campos de registro
-let Register = document.getElementById("Register");
+let inputReg = document.getElementById("inputRegister");
 
 let titleRegister = document.createElement("h1");
-titleRegister.textContent = "Crear una cuenta";
-Register.appendChild(titleRegister);
+titleRegister.textContent = "Bienvenida a (nombre app)";
+inputReg.appendChild(titleRegister);
 
 let inputLogIn = document.createElement("form");
 inputLogIn.setAttribute("class", "register");
-Register.appendChild(inputLogIn);
+inputReg.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
-userName.setAttribute("type", "text");
-userName.setAttribute("placeholder", "usuario");
+userName.setAttribute("type", "email");
+userName.setAttribute("placeholder", "example@mail.com");
 userName.setAttribute("id", "userName");
 inputLogIn.appendChild(userName);
-
-let email = document.createElement("input");
-email.setAttribute("type", "email");
-email.setAttribute("placeholder", "example@mail.com");
-email.setAttribute("id", "email");
-inputLogIn.appendChild(email);
 
 // let labelInputs = document.createElement("label");
 // labelInputs.setAttribute("for", "userName");
@@ -92,9 +72,11 @@ buttonSend.setAttribute("type", "submit");
 buttonSend.setAttribute("value", "Iniciar sesión");
 inputLogIn.appendChild(buttonSend);
 
+//ACÁ SE GENERA NUEVO USUARIO O SE INICIA SESIÓN (MODULARIZAR)
+
 inputLogIn.addEventListener("submit", (send) => {
 send.preventDefault();
-let valueUserName = email.value;
+let valueUserName = userName.value;
 let valuePassword = passwordIn.value;
 console.log(valueUserName + valuePassword);
 
@@ -112,6 +94,8 @@ createUserWithEmailAndPassword(auth, valueUserName, valuePassword)
     console.log(errorCode);
     console.log(errorMessage);
   });
+
+  //MODULARIZAR REGISTRO E INICIO SESIÓN
 
   signInWithEmailAndPassword(auth, valueUserName, valuePassword)
   .then((userCredential) => {
