@@ -54,21 +54,34 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 //Creación de campos de registro
-let Register = document.getElementById("Register");
+let register = document.getElementById("Register");
+
+let logo = document.createElement("img")
+logo.setAttribute("src", "./images/logo-plantasia.svg");
+logo.setAttribute("class", "logo");
+register.appendChild(logo);
 
 let titleRegister = document.createElement("h1");
-titleRegister.textContent = "Bienvenida a (nombre app)";
-Register.appendChild(titleRegister);
+titleRegister.textContent = "Plantasia";
+register.appendChild(titleRegister);
 
 let inputLogIn = document.createElement("form");
 inputLogIn.setAttribute("class", "register");
-Register.appendChild(inputLogIn);
+register.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
-userName.setAttribute("type", "email");
-userName.setAttribute("placeholder", "example@mail.com");
+userName.setAttribute("type", "text");
+userName.setAttribute("placeholder", "usuario");
 userName.setAttribute("id", "userName");
+userName.setAttribute("class", "input");
 inputLogIn.appendChild(userName);
+
+let eMail = document.createElement("input");
+eMail.setAttribute("type", "email");
+eMail.setAttribute("placeholder", "example@mail.com");
+eMail.setAttribute("id", "eMail");
+eMail.setAttribute("class", "input");
+inputLogIn.appendChild(eMail);
 
 // let labelInputs = document.createElement("label");
 // labelInputs.setAttribute("for", "userName");
@@ -79,6 +92,7 @@ let passwordIn = document.createElement("input");
 passwordIn.setAttribute("type", "password");
 passwordIn.setAttribute("placeholder", "contraseña");
 passwordIn.setAttribute("id","passwordIn");
+passwordIn.setAttribute("class", "input");
 inputLogIn.appendChild(passwordIn);
 
 let buttonSend = document.createElement("input");
