@@ -22,7 +22,21 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth();
+
+// createUserWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//     // ..
+//   });
+
 
 onAuthStateChanged(auth, (user) => {
   if (user !== null) {
@@ -40,21 +54,34 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 //Creación de campos de registro
-let inputReg = document.getElementById("inputRegister");
+let register = document.getElementById("Register");
+
+let logo = document.createElement("img")
+logo.setAttribute("src", "./images/logo-plantasia.svg");
+logo.setAttribute("class", "logo");
+register.appendChild(logo);
 
 let titleRegister = document.createElement("h1");
-titleRegister.textContent = "Bienvenida a (nombre app)";
-inputReg.appendChild(titleRegister);
+titleRegister.textContent = "Plantasia";
+register.appendChild(titleRegister);
 
 let inputLogIn = document.createElement("form");
 inputLogIn.setAttribute("class", "register");
-inputReg.appendChild(inputLogIn);
+register.appendChild(inputLogIn);
 
 let userName = document.createElement("input");
-userName.setAttribute("type", "email");
-userName.setAttribute("placeholder", "example@mail.com");
+userName.setAttribute("type", "text");
+userName.setAttribute("placeholder", "usuario");
 userName.setAttribute("id", "userName");
+userName.setAttribute("class", "input");
 inputLogIn.appendChild(userName);
+
+let eMail = document.createElement("input");
+eMail.setAttribute("type", "email");
+eMail.setAttribute("placeholder", "example@mail.com");
+eMail.setAttribute("id", "eMail");
+eMail.setAttribute("class", "input");
+inputLogIn.appendChild(eMail);
 
 // let labelInputs = document.createElement("label");
 // labelInputs.setAttribute("for", "userName");
@@ -65,14 +92,13 @@ let passwordIn = document.createElement("input");
 passwordIn.setAttribute("type", "password");
 passwordIn.setAttribute("placeholder", "contraseña");
 passwordIn.setAttribute("id","passwordIn");
+passwordIn.setAttribute("class", "input");
 inputLogIn.appendChild(passwordIn);
 
 let buttonSend = document.createElement("input");
 buttonSend.setAttribute("type", "submit");
 buttonSend.setAttribute("value", "Iniciar sesión");
 inputLogIn.appendChild(buttonSend);
-
-//ACÁ SE GENERA NUEVO USUARIO O SE INICIA SESIÓN (MODULARIZAR)
 
 inputLogIn.addEventListener("submit", (send) => {
 send.preventDefault();
@@ -94,8 +120,6 @@ createUserWithEmailAndPassword(auth, valueUserName, valuePassword)
     console.log(errorCode);
     console.log(errorMessage);
   });
-
-  //MODULARIZAR REGISTRO E INICIO SESIÓN
 
   signInWithEmailAndPassword(auth, valueUserName, valuePassword)
   .then((userCredential) => {
