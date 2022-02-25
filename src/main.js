@@ -102,37 +102,37 @@ buttonSend.setAttribute("class", "buttonsubmit");
 inputLogIn.appendChild(buttonSend);
 
 inputLogIn.addEventListener("submit", (send) => {
-send.preventDefault();
-let valueUserName = userName.value;
-let valuePassword = passwordIn.value;
-console.log(valueUserName + valuePassword);
+  send.preventDefault();
+  let valueEmail = eMail.value;
+  let valuePassword = passwordIn.value;
+  console.log(valueEmail + valuePassword);
 
-createUserWithEmailAndPassword(auth, valueUserName, valuePassword)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // redirigir a muro
-    console.log(user);
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    
-    console.log(errorCode);
-    console.log(errorMessage);
-  });
+  createUserWithEmailAndPassword(auth, valueEmail, valuePassword)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // redirigir a muro
+      console.log(user);
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
 
-  signInWithEmailAndPassword(auth, valueUserName, valuePassword)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    // ...
-    console.log("ingreso exitoso");
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    console.log(errorMessage);
-  });
+    signInWithEmailAndPassword(auth, valueEmail, valuePassword)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+      console.log(user+" ingreso exitoso");
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      console.log(errorMessage);
+    });
 })
