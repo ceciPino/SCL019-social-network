@@ -1,34 +1,33 @@
-
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  body {
-    background: #F9F0E2;
-    background-blend-mode: lighten;
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height:600px;
-  }
+body {
+  background: #F9F0E2;
+  background-blend-mode: lighten;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height:600px;
+}
 
-  .logo {
-    display: block;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.logo {
+  display: block;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-  .register {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 40px;
-  }
+.register {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 40px;
+}
 
   h1 {
     font-family: 'Arima Madurai';
@@ -40,32 +39,8 @@
     color: #4A4BFF;
   }
 
-  .input {
-    border-radius: 10px;
-    width: 300px;
-    height: 50px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 16px;
-    line-height: 19px;
-    text-align: center;
-    letter-spacing: 0.2em;
-    border: 2px solid #C4C4C4;
-  }
-
-  .buttonsubmit {
-    width: 301px;
-    height: 50px;
-    background: #D5D5FF;
-    border-radius: 10px;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 21px;
-    text-align: center;
-    color: #FFFFFF;
-    border: #D5D5FF;
-  }
-
+.input {
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+}

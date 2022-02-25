@@ -136,8 +136,3 @@ createUserWithEmailAndPassword(auth, valueUserName, valuePassword)
     console.log(errorMessage);
   });
 })
-
-
-
-
-
