@@ -78,7 +78,7 @@ inputLogIn.appendChild(userName);
 
 let eMail = document.createElement("input");
 eMail.setAttribute("type", "email");
-eMail.setAttribute("placeholder", "example@mail.com");
+eMail.setAttribute("placeholder", "ejemplo@correo.com");
 eMail.setAttribute("id", "eMail");
 eMail.setAttribute("class", "input");
 inputLogIn.appendChild(eMail);
@@ -97,7 +97,8 @@ inputLogIn.appendChild(passwordIn);
 
 let buttonSend = document.createElement("input");
 buttonSend.setAttribute("type", "submit");
-buttonSend.setAttribute("value", "Iniciar sesión");
+buttonSend.setAttribute("value", "Iniciar Sesión");
+buttonSend.setAttribute("class", "buttonsubmit");
 inputLogIn.appendChild(buttonSend);
 
 inputLogIn.addEventListener("submit", (send) => {
