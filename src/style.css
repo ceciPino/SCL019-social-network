@@ -15,6 +15,7 @@ body {
   justify-content: center;
 }
 
+
  .divHeader {
   display: flex;
   flex-direction: column;
@@ -24,7 +25,7 @@ body {
 
 .logo {
   display: block;
-  width: 40%;
+  width: 20%;
   margin-left: auto;
   margin-right: auto;
   margin-top: 40px;
@@ -40,7 +41,7 @@ h1 {
   color: #4A4BFF;
 }
 /* "Crear una cuenta"-vistaResgiter */
-h2 { 
+.titleCreate { 
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
@@ -51,6 +52,8 @@ h2 {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  justify-content: flex-start;
 } 
 
 .register {
@@ -132,8 +135,9 @@ h2 {
   font-style: normal;    
   font-weight: normal;    
   font-size: 18px;    
-  text-align: right;    
+  text-align: center;    
   color: #7374FF; 
+  
   
 }
 
@@ -143,13 +147,13 @@ h2 {
 
 .logoGoogle{
   width: 10%;
-  /* float: left; */
+  
 } 
 
 .unregisteredText_Link{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin-top: 40px;
   margin-left: auto;
@@ -177,4 +181,25 @@ h2 {
   
   margin-left: auto;
   margin-right: auto;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 30px;
+  font-family: Roboto;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 2;
+  color: #AEAEAE;
+
+
+}
+
+footer a {
+  color:#7374FF;
+  text-decoration: none;
+  
 }

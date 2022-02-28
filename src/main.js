@@ -54,7 +54,7 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 //Creación de campos de registro
-let root = document.getElementById("root");
+/*let root = document.getElementById("root");
 let header = document.getElementById("header");
 
 let divHeader = document.createElement("div");
@@ -70,13 +70,14 @@ let titlePlantasia = document.createElement("h1");
 titlePlantasia.textContent = "Plantasia";
 divHeader.appendChild(titlePlantasia);
 
-let titleCreateAccount = document.createElement("h2");
-titleCreateAccount.textContent = "Crear una cuenta";
-root.appendChild(titleCreateAccount);
-
 let formRegister = document.createElement("form");
 formRegister.setAttribute("class", "register"); 
 root.appendChild(formRegister);
+
+let titleCreateAccount = document.createElement("h2");
+titleCreateAccount.setAttribute("class","titleCreate");
+titleCreateAccount.textContent = "Crear una cuenta";
+formRegister.appendChild(titleCreateAccount);
 
 let userName = document.createElement("input");
 userName.setAttribute("type", "text");
@@ -101,9 +102,71 @@ formRegister.appendChild(passwordIn);
 
 let buttonSend = document.createElement("input");
 buttonSend.setAttribute("type", "submit");
-buttonSend.setAttribute("value", "Iniciar Sesión");
+buttonSend.setAttribute("value", "Registrar");
 buttonSend.setAttribute("class", "buttonsubmit");
 formRegister.appendChild(buttonSend);
+
+let sectionEnterWithGoogle = document.createElement("div");
+sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
+root.appendChild(sectionEnterWithGoogle);
+
+let optionGoogle = document.createElement("p");
+optionGoogle.textContent = "o"
+sectionEnterWithGoogle.appendChild(optionGoogle);
+
+let buttonGoogle = document.createElement("button");
+buttonGoogle.setAttribute("class", "buttonGoogle");
+buttonGoogle.setAttribute("id", "buttonGoogle");
+buttonGoogle.textContent = "Continuar con Google";  
+sectionEnterWithGoogle.appendChild(buttonGoogle);
+
+let logoGoogle = document.createElement("img");
+logoGoogle.setAttribute("class", "logoGoogle");
+logoGoogle.setAttribute("src", "./images/logo-google.png");
+logoGoogle.setAttribute("alt", "logo Google");
+buttonGoogle.appendChild(logoGoogle);*/
+
+//VISTA LOG IN
+let root = document.getElementById("root");
+let header = document.getElementById("header");
+
+let divHeader = document.createElement("div");
+divHeader.setAttribute("class", "divHeader");
+header.appendChild(divHeader);
+
+let logo = document.createElement("img")
+logo.setAttribute("src", "./images/logo-plantasia.svg");
+logo.setAttribute("class", "logo");
+divHeader.appendChild(logo);
+
+let titlePlantasia = document.createElement("h1");
+titlePlantasia.textContent = "Plantasia";
+divHeader.appendChild(titlePlantasia);
+
+
+let formLogIn = document.createElement("form");
+formLogIn.setAttribute("class", "register"); 
+root.appendChild(formLogIn);
+
+let eMail = document.createElement("input");
+eMail.setAttribute("type", "email");
+eMail.setAttribute("placeholder", "ejemplo@correo.com");
+eMail.setAttribute("id", "eMail");
+eMail.setAttribute("class", "input");
+formLogIn.appendChild(eMail);
+
+let passwordIn = document.createElement("input");
+passwordIn.setAttribute("type", "password");
+passwordIn.setAttribute("placeholder", "contraseña");
+passwordIn.setAttribute("id","passwordIn");
+passwordIn.setAttribute("class", "input");
+formLogIn.appendChild(passwordIn);
+
+let buttonSend = document.createElement("input");
+buttonSend.setAttribute("type", "submit");
+buttonSend.setAttribute("value", "Iniciar Sesión");
+buttonSend.setAttribute("class", "buttonsubmit");
+formLogIn.appendChild(buttonSend);
 
 let sectionEnterWithGoogle = document.createElement("div");
 sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
@@ -125,84 +188,19 @@ logoGoogle.setAttribute("src", "./images/logo-google.png");
 logoGoogle.setAttribute("alt", "logo Google");
 buttonGoogle.appendChild(logoGoogle);
 
-// VISTA LOG IN
-// let root = document.getElementById("root");
-// let header = document.getElementById("header");
+let divUnregistered = document.createElement("div");
+divUnregistered.setAttribute("class", "unregisteredText_Link");
+root.appendChild(divUnregistered);
 
-// let divHeader = document.createElement("div");
-// divHeader.setAttribute("class", "divHeader");
-// header.appendChild(divHeader);
+let unregisteredUser = document.createElement("p");
+unregisteredUser.textContent = "¿No tienes una cuenta?";
+divUnregistered.appendChild(unregisteredUser);
 
-// let logo = document.createElement("img")
-// logo.setAttribute("src", "./images/logo-plantasia.svg");
-// logo.setAttribute("class", "logo");
-// divHeader.appendChild(logo);
-
-// let titlePlantasia = document.createElement("h1");
-// titlePlantasia.textContent = "Plantasia";
-// divHeader.appendChild(titlePlantasia);
-
-// // let mainLogIn = document.createElement("main");
-// // root.setAttribute(mainLogIn);
-// //root.setAttribute("class", "content_logIn_register");
-
-// let formLogIn = document.createElement("form");
-// formLogIn.setAttribute("class", "register"); 
-// root.appendChild(formLogIn);
-
-// let eMail = document.createElement("input");
-// eMail.setAttribute("type", "email");
-// eMail.setAttribute("placeholder", "ejemplo@correo.com");
-// eMail.setAttribute("id", "eMail");
-// eMail.setAttribute("class", "input");
-// formLogIn.appendChild(eMail);
-
-// let passwordIn = document.createElement("input");
-// passwordIn.setAttribute("type", "password");
-// passwordIn.setAttribute("placeholder", "contraseña");
-// passwordIn.setAttribute("id","passwordIn");
-// passwordIn.setAttribute("class", "input");
-// formLogIn.appendChild(passwordIn);
-
-// let buttonSend = document.createElement("input");
-// buttonSend.setAttribute("type", "submit");
-// buttonSend.setAttribute("value", "Iniciar Sesión");
-// buttonSend.setAttribute("class", "buttonsubmit");
-// formLogIn.appendChild(buttonSend);
-
-// let sectionEnterWithGoogle = document.createElement("div");
-// sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
-// root.appendChild(sectionEnterWithGoogle);
-
-// let optionGoogle = document.createElement("p");
-// optionGoogle.textContent = "o"
-// sectionEnterWithGoogle.appendChild(optionGoogle);
-
-// let buttonGoogle = document.createElement("button");
-// buttonGoogle.setAttribute("class", "buttonGoogle");
-// buttonGoogle.setAttribute("id", "buttonGoogle");
-// buttonGoogle.textContent = "Continuar con Google";
-// sectionEnterWithGoogle.appendChild(buttonGoogle);
-
-// let logoGoogle = document.createElement("img");
-// logoGoogle.setAttribute("class", "logoGoogle");
-// logoGoogle.setAttribute("src", "./images/logo-google.png");
-// logoGoogle.setAttribute("alt", "logo Google");
-// buttonGoogle.appendChild(logoGoogle);
-
-// let divUnregistered = document.createElement("div");
-// divUnregistered.setAttribute("class", "unregisteredText_Link");
-// root.appendChild(divUnregistered);
-
-// let unregisteredUser = document.createElement("p");
-// unregisteredUser.textContent = "¿No tienes una cuenta?";
-// divUnregistered.appendChild(unregisteredUser);
-
-// let linkRegister = document.createElement("a");
-// linkRegister.setAttribute("class", "logIn_linkRegister");
-// linkRegister.setAttribute("href", ""); // insertar ruta registro
-// linkRegister.textContent = "Regístrate";
-// divUnregistered.appendChild(linkRegister);
+let linkRegister = document.createElement("a");
+linkRegister.setAttribute("class", "logIn_linkRegister");
+linkRegister.setAttribute("href", ""); // insertar ruta registro
+linkRegister.textContent = "Regístrate";
+divUnregistered.appendChild(linkRegister);
 
 formRegister.addEventListener("submit", (send) => {
   send.preventDefault();
