@@ -5,14 +5,16 @@
 }
 
 body {
-  background: #F9F0E2;
-  background-blend-mode: lighten; /* ? */
-  min-height: 100vh;
-  min-height:600px; /* ? */
-  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+
+  background: #F9F0E2;
+  background-blend-mode: lighten; /* ? */
+  width: 100%;
+  min-height: 100vh;
+  min-height:600px; /* ? */
+
 }
 
 
@@ -25,35 +27,36 @@ body {
 
 .logo {
   display: block;
-  width: 20%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  margin-top: 2%;
+  width: 12%;
 }
 
 h1 {
+  text-align: center;
   font-family: 'Arima Madurai';
   font-style: normal;
   font-weight: 700;
   font-size: 48px;
   line-height: 86px;
-  text-align: center;
   color: #4A4BFF;
 }
 /* "Crear una cuenta"-vistaResgiter */
 .titleCreate { 
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+  margin-left: 335px; /* agregar media query*/
+  margin-right: auto;
+
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 40px;
   text-align: left;
-  color: #7374FF;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  justify-content: flex-start;
+  color: #7374FF;  
 } 
 
 .register {
@@ -84,15 +87,17 @@ h1 {
 .buttonsubmit {    
   width: 300px;    
   height: 40px;    
-  background: #D5D5FF;    
-  border-radius: 10px;    
+    
   font-family: Roboto;    
   font-style: normal;    
   font-weight: normal;    
   font-size: 18px;    
   text-align: center;    
-  color: #FFFFFF;    
-  border: #D5D5FF; 
+  color: #FFFFFF;     
+  background: #D5D5FF;  
+  border: #D5D5FF;  
+  border-radius: 10px;  
+
 }
 
 .buttonsubmit:hover {
@@ -129,16 +134,7 @@ h1 {
   background: white; 
   border: white;
   border-radius: 10px;       
-  cursor: pointer;
-
-  font-family: Roboto;    
-  font-style: normal;    
-  font-weight: normal;    
-  font-size: 18px;    
-  text-align: center;    
-  color: #7374FF; 
-  
-  
+  cursor: pointer;  
 }
 
 .buttonGoogle:hover {
@@ -150,37 +146,46 @@ h1 {
   
 } 
 
+.buttonGoogle p {
+  font-family: Roboto;    
+  font-style: normal;    
+  font-weight: normal;    
+  font-size: 18px;    
+  color: #7374FF; 
+}
+
 .unregisteredText_Link{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 35px;
   margin-left: auto;
   margin-right: auto;
+  padding: 0% 35%; /* aplicar media query */
 }
 
 .unregisteredText_Link p {
+  margin-left: auto;
+  margin-right: auto;
+
   color: #939393;
   font-family: Roboto;
   font-style: normal;    
   font-weight: normal;
-  font-size: 18px; 
-  
-  margin-left: auto;
-  margin-right: auto;
+  font-size: 16px; 
 }
 
 .logIn_linkRegister{
+  margin-left: auto;
+  margin-right: auto;
+
   color: #7374FF;
   font-family: Roboto;
   font-style: normal;    
   font-weight: 500;
-  font-size: 18px; 
+  font-size: 16px; 
   text-decoration: none;
-  
-  margin-left: auto;
-  margin-right: auto;
 }
 
 footer {
@@ -189,6 +194,7 @@ footer {
   justify-content: center;
   text-align: center;
   margin: 30px;
+
   font-family: Roboto;
   font-style: normal;
   font-size: 10px;
@@ -201,5 +207,4 @@ footer {
 footer a {
   color:#7374FF;
   text-decoration: none;
-  
 }
