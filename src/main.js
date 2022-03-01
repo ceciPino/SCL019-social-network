@@ -177,6 +177,7 @@ sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
 root.appendChild(sectionEnterWithGoogle);
 
 let optionGoogle = document.createElement("p");
+optionGoogle.setAttribute("class", "orGoogle");
 optionGoogle.textContent = "o"
 sectionEnterWithGoogle.appendChild(optionGoogle);
 
