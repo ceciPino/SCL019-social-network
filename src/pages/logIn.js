@@ -1,4 +1,4 @@
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 //import { register } from "..pages/register.js"
 
 export const login = () => {
@@ -21,7 +21,7 @@ export const login = () => {
 
 
     let formLogIn = document.createElement("form");
-    formLogIn.setAttribute("class", "register"); 
+    formLogIn.setAttribute("class", "register");
     root.appendChild(formLogIn);
 
     let eMail = document.createElement("input");
@@ -34,7 +34,7 @@ export const login = () => {
     let passwordIn = document.createElement("input");
     passwordIn.setAttribute("type", "password");
     passwordIn.setAttribute("placeholder", "contraseña");
-    passwordIn.setAttribute("id","passwordIn");
+    passwordIn.setAttribute("id", "passwordIn");
     passwordIn.setAttribute("class", "input");
     formLogIn.appendChild(passwordIn);
 
@@ -50,7 +50,7 @@ export const login = () => {
 
     let optionGoogle = document.createElement("p");
     optionGoogle.setAttribute("class", "orGoogle");
-    optionGoogle.textContent = "o"
+    optionGoogle.textContent = "ó"
     sectionEnterWithGoogle.appendChild(optionGoogle);
 
     let buttonGoogle = document.createElement("button");
@@ -84,24 +84,59 @@ export const login = () => {
     divUnregistered.appendChild(linkRegister);
 
     formLogIn.addEventListener("submit", (send) => {
-    send.preventDefault();
-    let valueEmail = eMail.value;
-    let valuePassword = passwordIn.value;
-    console.log(valueEmail + valuePassword);
+        send.preventDefault();
+        let valueEmail = eMail.value;
+        let valuePassword = passwordIn.value;
+        console.log(valueEmail + valuePassword);
 
         const auth = getAuth();
         signInWithEmailAndPassword(auth, valueEmail, valuePassword)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // ...
-            console.log(user+" ingreso exitoso");
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
-        });
+            .then((userCredential) => {
+                // Signed in
+                const user = userCredential.user;
+                // ...
+                console.log(user + " ingreso exitoso");
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode);
+                console.log(errorMessage);
+            });
+    })
+
+    buttonGoogle.addEventListener("click", (loginGoogle) => {
+        loginGoogle.preventDefault();
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                console.log("inicio sesion google")
+                console.log(token);
+                // The signed-in user info.
+                const user = result.user;
+                console.log(user);
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                console.log("errores google")
+                console.log(errorCode)
+                const errorMessage = error.message;
+                console.log(errorMessage)
+                // The email of the user's account used.
+                const email = error.email;
+                console.log(email)
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.log(credential)
+                // ...
+            });
+
+
     })
 }
