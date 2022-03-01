@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 export const register = () => {
   //Creación de campos de registro
@@ -59,14 +59,13 @@ export const register = () => {
   root.appendChild(sectionEnterWithGoogle);
 
   let optionGoogle = document.createElement("p");
+  optionGoogle.setAttribute("class", "orGoogle");
   optionGoogle.textContent = "o"
   sectionEnterWithGoogle.appendChild(optionGoogle);
 
   let buttonGoogle = document.createElement("button");
   buttonGoogle.setAttribute("class", "buttonGoogle");
   buttonGoogle.setAttribute("id", "buttonGoogle");
-  buttonGoogle.textContent = "Continuar con Google";  
-  sectionEnterWithGoogle.appendChild(buttonGoogle);
 
   let logoGoogle = document.createElement("img");
   logoGoogle.setAttribute("class", "logoGoogle");
@@ -74,19 +73,34 @@ export const register = () => {
   logoGoogle.setAttribute("alt", "logo Google");
   buttonGoogle.appendChild(logoGoogle);
 
-  createUserWithEmailAndPassword(auth, valueEmail, valuePassword)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        // redirigir a muro
-        console.log(user);
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        
-        console.log(errorCode);
-        console.log(errorMessage);
+  let labelBtnGoogle = document.createElement("p");
+  labelBtnGoogle.textContent = "Continuar con Google";
+  buttonGoogle.appendChild(labelBtnGoogle);
+  
+  sectionEnterWithGoogle.appendChild(buttonGoogle);
+
+  const auth = getAuth();
+
+  formRegister.addEventListener("submit", (send) => {
+    send.preventDefault();
+    let valueEmail = eMail.value;
+    let valuePassword = passwordIn.value;
+    console.log(valueEmail + valuePassword);
+
+    createUserWithEmailAndPassword(auth, valueEmail, valuePassword)
+        .then((userCredential) => {
+            // Signed in
+            const user = userCredential.user;
+            // redirigir a muro
+            console.log(user);
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            
+            console.log(errorCode);
+            console.log(errorMessage);
       });
+  });
 
 }

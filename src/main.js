@@ -2,7 +2,7 @@
 
 import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { login } from "./pages/logIn.js";
 
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
@@ -26,6 +26,35 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
+
+const provider = new GoogleAuthProvider();
+
+signInWithPopup(auth, provider)
+  .then((result) => {
+    // This gives you a Google Access Token. You can use it to access the Google API.
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    console.log("inicio sesion google")
+    console.log(token);
+    // The signed-in user info.
+    const user = result.user;
+    console.log(user);
+    // ...
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    console.log("errores google")
+    console.log(errorCode)
+    const errorMessage = error.message;
+    console.log(errorMessage)
+    // The email of the user's account used.
+    const email = error.email;
+    console.log(email)
+    // The AuthCredential type that was used.
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    console.log(credential)
+    // ...
+  });
 
 // createUserWithEmailAndPassword(auth, email, password)
 //   .then((userCredential) => {
