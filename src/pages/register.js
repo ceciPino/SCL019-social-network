@@ -2,9 +2,6 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
 export const register = () => {
   //Creación de campos de registro
-  let root = document.getElementById("root");
-  let header = document.getElementById("header");
-
   let divHeader = document.createElement("div");
   divHeader.setAttribute("class", "divHeader");
   header.appendChild(divHeader);

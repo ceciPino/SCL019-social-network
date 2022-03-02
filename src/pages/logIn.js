@@ -1,25 +1,10 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import {headerContent} from "./pages/header.js"
 //import { register } from "..pages/register.js"
 
 export const login = () => {
     //VISTA LOG IN
-    let root = document.getElementById("root");
-    let header = document.getElementById("header");
-
-    let divHeader = document.createElement("div");
-    divHeader.setAttribute("class", "divHeader");
-    header.appendChild(divHeader);
-
-    let logo = document.createElement("img");
-    logo.setAttribute("src", "./images/logo-plantasia.svg");
-    logo.setAttribute("class", "logo");
-    divHeader.appendChild(logo);
-
-    let titlePlantasia = document.createElement("h1");
-    titlePlantasia.textContent = "Plantasia";
-    divHeader.appendChild(titlePlantasia);
-
-
+    headerContent ();
     let formLogIn = document.createElement("form");
     formLogIn.setAttribute("class", "register");
     root.appendChild(formLogIn);

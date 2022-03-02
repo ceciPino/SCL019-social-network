@@ -3,9 +3,9 @@
 import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-//import { login } from "./pages/logIn.js";
-//import { route } from "./route.js";
-import { register } from "./pages/register.js";
+import { login } from "./pages/logIn.js";
+import { route } from "./route.js";
+//import { register } from "./pages/register.js";
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
 // Import the functions you need from the SDKs you need
@@ -57,8 +57,8 @@ onAuthStateChanged(auth, (user) => {
 
 myFunction();
 
-//login();
-//route ();
-register();
+login();
+route ();
+//register();
 
 
