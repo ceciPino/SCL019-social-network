@@ -4,7 +4,7 @@ import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { login } from "./pages/logIn.js";
-import { route } from "./route.js";
+//import { route } from "./route.js";
 //import { register } from "./pages/register.js";
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
@@ -58,7 +58,7 @@ onAuthStateChanged(auth, (user) => {
 myFunction();
 
 login();
-route ();
+//route ();
 //register();
 
 
