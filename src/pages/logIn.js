@@ -10,7 +10,7 @@ export const login = () => {
     divHeader.setAttribute("class", "divHeader");
     header.appendChild(divHeader);
 
-    let logo = document.createElement("img")
+    let logo = document.createElement("img");
     logo.setAttribute("src", "./images/logo-plantasia.svg");
     logo.setAttribute("class", "logo");
     divHeader.appendChild(logo);
@@ -79,7 +79,7 @@ export const login = () => {
 
     let linkRegister = document.createElement("a");
     linkRegister.setAttribute("class", "logIn_linkRegister");
-    linkRegister.setAttribute("href", "src/pages/register.js"); // insertar ruta registro 
+    linkRegister.setAttribute("href", "#register"); // insertar ruta registro 
     linkRegister.textContent = "Regístrate";
     divUnregistered.appendChild(linkRegister);
 
