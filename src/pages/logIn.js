@@ -77,6 +77,7 @@ export const login = () => {
     unregisteredUser.textContent = "¿No tienes una cuenta?";
     divUnregistered.appendChild(unregisteredUser);
 
+    // COLOCAR DENTRO DE UN NAV 
     let linkRegister = document.createElement("a");
     linkRegister.setAttribute("class", "logIn_linkRegister");
     linkRegister.setAttribute("href", "src/pages/register.js"); // insertar ruta registro 
