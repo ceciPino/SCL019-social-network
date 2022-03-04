@@ -1,28 +1,14 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-//import { register } from "..pages/register.js"
+import { register } from "../pages/register.js"
 
 export const login = () => {
     //VISTA LOG IN
-    let root = document.getElementById("root");
-    let header = document.getElementById("header");
-
-    let divHeader = document.createElement("div");
-    divHeader.setAttribute("class", "divHeader");
-    header.appendChild(divHeader);
-
-    let logo = document.createElement("img");
-    logo.setAttribute("src", "./images/logo-plantasia.svg");
-    logo.setAttribute("class", "logo");
-    divHeader.appendChild(logo);
-
-    let titlePlantasia = document.createElement("h1");
-    titlePlantasia.textContent = "Plantasia";
-    divHeader.appendChild(titlePlantasia);
-
-
+    history.pushState(null, 'login', '#login');
+    let divLogin = document.createElement("div");
+    
     let formLogIn = document.createElement("form");
     formLogIn.setAttribute("class", "register");
-    root.appendChild(formLogIn);
+    divLogin.appendChild(formLogIn);
 
     let eMail = document.createElement("input");
     eMail.setAttribute("type", "email");
@@ -46,11 +32,11 @@ export const login = () => {
 
     let sectionEnterWithGoogle = document.createElement("div");
     sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
-    root.appendChild(sectionEnterWithGoogle);
+    divLogin.appendChild(sectionEnterWithGoogle);
 
     let optionGoogle = document.createElement("p");
     optionGoogle.setAttribute("class", "orGoogle");
-    optionGoogle.textContent = "ó"
+    optionGoogle.textContent = "o"
     sectionEnterWithGoogle.appendChild(optionGoogle);
 
     let buttonGoogle = document.createElement("button");
@@ -71,12 +57,13 @@ export const login = () => {
 
     let divUnregistered = document.createElement("div");
     divUnregistered.setAttribute("class", "unregisteredText_Link");
-    root.appendChild(divUnregistered);
+    divLogin.appendChild(divUnregistered);
 
     let unregisteredUser = document.createElement("p");
     unregisteredUser.textContent = "¿No tienes una cuenta?";
     divUnregistered.appendChild(unregisteredUser);
 
+    // COLOCAR DENTRO DE UN NAV 
     let linkRegister = document.createElement("a");
     linkRegister.setAttribute("class", "logIn_linkRegister");
     linkRegister.setAttribute("href", "#register"); // insertar ruta registro 
@@ -139,4 +126,12 @@ export const login = () => {
 
 
     })
+
+    linkRegister.addEventListener('click', (e) => {
+        e.preventDefault();
+        register();
+        divLogin.remove();
+
+    return divLogin;
+    });
 }
