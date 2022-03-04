@@ -1,6 +1,6 @@
 // Este es el punto de entrada de tu aplicacion
 
-import { myFunction } from './lib/index.js';
+//import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./pages/header.js";
@@ -56,11 +56,27 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
+
+
 let rootHeader = document.getElementById("rootHeader");
 rootHeader.appendChild(headerContainer());
 
 let root = document.getElementById("root");
-root.appendChild(login());
+
+
+window.addEventListener('hashchange', () => {//hashchange es lo que ocurre cuando se agrega el # en la url
+  if (window.location.hash === '#login'){
+    console.log('mostrar about')
+    root.appendChild(login());// Paso 1.2
+    changeRoute(window.location.hash);
+  } else if (window.location.hash === '#register'){
+    console.log('mostrar about')
+    login().remove();
+    root.appendChild(register()); // Paso 1.2
+    changeRoute(window.location.hash);
+  } 
+});
+
 
 // let root = document.getElementById("root");
 // root.appendChild(register());
