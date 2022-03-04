@@ -2,25 +2,11 @@ import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com
 
 export const register = () => {
   //Creación de campos de registro
-  let root = document.getElementById("root");
-  let header = document.getElementById("header");
-
-  let divHeader = document.createElement("div");
-  divHeader.setAttribute("class", "divHeader");
-  header.appendChild(divHeader);
-
-  let logo = document.createElement("img")
-  logo.setAttribute("src", "./images/logo-plantasia.svg");
-  logo.setAttribute("class", "logo");
-  divHeader.appendChild(logo);
-
-  let titlePlantasia = document.createElement("h1");
-  titlePlantasia.textContent = "Plantasia";
-  divHeader.appendChild(titlePlantasia);
+  let divRegister = document.createElement("div");
 
   let formRegister = document.createElement("form");
   formRegister.setAttribute("class", "register"); 
-  root.appendChild(formRegister);
+  divRegister.appendChild(formRegister);
 
   let titleCreateAccount = document.createElement("h2");
   titleCreateAccount.setAttribute("class","titleCreate");
@@ -56,7 +42,7 @@ export const register = () => {
 
   let sectionEnterWithGoogle = document.createElement("div");
   sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
-  root.appendChild(sectionEnterWithGoogle);
+  divRegister.appendChild(sectionEnterWithGoogle);
 
   let optionGoogle = document.createElement("p");
   optionGoogle.setAttribute("class", "orGoogle");
@@ -102,5 +88,5 @@ export const register = () => {
             console.log(errorMessage);
       });
   });
-
+  return divRegister;
 }
