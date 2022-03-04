@@ -123,15 +123,8 @@ export const login = () => {
                 console.log(credential)
                 // ...
             });
-
+            
 
     })
-
-    linkRegister.addEventListener('click', (e) => {
-        e.preventDefault();
-        register();
-        divLogin.remove();
-
     return divLogin;
-    });
 }
