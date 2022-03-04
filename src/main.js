@@ -3,9 +3,10 @@
 import { myFunction } from './lib/index.js';
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { headerContainer } from "./pages/header.js";
 import { login } from "./pages/logIn.js";
 //import { route } from "./route.js";
-//import { register } from "./pages/register.js";
+import { register } from "./pages/register.js";
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
 // Import the functions you need from the SDKs you need
@@ -55,9 +56,15 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-myFunction();
+let rootHeader = document.getElementById("rootHeader");
+rootHeader.appendChild(headerContainer());
 
-login();
+let root = document.getElementById("root");
+root.appendChild(login());
+
+// let root = document.getElementById("root");
+// root.appendChild(register());
+
 //route ();
 //register();
 
