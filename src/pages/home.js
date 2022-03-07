@@ -9,6 +9,12 @@ export const home = () => {
   firstPost.textContent= "home en construcción";
   divHome.appendChild(firstPost);
 
+  let postArea = document.createElement("textarea");
+  postArea.setAttribute("class", "areapost");
+  postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
+  divHome.appendChild(postArea);
+
+
 return divHome;
 
 }

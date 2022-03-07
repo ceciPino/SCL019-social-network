@@ -31,20 +31,18 @@ const auth = getAuth();
 onAuthStateChanged(auth, (user) => {
   if (user !== null) {
       console.log("logged in");
+      window.location.hash = '#home';
+      route(window.location.hash);
  
   } else {
       console.log("no user");
+      window.location.hash = '#login';
+      route(window.location.hash);
     // User is signed out
   }
 });
 
 
-
 let rootHeader = document.getElementById("rootHeader");
 rootHeader.appendChild(headerContainer());
-
-
-route ();
-
-
 
