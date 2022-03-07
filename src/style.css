@@ -8,7 +8,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   background: #F9F0E2;
   background-blend-mode: lighten; /* ? */
   width: 100%;
@@ -30,7 +29,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   margin-top: 2%;
-  width: 12%;
+  width: 20%;
+  height: auto;
 }
 
 h1 {
@@ -83,6 +83,14 @@ h1 {
   color: #7374FF;   
 } 
 ::placeholder {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.2em;
   color: #AEAEAE;
 }
 .buttonsubmit {    
@@ -137,7 +145,7 @@ h1 {
 }
 
 .orGoogle::after{
-  content: ''; /* para que se muestren tiene que tener algún valor en esta propiedad, aunque sea un strin vacío */
+  content: ''; /* para que se muestren tiene que tener algún valor en esta propiedad, aunque sea un string vacío */
   position: absolute;
   width: 130px;
   height: 1px;
@@ -235,4 +243,30 @@ footer a {
 
 footer a:hover{
   text-decoration: underline;
+}
+
+#home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.areapost {
+width: 262px;
+height: 63px;
+left: 77px;
+top: 160px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+background: #F9F0E2;
+color: #7374FF;
+border-color: #F9F0E2;
+
 }

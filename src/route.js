@@ -9,12 +9,12 @@ export const route = () => {
 
 window.addEventListener('hashchange', () => {//hashchange es lo que ocurre cuando se agrega el # en la url
     if (window.location.hash === '#login'){
-      console.log('se ve login logooo')
+      console.log('se ve el login logooo')
       rootDiv.innerHTML = "";
       rootDiv.appendChild(login()); // Paso 1.2
       //changeRout(window.location.hash);
     } else if (window.location.hash === '#register'){
-      console.log('funciona register')
+      console.log('funciona el register')
       rootDiv.innerHTML = "";
       rootDiv.appendChild(register()); // Paso 1.2
       //changeRout(window.location.hash);
