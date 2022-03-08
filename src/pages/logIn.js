@@ -17,14 +17,24 @@ export const login = () => {
     eMail.setAttribute("placeholder", "ejemplo@correo.com");
     eMail.setAttribute("id", "eMail");
     eMail.setAttribute("class", "input");
+    eMail.setAttribute("required","");
     formLogIn.appendChild(eMail);
+
+    let emailError = document.createElement("span");
+    emailError.setAttribute("class", "errorcorreo");
+    formLogIn.appendChild(emailError);
 
     let passwordIn = document.createElement("input");
     passwordIn.setAttribute("type", "password");
     passwordIn.setAttribute("placeholder", "contraseña");
     passwordIn.setAttribute("id", "passwordIn");
     passwordIn.setAttribute("class", "input");
+    passwordIn.setAttribute("required","");
     formLogIn.appendChild(passwordIn);
+
+    let passwordError = document.createElement("span");
+    passwordError.setAttribute("class", "errorcontrasena");
+    formLogIn.appendChild(passwordError);
 
     let buttonSend = document.createElement("input");
     buttonSend.setAttribute("type", "submit");
@@ -93,6 +103,17 @@ export const login = () => {
                 const errorMessage = error.message;
                 console.log(errorCode);
                 console.log(errorMessage);
+
+                let emailMessage = document.querySelector(".errorcorreo");
+                let passwordMessage = document.querySelector(".errorcontrasena");
+    
+                if (errorCode == 'auth/user-not-found') {
+                  emailMessage.innerHTML = "<p> Correo no registrado</p>";
+                }
+    
+                if (errorCode == 'auth/wrong-password') {
+                  passwordMessage.innerHTML = "<p> Contraseña incorrecta</p>";
+                }
             });
     })
 
