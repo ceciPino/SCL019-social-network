@@ -1,5 +1,7 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { register } from "../pages/register.js"
+import { register } from "../pages/register.js";
+import { route } from "../route.js";
+
 
 export const login = () => {
     //VISTA LOG IN
@@ -83,6 +85,8 @@ export const login = () => {
                 const user = userCredential.user;
                 // ...
                 console.log(user + " ingreso exitoso");
+                window.location.hash="#home";
+               
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -107,6 +111,7 @@ export const login = () => {
                 // The signed-in user info.
                 const user = result.user;
                 console.log(user);
+                window.location.hash ="#home";
                 // ...
             }).catch((error) => {
                 // Handle Errors here.
