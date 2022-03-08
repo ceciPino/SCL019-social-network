@@ -21,6 +21,7 @@ export const register = () => {
   userName.setAttribute("placeholder", "usuario");
   userName.setAttribute("id", "userName");
   userName.setAttribute("class", "input");
+  userName.setAttribute("required","");
   formRegister.appendChild(userName);
 
   let eMail = document.createElement("input");
@@ -28,6 +29,7 @@ export const register = () => {
   eMail.setAttribute("placeholder", "ejemplo@correo.com");
   eMail.setAttribute("id", "eMail");
   eMail.setAttribute("class", "input");
+  eMail.setAttribute("required","");
   formRegister.appendChild(eMail);
 
   let emailError = document.createElement("span");
@@ -39,7 +41,12 @@ export const register = () => {
   passwordIn.setAttribute("placeholder", "contraseña");
   passwordIn.setAttribute("id","passwordIn");
   passwordIn.setAttribute("class", "input");
+  passwordIn.setAttribute("required","");
   formRegister.appendChild(passwordIn);
+
+  let passwordError = document.createElement("span");
+  passwordError.setAttribute("class", "errorcontrasena");
+  formRegister.appendChild(passwordError);
 
   let buttonSend = document.createElement("input");
   buttonSend.setAttribute("type", "submit");
@@ -98,6 +105,7 @@ export const register = () => {
             console.log(errorMessage);
 
             let emailMessage = document.querySelector(".errorcorreo");
+            let passwordMessage = document.querySelector(".errorcontrasena");
 
             if (errorCode == 'auth/email-already-in-use') {
               emailMessage.innerHTML = "<p> Correo existente </p>";
@@ -106,10 +114,14 @@ export const register = () => {
             else if (errorCode == 'auth/invalid-email') {
               emailMessage.innerHTML = "<p> Correo inválido</p>";
             }
+
+            else if (errorCode == 'auth/weak-password') {
+              passwordMessage.innerHTML = "<p> La contraseña debe tener al menos 6 caracteres</p>";
+            }
+
       });
 
   });
-
 
   return divRegister;
 }

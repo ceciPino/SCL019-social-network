@@ -66,6 +66,16 @@ h1 {
   gap: 10px;
 }
 
+.errorcorreo, .errorcontrasena {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #7374FF;
+  letter-spacing: 0.2em;
+  
+}
 
 
 .input {        
