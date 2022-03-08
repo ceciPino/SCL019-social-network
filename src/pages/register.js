@@ -103,7 +103,6 @@ export const register = () => {
               emailMessage.innerHTML = "<p> Correo existente </p>";
               console.log("error correo existente");
             }
-
             else if (errorCode == 'auth/invalid-email') {
               emailMessage.innerHTML = "<p> Correo inválido</p>";
             }
