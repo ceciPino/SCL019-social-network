@@ -1,8 +1,8 @@
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 export const register = () => {
+  
   //Creación de campos de registro
-
   history.pushState(null, 'register', '#register');
 
   let divRegister = document.createElement("div");
@@ -30,6 +30,10 @@ export const register = () => {
   eMail.setAttribute("class", "input");
   formRegister.appendChild(eMail);
 
+  let emailError = document.createElement("span");
+  emailError.setAttribute("class", "errorcorreo");
+  formRegister.appendChild(emailError);
+
   let passwordIn = document.createElement("input");
   passwordIn.setAttribute("type", "password");
   passwordIn.setAttribute("placeholder", "contraseña");
@@ -43,6 +47,7 @@ export const register = () => {
   buttonSend.setAttribute("class", "buttonsubmit");
   formRegister.appendChild(buttonSend);
 
+  //Creación elemento "ingresar con google"
   let sectionEnterWithGoogle = document.createElement("div");
   sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
   divRegister.appendChild(sectionEnterWithGoogle);
@@ -68,6 +73,7 @@ export const register = () => {
   
   sectionEnterWithGoogle.appendChild(buttonGoogle);
 
+
   const auth = getAuth();
 
   formRegister.addEventListener("submit", (send) => {
@@ -82,6 +88,7 @@ export const register = () => {
             const user = userCredential.user;
             // redirigir a muro
             console.log(user);
+            window.location.hash="#home";
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -89,7 +96,21 @@ export const register = () => {
             
             console.log(errorCode);
             console.log(errorMessage);
+
+            let emailMessage = document.querySelector(".errorcorreo");
+
+            if (errorCode == 'auth/email-already-in-use') {
+              emailMessage.innerHTML = "<p> Correo existente </p>";
+              console.log("error correo existente");
+            }
+
+            else if (errorCode == 'auth/invalid-email') {
+              emailMessage.innerHTML = "<p> Correo inválido</p>";
+            }
       });
+
   });
+
+
   return divRegister;
 }
