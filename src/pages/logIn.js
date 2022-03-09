@@ -76,7 +76,7 @@ export const login = () => {
     divLogin.appendChild(divUnregistered);
 
     let unregisteredUser = document.createElement("p");
-    unregisteredUser.textContent = "¿No tienes una cuenta?";
+    unregisteredUser.textContent = "¿No tienes una cuenta? ";
     divUnregistered.appendChild(unregisteredUser);
 
     //link register
