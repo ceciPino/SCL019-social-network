@@ -6,7 +6,7 @@ export const route = () => {
 
   let rootDiv = document.getElementById("root");
 
-  console.log(window.location.pathname);
+  // Mostrar HTML correcto al recargar la página
   if (window.location.pathname === '/login') {
     rootDiv.appendChild(login());
   } else if (window.location.pathname === '/register') {
@@ -16,9 +16,8 @@ export const route = () => {
   }
 
 
-  //Paso 1.3
+  // Cambiar la URL para que no ocupe el #
   const changeRoute = (hash) => {
-    // cambiando url para que no ocupar #
     if (hash === '#login') {
       window.history.replaceState({}, 'login', '/login');
     } else if (hash === '#register') {
@@ -28,17 +27,17 @@ export const route = () => {
     }
   }
 
-  //Paso 1
-  window.addEventListener('hashchange', () => {//hashchange es lo que ocurre cuando se agrega el # en la url
+  // Mostrar html después de selleccionar un link
+  window.addEventListener('hashchange', () => { //hashchange es lo que ocurre cuando se agrega el # en la url
     if (window.location.hash === '#login') {
-      console.log('se ve el login logooo')
+      //console.log('se ve el login logooo')
       rootDiv.innerHTML = "";
-      rootDiv.appendChild(login()); // Paso 1.2
+      rootDiv.appendChild(login()); // Reemplazar el contenido del div con id root
       changeRoute(window.location.hash);
     } else if (window.location.hash === '#register') {
-      console.log('funciona el register')
+      //console.log('funciona el register')
       rootDiv.innerHTML = "";
-      rootDiv.appendChild(register()); // Paso 1.2
+      rootDiv.appendChild(register()); // Reemplazar el contenido del div con id root
       changeRoute(window.location.hash);
     } else if (window.location.hash === '#home') {
       console.log('proximamente un home')
@@ -50,7 +49,7 @@ export const route = () => {
     }
   });
 
-  // //Paso 3
+  // // Mostrar HTML correcto al moverse con los botones de atrás y adelante del navegador
   // window.onpopstate = () => {
   //   if (window.location.pathname === '/login') {
   //     rootDiv.appendChild(login());

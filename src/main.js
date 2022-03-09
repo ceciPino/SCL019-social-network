@@ -5,12 +5,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase
 //import { app } from "../firebase-config.js";
 import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./pages/header.js";
-import { login } from "./pages/logIn.js";
 import { route } from "./route.js";
-import { register } from "./pages/register.js";
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
-// Your web app's Firebase configuration
+// Configuración firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDBC5o7sgTl7cbHM5DF4pjLP5Wx2H-S8RA",
   authDomain: "social-network-cjv.firebaseapp.com",
@@ -27,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-
+//Observador logged in/logged out
 onAuthStateChanged(auth, (user) => {
   if (user !== null) {
       console.log("logged in");
@@ -42,7 +40,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-
+//header
 let rootHeader = document.getElementById("rootHeader");
 rootHeader.appendChild(headerContainer());
 
