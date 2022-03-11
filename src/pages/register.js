@@ -1,18 +1,43 @@
 import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { headerContainer } from "./header.js";
+import { footerContainer } from "./footer.js";
 
 export const register = () => {
-  
+
   history.pushState(null, 'register', '#register');
 
   let divRegister = document.createElement("div");
 
+  //IMAGEN DESKTOP
+  let divIllustration = document.createElement("divIllustration");
+  divIllustration.setAttribute("class", "divIllustration");
+  divRegister.appendChild(divIllustration);
+
+  let illustrationPlants = document.createElement("img");
+  illustrationPlants.setAttribute("class", "illustrationPlants");
+  illustrationPlants.setAttribute("src", "./images/ilustracion_plant_lovers.svg");
+  illustrationPlants.setAttribute("alt", "ilustración de Charlotte Ager");
+  divIllustration.appendChild(illustrationPlants);
+
+  //DIV PARA HEADER Y MAIN
+  let divHeader_main = document.createElement("div");
+  divHeader_main.setAttribute("class", "divHeader_main");
+  divRegister.appendChild(divHeader_main);
+
+  //Trayendo header
+  divHeader_main.appendChild(headerContainer());
+
+  //Creación de main
+  let divMain = document.createElement("main");
+  divHeader_main.appendChild(divMain);
+
   //FORM
   let formRegister = document.createElement("form");
-  formRegister.setAttribute("class", "register"); 
-  divRegister.appendChild(formRegister);
+  formRegister.setAttribute("class", "register");
+  divMain.appendChild(formRegister);
   //Titulo
   let titleCreateAccount = document.createElement("h2");
-  titleCreateAccount.setAttribute("class","titleCreate");
+  titleCreateAccount.setAttribute("class", "titleCreate");
   titleCreateAccount.textContent = "Crear una cuenta";
   formRegister.appendChild(titleCreateAccount);
 
@@ -22,7 +47,7 @@ export const register = () => {
   userName.setAttribute("placeholder", "usuario");
   userName.setAttribute("id", "userName");
   userName.setAttribute("class", "input");
-  userName.setAttribute("required","");
+  userName.setAttribute("required", "");
   formRegister.appendChild(userName);
 
   //input email
@@ -31,7 +56,7 @@ export const register = () => {
   eMail.setAttribute("placeholder", "ejemplo@correo.com");
   eMail.setAttribute("id", "eMail");
   eMail.setAttribute("class", "input");
-  eMail.setAttribute("required","");
+  eMail.setAttribute("required", "");
   formRegister.appendChild(eMail);
   //mensaje error email
   let emailError = document.createElement("span");
@@ -42,9 +67,9 @@ export const register = () => {
   let passwordIn = document.createElement("input");
   passwordIn.setAttribute("type", "password");
   passwordIn.setAttribute("placeholder", "contraseña");
-  passwordIn.setAttribute("id","passwordIn");
+  passwordIn.setAttribute("id", "passwordIn");
   passwordIn.setAttribute("class", "input");
-  passwordIn.setAttribute("required","");
+  passwordIn.setAttribute("required", "");
   formRegister.appendChild(passwordIn);
   //mensaje error contraseña
   let passwordError = document.createElement("span");
@@ -61,7 +86,7 @@ export const register = () => {
   //SECCION GOOGLE
   let sectionEnterWithGoogle = document.createElement("div");
   sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
-  divRegister.appendChild(sectionEnterWithGoogle);
+  divMain.appendChild(sectionEnterWithGoogle);
 
   let optionGoogle = document.createElement("p");
   optionGoogle.setAttribute("class", "orGoogle");
@@ -82,8 +107,12 @@ export const register = () => {
   let labelBtnGoogle = document.createElement("p");
   labelBtnGoogle.textContent = "Continuar con Google";
   buttonGoogle.appendChild(labelBtnGoogle);
-  
+
   sectionEnterWithGoogle.appendChild(buttonGoogle);
+
+  //FOOTER
+  divRegister.appendChild(footerContainer());
+
 
 
   const auth = getAuth();
@@ -95,34 +124,34 @@ export const register = () => {
     console.log(valueEmail + valuePassword);
 
     createUserWithEmailAndPassword(auth, valueEmail, valuePassword)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            // redirigir a muro
-            console.log(user);
-            window.location.hash="#home";
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            
-            console.log(errorCode);
-            console.log(errorMessage);
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        // redirigir a muro
+        console.log(user);
+        window.location.hash = "#home";
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
 
-            let emailMessage = document.querySelector(".errorcorreo");
-            let passwordMessage = document.querySelector(".errorcontrasena");
+        console.log(errorCode);
+        console.log(errorMessage);
 
-            if (errorCode == 'auth/email-already-in-use') {
-              emailMessage.innerHTML = "<p>Este correo ya se encuentra en uso</p>";
-              console.log("error correo existente");
-            }
-            else if (errorCode == 'auth/invalid-email') {
-              emailMessage.innerHTML = "<p>Ingresa un correo electrónico válido</p>";
-            }
+        let emailMessage = document.querySelector(".errorcorreo");
+        let passwordMessage = document.querySelector(".errorcontrasena");
 
-            else if (errorCode == 'auth/weak-password') {
-              passwordMessage.innerHTML = "<p>La contraseña debe tener al menos 6 caracteres</p>";
-            }
+        if (errorCode == 'auth/email-already-in-use') {
+          emailMessage.innerHTML = "<p>Este correo ya se encuentra en uso</p>";
+          console.log("error correo existente");
+        }
+        else if (errorCode == 'auth/invalid-email') {
+          emailMessage.innerHTML = "<p>Ingresa un correo electrónico válido</p>";
+        }
+
+        else if (errorCode == 'auth/weak-password') {
+          passwordMessage.innerHTML = "<p>La contraseña debe tener al menos 6 caracteres</p>";
+        }
 
       });
 

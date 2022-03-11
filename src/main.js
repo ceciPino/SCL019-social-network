@@ -40,7 +40,7 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-//header
-let rootHeader = document.getElementById("rootHeader");
-rootHeader.appendChild(headerContainer());
+// //header
+// let rootHeader = document.getElementById("rootHeader");
+// rootHeader.appendChild(headerContainer());
 

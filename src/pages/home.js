@@ -1,9 +1,11 @@
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { headerContainer } from "./header.js";
 
 export const home = () => {
 
   //VISTA HOME
   history.pushState(null, 'home', '#home');
+  
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
