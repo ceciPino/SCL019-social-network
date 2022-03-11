@@ -1,14 +1,40 @@
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { headerContainer } from "./header.js";
+import { footerContainer } from "./footer.js";
 
 export const login = () => {
 
     history.pushState(null, 'login', '#login');
 
     let divLogin = document.createElement("div");
-    // FORM
+
+    //IMAGEN DESKTOP
+    let divIllustration = document.createElement("divIllustration");
+    divIllustration.setAttribute("class", "divIllustration");
+    divLogin.appendChild(divIllustration);
+
+    let illustrationPlants = document.createElement("img");
+    illustrationPlants.setAttribute("class", "illustrationPlants");
+    illustrationPlants.setAttribute("src", "./images/ilustracion_plant_lovers.svg");
+    illustrationPlants.setAttribute("alt", "ilustración de Charlotte Ager");
+    divIllustration.appendChild(illustrationPlants);
+
+    //DIV PARA HEADER Y MAIN
+    let divHeader_main = document.createElement("div");
+    divHeader_main.setAttribute("class", "divHeader_main");
+    divLogin.appendChild(divHeader_main);
+
+    //Trayendo header
+    divHeader_main.appendChild(headerContainer());
+
+    //Creación de main
+    let divMain = document.createElement("main");
+    divHeader_main.appendChild(divMain);
+
+    //FORM
     let formLogIn = document.createElement("form");
     formLogIn.setAttribute("class", "register");
-    divLogin.appendChild(formLogIn);
+    divMain.appendChild(formLogIn);
 
     //input email
     let eMail = document.createElement("input");
@@ -16,7 +42,7 @@ export const login = () => {
     eMail.setAttribute("placeholder", "ejemplo@correo.com");
     eMail.setAttribute("id", "eMail");
     eMail.setAttribute("class", "input");
-    eMail.setAttribute("required","");
+    eMail.setAttribute("required", "");
     formLogIn.appendChild(eMail);
     //mesaje error email
     let emailError = document.createElement("span");
@@ -29,7 +55,7 @@ export const login = () => {
     passwordIn.setAttribute("placeholder", "contraseña");
     passwordIn.setAttribute("id", "passwordIn");
     passwordIn.setAttribute("class", "input");
-    passwordIn.setAttribute("required","");
+    passwordIn.setAttribute("required", "");
     formLogIn.appendChild(passwordIn);
     //mensaje error password
     let passwordError = document.createElement("span");
@@ -46,7 +72,7 @@ export const login = () => {
     //SECCIÓN GOOGLE
     let sectionEnterWithGoogle = document.createElement("div");
     sectionEnterWithGoogle.setAttribute("class", "optionEnterWithGoogle");
-    divLogin.appendChild(sectionEnterWithGoogle);
+    divMain.appendChild(sectionEnterWithGoogle);
 
     let optionGoogle = document.createElement("p");
     optionGoogle.setAttribute("class", "orGoogle");
@@ -73,7 +99,7 @@ export const login = () => {
     //SECCIÓN NO USER
     let divUnregistered = document.createElement("div");
     divUnregistered.setAttribute("class", "unregisteredText_Link");
-    divLogin.appendChild(divUnregistered);
+    divMain.appendChild(divUnregistered);
 
     let unregisteredUser = document.createElement("p");
     unregisteredUser.textContent = "¿No tienes una cuenta? ";
@@ -85,6 +111,9 @@ export const login = () => {
     linkRegister.setAttribute("href", "#register"); // insertar ruta registro 
     linkRegister.textContent = "Regístrate";
     divUnregistered.appendChild(linkRegister);
+
+    //FOOTER
+    divLogin.appendChild(footerContainer());
 
     //Función iniciar sesión
     formLogIn.addEventListener("submit", (send) => {
@@ -99,8 +128,8 @@ export const login = () => {
                 // Signed in
                 const user = userCredential.user;
                 //console.log(user + " ingreso exitoso");
-                window.location.hash="#home";
-               
+                window.location.hash = "#home";
+
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -110,13 +139,13 @@ export const login = () => {
 
                 let emailMessage = document.querySelector(".errorcorreo");
                 let passwordMessage = document.querySelector(".errorcontrasena");
-    
+
                 if (errorCode == 'auth/user-not-found') {
-                  emailMessage.innerHTML = "<p>Ingresa un correo electrónico</p>";
+                    emailMessage.innerHTML = "<p>Ingresa un correo electrónico</p>";
                 }
-    
+
                 if (errorCode == 'auth/wrong-password') {
-                  passwordMessage.innerHTML = "<p>Contraseña incorrecta</p>";
+                    passwordMessage.innerHTML = "<p>Contraseña incorrecta</p>";
                 }
             });
     })
@@ -137,7 +166,7 @@ export const login = () => {
                 // The signed-in user info.
                 const user = result.user;
                 console.log(user);
-                window.location.hash ="#home";
+                window.location.hash = "#home";
             }).catch((error) => {
                 // Handle Errors here.
                 const errorCode = error.code;
@@ -152,7 +181,7 @@ export const login = () => {
                 const credential = GoogleAuthProvider.credentialFromError(error);
                 console.log(credential)
             });
-            
+
 
     })
     return divLogin;
