@@ -40,7 +40,7 @@ export const route = () => {
       rootDiv.appendChild(register()); // Reemplazar el contenido del div con id root
       changeRoute(window.location.hash);
     } else if (window.location.hash === '#home') {
-      console.log('proximamente un home')
+      console.log('home')
       rootDiv.innerHTML = "";
       //console.log(home());
       rootDiv.appendChild(home());
