@@ -2,40 +2,40 @@ import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/fireb
 import { headerContainer } from "./header.js";
 import { getFirestore, addDoc, Timestamp, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
 
-// funcion create post
-export async function createPost(postForm) {
-  // La declaración try...catch señala un bloque de instrucciones a intentar (try)
-  // y especifica una respuesta si se produce una excepción (catch).
-  try {
-    let nameUser;
-    // si el usuario se registró sin google (es decir no se guardó su displayName)
-    // al momento de crear el post
-    // su nombre será el email.
-    if (auth.currentUser.displayName === null) {
-      nameUser = auth.currentUser.email;
-    } else {
-      nameUser = auth.currentUser.displayName;
-    }
-    // addDoc Agregue un nuevo documento a la CollectionReference especificada con los datos
-    // proporcionados asignándole una ID de documento automáticamente.
-    const docRef = await addDoc(collection(firestore, 'Post'), {
-      // especificamos los atributos que contendrá la coleccion
-      userId: auth.currentUser.uid,
-      name: nameUser,
-      email: auth.currentUser.email,
-      comentUser: postForm.coment.value,
-      // Guarda en la base de datos la fecha en formato legible
-      datepost: Timestamp.fromDate(new Date()),
-      likes: [], // se guardará los id de los user que hagan like en el post
-      likesCounter: 0, // contará los like
-    });
-    console.log('documento escrito con id', docRef.id);
-    postForm.reset(); // Se limpia el input del formulario del post
-    showPost(); // llama a la funcion showPost()
-  } catch (err) {
-    console.log('error : ', err);
-  }
-}
+// // funcion create post
+// export async function createPost(postForm) {
+//   // La declaración try...catch señala un bloque de instrucciones a intentar (try)
+//   // y especifica una respuesta si se produce una excepción (catch).
+//   try {
+//     let nameUser;
+//     // si el usuario se registró sin google (es decir no se guardó su displayName)
+//     // al momento de crear el post
+//     // su nombre será el email.
+//     if (auth.currentUser.displayName === null) {
+//       nameUser = auth.currentUser.email;
+//     } else {
+//       nameUser = auth.currentUser.displayName;
+//     }
+//     // addDoc Agregue un nuevo documento a la CollectionReference especificada con los datos
+//     // proporcionados asignándole una ID de documento automáticamente.
+//     const docRef = await addDoc(collection(firestore, 'Post'), {
+//       // especificamos los atributos que contendrá la coleccion
+//       userId: auth.currentUser.uid,
+//       name: nameUser,
+//       email: auth.currentUser.email,
+//       comentUser: postForm.coment.value,
+//       // Guarda en la base de datos la fecha en formato legible
+//       datepost: Timestamp.fromDate(new Date()),
+//       likes: [], // se guardará los id de los user que hagan like en el post
+//       likesCounter: 0, // contará los like
+//     });
+//     console.log('documento escrito con id', docRef.id);
+//     postForm.reset(); // Se limpia el input del formulario del post
+//     showPost(); // llama a la funcion showPost()
+//   } catch (err) {
+//     console.log('error : ', err);
+//   }
+// }
 
 
 //**************************** */
@@ -49,9 +49,44 @@ export const home = () => {
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
+  let divMenu = document.createElement("div");
+  divMenu.setAttribute("class", "menu");
+  divHome.appendChild(divMenu);
+
+  let homeIcon = document.createElement("img");
+  homeIcon.setAttribute("class", "menuIcon");
+  homeIcon.setAttribute("src", "./images/home-icon.svg");
+  homeIcon.setAttribute("alt", "icono home");
+  divMenu.appendChild(homeIcon);
+
+  let exchangeIcon = document.createElement("img");
+  exchangeIcon.setAttribute("class", "menuIcon");
+  exchangeIcon.setAttribute("src", "./images/plant-exchange-icon.svg");
+  exchangeIcon.setAttribute("alt", "icono intercambio de plantas");
+  divMenu.appendChild(exchangeIcon);
+
+  let searchIcon = document.createElement("img");
+  searchIcon.setAttribute("class", "menuIcon");
+  searchIcon.setAttribute("src", "./images/search-icon.svg");
+  searchIcon.setAttribute("alt", "icono home");
+  divMenu.appendChild(searchIcon);
+  
+  let perfilIcon = document.createElement("img");
+  perfilIcon.setAttribute("class", "menuIcon");
+  perfilIcon.setAttribute("src", "./images/user-icon.svg");
+  perfilIcon.setAttribute("alt", "icono perfil");
+  divMenu.appendChild(perfilIcon);
+
   let formHome = document.createElement("form");
   formHome.setAttribute("class", "post");
   divHome.appendChild(formHome);
+
+  let userIcon = document.createElement("img");
+  userIcon.setAttribute("class", "userIcon");
+  userIcon.setAttribute("src", "./images/own-user-icon.svg");
+  userIcon.setAttribute("alt", "icono de usuario");
+  userIcon.setAttribute("width", "25px");
+  formHome.appendChild(userIcon);
 
   let postArea = document.createElement("textarea");
   postArea.setAttribute("class", "areapost");

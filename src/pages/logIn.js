@@ -186,7 +186,7 @@ export const login = () => {
                 const email = error.email;
                 console.log(email)
                 // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
+                const credentikal = GoogleAuthProvider.credentialFromError(error);
                 console.log(credential)
             });
 

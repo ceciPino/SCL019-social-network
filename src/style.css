@@ -266,7 +266,7 @@ footer a:hover{
     /* align-content: center; */
   }
   .divIllustration{
-    display: block;
+    /* display: block; */
     width: 50%;
     margin-top: auto;
     margin-bottom: auto;
@@ -321,6 +321,20 @@ footer a:hover{
   justify-content: space-around;
   align-items: center;
   gap: 10px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  margin-left: 5%;
+}
+
+.menuIcon {
+  height: 30px;
+  width: auto;
+  margin-top: 5%;
 }
 
 .areapost {
