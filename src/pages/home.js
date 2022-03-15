@@ -67,9 +67,44 @@ export const home = () => {
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
+  let divMenu = document.createElement("div");
+  divMenu.setAttribute("class", "menu");
+  divHome.appendChild(divMenu);
+
+  let homeIcon = document.createElement("img");
+  homeIcon.setAttribute("class", "menuIcon");
+  homeIcon.setAttribute("src", "./images/home-icon.svg");
+  homeIcon.setAttribute("alt", "icono home");
+  divMenu.appendChild(homeIcon);
+
+  let exchangeIcon = document.createElement("img");
+  exchangeIcon.setAttribute("class", "menuIcon");
+  exchangeIcon.setAttribute("src", "./images/plant-exchange-icon.svg");
+  exchangeIcon.setAttribute("alt", "icono intercambio de plantas");
+  divMenu.appendChild(exchangeIcon);
+
+  let searchIcon = document.createElement("img");
+  searchIcon.setAttribute("class", "menuIcon");
+  searchIcon.setAttribute("src", "./images/search-icon.svg");
+  searchIcon.setAttribute("alt", "icono home");
+  divMenu.appendChild(searchIcon);
+  
+  let perfilIcon = document.createElement("img");
+  perfilIcon.setAttribute("class", "menuIcon");
+  perfilIcon.setAttribute("src", "./images/user-icon.svg");
+  perfilIcon.setAttribute("alt", "icono perfil");
+  divMenu.appendChild(perfilIcon);
+
   let formHome = document.createElement("form");
   formHome.setAttribute("class", "post");
   divHome.appendChild(formHome);
+
+  let userIcon = document.createElement("img");
+  userIcon.setAttribute("class", "userIcon");
+  userIcon.setAttribute("src", "./images/own-user-icon.svg");
+  userIcon.setAttribute("alt", "icono de usuario");
+  userIcon.setAttribute("width", "25px");
+  formHome.appendChild(userIcon);
 
   let postArea = document.createElement("textarea");
   postArea.setAttribute("class", "areapost");

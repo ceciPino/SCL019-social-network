@@ -9,7 +9,15 @@ export const login = () => {
     let divLogin = document.createElement("div");
 
     //IMAGEN DESKTOP
-    let divIllustration = document.createElement("divIllustration");
+    // let createPicture = document.createElement("picture");
+    // divLogin.appendChild(createPicture);
+
+    // let srcPictureDesktop = document.createElement("source");
+    // srcPictureDesktop.setAttribute("srcset", "./images/ilustracion_plant_lovers.svg");
+    // srcPictureDesktop.setAttribute("media", "min-width: 992px");
+    // createPicture.appendChild(srcPictureDesktop);
+
+    let divIllustration = document.createElement("div");
     divIllustration.setAttribute("class", "divIllustration");
     divLogin.appendChild(divIllustration);
 
@@ -113,7 +121,7 @@ export const login = () => {
     divUnregistered.appendChild(linkRegister);
 
     //FOOTER
-    divLogin.appendChild(footerContainer());
+    // divLogin.appendChild(footerContainer());
 
     //Función iniciar sesión
     formLogIn.addEventListener("submit", (send) => {
@@ -178,7 +186,7 @@ export const login = () => {
                 const email = error.email;
                 console.log(email)
                 // The AuthCredential type that was used.
-                const credential = GoogleAuthProvider.credentialFromError(error);
+                const credentikal = GoogleAuthProvider.credentialFromError(error);
                 console.log(credential)
             });
 
