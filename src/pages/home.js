@@ -1,6 +1,25 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
-import { getFirestore, addDoc, Timestamp, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-firestore.js';
+import { getFirestore, collection, addDoc, Timestamp, doc, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDBC5o7sgTl7cbHM5DF4pjLP5Wx2H-S8RA",
+  authDomain: "social-network-cjv.firebaseapp.com",
+  projectId: "social-network-cjv",
+  storageBucket: "social-network-cjv.appspot.com",
+  messagingSenderId: "55216807698",
+  appId: "1:55216807698:web:9cef62683040f7b8afddcb"
+};
+
+
+initializeApp(firebaseConfig);
+
+const db = getFirestore();
+console.log(db);
+const auth = getAuth();
+
+
 
 // // funcion create post
 // export async function createPost(postForm) {
@@ -36,7 +55,6 @@ import { getFirestore, addDoc, Timestamp, doc, getDoc } from 'https://www.gstati
 //     console.log('error : ', err);
 //   }
 // }
-
 
 //**************************** */
 
@@ -100,20 +118,27 @@ export const home = () => {
   buttonSubmit.setAttribute("class", "buttonSubmit");
   divHome.appendChild(buttonSubmit);
 
+  const createPost = async ( db, text ) => {
+    const docRef = await addDoc(collection(db, "post"), {
+      text
+    });
+    console.log("Document written with ID: ", docRef.id)
+  };
+
+  const prueba = async (db, text ) => {
+    const querySnapshot = await getDocs(collection(db, "post"));
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+    });
+  }
+
   buttonSubmit.addEventListener("click", (post) => {
     post.preventDefault();
     let valuePost = postArea.value;
-    console.log(valuePost);
+    createPost(db, valuePost);
+    prueba(db, valuePost);
     formHome.reset();
-
-
-    const auth = getAuth();
-    const db = getFirestore();
-
-
     //****************** */
-
-    
 
   })
 
