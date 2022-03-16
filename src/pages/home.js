@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
-import { getFirestore, collection, addDoc, Timestamp, doc, getDocs } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
+import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBC5o7sgTl7cbHM5DF4pjLP5Wx2H-S8RA",
@@ -112,11 +112,15 @@ export const home = () => {
   formHome.appendChild(postArea);
 
   let buttonSubmit = document.createElement("button");
-  // buttonSubmit.setAttribute("type", "submit");
-  // buttonSubmit.setAttribute("value", "Publicar");
   buttonSubmit.textContent="Publicar";
   buttonSubmit.setAttribute("class", "buttonSubmit");
   divHome.appendChild(buttonSubmit);
+
+  let postContainer = document.createElement("section");
+  postContainer.setAttribute("id", "postContainer");
+  postContainer.setAttribute("class", "postContainer");
+  divHome.appendChild(postContainer);
+
 
   const createPost = async ( db, text ) => {
     const docRef = await addDoc(collection(db, "post"), {
@@ -125,19 +129,59 @@ export const home = () => {
     console.log("Document written with ID: ", docRef.id)
   };
 
-  const prueba = async (db, text ) => {
+  /*const prueba = async (db, text ) => {
     const querySnapshot = await getDocs(collection(db, "post"));
     querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
+      console.log(doc.id , doc.data());
     });
+  }*/
+
+  const showPost =  async (db, text ) => {
+    // mediante una query(consulta a base de datos) obtengo todos los post
+    // en orden descendiente por fecha de creacion
+    const postAll = query(collection(db, 'post'), orderBy('datepost', 'desc'));
+    // mediante get Docs(intenta proporcionar datos actualizados
+    // cuando es posible esperando datos del servidor,
+    // pero puede devolver datos almacenados en caché o fallar si está desconectado
+    // y no se puede acceder al servidor)
+  
+    const querySnapshot = await getDocs(postAll);
+    // llamamos al div Container del html y a la section de id allPost
+    const container = document.getElementById('home');
+    const sectionPost = document.getElementById('postContainer');
+    sectionPost.innerHTML = ''; // retiramos cualquier indicio de elemento anterior de la section
+    // Realizamos un forEach de cada dato proporcionado por firestore
+    // tantas vueltas como documento hayan.
+    querySnapshot.forEach((documento) => {
+      // imprimimos por consola cada post
+      console.log(documento.id, '=>', documento.data());
+      // creamos los elementos para guardar los atributos del post
+      const divPost = document.createElement('div');
+      divPost.classList.add('divPost');
+      const pPost = document.createElement('p');
+      //const h1Post = document.createElement('h1');
+      //h1Post.classList.add('h1Post');
+      pPost.classList.add('pPost');
+
+      // se agrega al div contenedor todos los elementos
+    //h1Post.innerHTML = documento.data().name;
+    pPost.innerHTML = documento.data().valuePost;
+    //divPost.appendChild(h1Post);
+    divPost.appendChild(pPost);
+    //divPost.appendChild(buttonLike);
+    sectionPost.appendChild(divPost);
+    container.appendChild(sectionPost);
+    })
   }
 
   buttonSubmit.addEventListener("click", (post) => {
     post.preventDefault();
     let valuePost = postArea.value;
     createPost(db, valuePost);
-    prueba(db, valuePost);
+    //prueba(db, valuePost);
+    showPost(db, valuePost);
     formHome.reset();
+
     //****************** */
 
   })
