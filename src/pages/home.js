@@ -54,9 +54,13 @@ export const home = () => {
   perfilIcon.setAttribute("alt", "icono perfil");
   divMenu.appendChild(perfilIcon);
 
+  let divWall = document.createElement("div"); 
+  divWall.setAttribute("class","wall");
+  divHome.appendChild(divWall);
+
   let formHome = document.createElement("form");
   formHome.setAttribute("class", "post");
-  divHome.appendChild(formHome);
+  divWall.appendChild(formHome);
 
   let userIcon = document.createElement("img");
   userIcon.setAttribute("class", "userIcon");
@@ -73,12 +77,12 @@ export const home = () => {
   let buttonSubmit = document.createElement("button");
   buttonSubmit.textContent="Publicar";
   buttonSubmit.setAttribute("class", "buttonSubmit");
-  divHome.appendChild(buttonSubmit);
+  divWall.appendChild(buttonSubmit);
 
   let postContainer = document.createElement("section");
   postContainer.setAttribute("id", "postContainer");
   postContainer.setAttribute("class", "postContainer");
-  divHome.appendChild(postContainer);
+  divWall.appendChild(postContainer);
 
 
   const createPost = async ( db, text ) => {
