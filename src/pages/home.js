@@ -26,33 +26,12 @@ export const home = () => {
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
-  let divMenu = document.createElement("div");
-  divMenu.setAttribute("class", "menu");
-  divHome.appendChild(divMenu);
+  let buttonLogOut = document.createElement("button");
+  buttonLogOut.setAttribute("class", "buttonLogOut");
+  buttonLogOut.setAttribute("id", "buttonLogOut");
+  buttonLogOut.textContent = "salir";
+  divHome.appendChild(buttonLogOut);
 
-  let homeIcon = document.createElement("img");
-  homeIcon.setAttribute("class", "menuIcon");
-  homeIcon.setAttribute("src", "./images/home-icon.svg");
-  homeIcon.setAttribute("alt", "icono home");
-  divMenu.appendChild(homeIcon);
-
-  let exchangeIcon = document.createElement("img");
-  exchangeIcon.setAttribute("class", "menuIcon");
-  exchangeIcon.setAttribute("src", "./images/plant-exchange-icon.svg");
-  exchangeIcon.setAttribute("alt", "icono intercambio de plantas");
-  divMenu.appendChild(exchangeIcon);
-
-  let searchIcon = document.createElement("img");
-  searchIcon.setAttribute("class", "menuIcon");
-  searchIcon.setAttribute("src", "./images/search-icon.svg");
-  searchIcon.setAttribute("alt", "icono home");
-  divMenu.appendChild(searchIcon);
-  
-  let perfilIcon = document.createElement("img");
-  perfilIcon.setAttribute("class", "menuIcon");
-  perfilIcon.setAttribute("src", "./images/user-icon.svg");
-  perfilIcon.setAttribute("alt", "icono perfil");
-  divMenu.appendChild(perfilIcon);
 
   let divWall = document.createElement("div"); 
   divWall.setAttribute("class","wall");
@@ -79,10 +58,12 @@ export const home = () => {
   buttonSubmit.setAttribute("class", "buttonSubmit");
   divWall.appendChild(buttonSubmit);
 
-  let postContainer = document.createElement("section");
+  let postContainer = document.createElement("div");
   postContainer.setAttribute("id", "postContainer");
   postContainer.setAttribute("class", "postContainer");
   divWall.appendChild(postContainer);
+
+
 
 
   const createPost = async ( db, text ) => {
@@ -103,7 +84,6 @@ export const home = () => {
   
   
     const querySnapshot = await getDocs(collection(db, "post"));
-    const container = document.getElementById('home');
     const sectionPost = document.getElementById('postContainer');
     sectionPost.innerHTML = '';
     querySnapshot.forEach((documento) => {
@@ -112,6 +92,14 @@ export const home = () => {
   
       const divPost = document.createElement('div');
       divPost.classList.add('divPost');
+      let userIcon = document.createElement("img");
+      userIcon.setAttribute("class", "iconPost");
+      userIcon.setAttribute("src", "./images/own-user-icon.svg");
+      userIcon.setAttribute("alt", "icono de usuario");
+      userIcon.setAttribute("width", "25px");
+      divPost.appendChild(userIcon);
+
+
       const pPost = document.createElement('p');
       pPost.classList.add('pPost');
 
@@ -119,7 +107,9 @@ export const home = () => {
     console.log(documento.data())
     divPost.appendChild(pPost);
     sectionPost.appendChild(divPost);
-    container.appendChild(sectionPost);
+    divWall.appendChild(sectionPost);
+
+  
     })
   }
 
@@ -135,12 +125,6 @@ export const home = () => {
 
   })
 
-
-  let buttonLogOut = document.createElement("button");
-  buttonLogOut.setAttribute("class", "buttonLogOut");
-  buttonLogOut.setAttribute("id", "buttonLogOut");
-  buttonLogOut.textContent = "salir";
-  divHome.appendChild(buttonLogOut);
 
 
   buttonLogOut.addEventListener("click", () => {
@@ -158,10 +142,37 @@ export const home = () => {
       console.log(error.message);
       });
 
-        
-
 })
 
+
+
+let divMenu = document.createElement("div");
+  divMenu.setAttribute("class", "menu");
+  divHome.appendChild(divMenu);
+
+  let homeIcon = document.createElement("img");
+  homeIcon.setAttribute("class", "menuIcon");
+  homeIcon.setAttribute("src", "./images/home-icon.svg");
+  homeIcon.setAttribute("alt", "icono home");
+  divMenu.appendChild(homeIcon);
+
+  let exchangeIcon = document.createElement("img");
+  exchangeIcon.setAttribute("class", "menuIcon");
+  exchangeIcon.setAttribute("src", "./images/plant-exchange-icon.svg");
+  exchangeIcon.setAttribute("alt", "icono intercambio de plantas");
+  divMenu.appendChild(exchangeIcon);
+
+  let searchIcon = document.createElement("img");
+  searchIcon.setAttribute("class", "menuIcon");
+  searchIcon.setAttribute("src", "./images/search-icon.svg");
+  searchIcon.setAttribute("alt", "icono home");
+  divMenu.appendChild(searchIcon);
+  
+  let perfilIcon = document.createElement("img");
+  perfilIcon.setAttribute("class", "menuIcon");
+  perfilIcon.setAttribute("src", "./images/user-icon.svg");
+  perfilIcon.setAttribute("alt", "icono perfil");
+  divMenu.appendChild(perfilIcon);
 
 return divHome;
 
