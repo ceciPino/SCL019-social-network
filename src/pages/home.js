@@ -64,7 +64,7 @@ export const home = () => {
   divWall.appendChild(postContainer);
 
 
-  const userDataGoogle = async () => {
+  /*const userDataGoogle = async () => {
     const user = auth.currentUser;
     const userName = user.displayName;
     if (user !== null) {
@@ -74,7 +74,7 @@ export const home = () => {
         uid: user.uid,
       });
     }
-  };
+  };*/
 
   const createPost = async ( db, text ) => {
     
@@ -114,11 +114,16 @@ export const home = () => {
       userIcon.setAttribute("width", "25px");
       divPost.appendChild(userIcon);
 
-      const pPost = document.createElement('p');
-      pPost.classList.add('pPost');
 
+      const pUser = document.createElement("p");
+      pUser.setAttribute("class", "pUser");
+      const pPost = document.createElement("p");
+      pPost.setAttribute("class", "pPost");
+
+      pUser.innerHTML = documento.data().name;
       pPost.innerHTML = documento.data().text;
       
+      divPost.appendChild(pUser);
       divPost.appendChild(pPost);
       sectionPost.appendChild(divPost);
       divWall.appendChild(sectionPost);
