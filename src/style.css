@@ -296,6 +296,14 @@ footer a:hover{
 
 }
 
+/* .divName {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+} */
+
 .areapost {
 width: 262px;
 height: 63px;

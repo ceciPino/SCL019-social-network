@@ -101,23 +101,29 @@ export const home = () => {
 
     //creamos los componentes que contendrán cada nueva publicación
       const divPost = document.createElement('div');
-      divPost.classList.add('divPost');
+      divPost.setAttribute("class","divPost");
+
+      const divName = document.createElement('div');
+      divPost.setAttribute("class","divName");
+
       let userIcon = document.createElement("img");
       userIcon.setAttribute("class", "iconPost");
       userIcon.setAttribute("src", "./images/own-user-icon.svg");
       userIcon.setAttribute("alt", "icono de usuario");
       userIcon.setAttribute("width", "25px");
-      divPost.appendChild(userIcon);
+      divName.appendChild(userIcon);
 
       const pUser = document.createElement("p");
       pUser.setAttribute("class", "pUser");
+
       const pPost = document.createElement("p");
       pPost.setAttribute("class", "pPost");
 
       pUser.innerHTML = documento.data().name;
       pPost.innerHTML = documento.data().text;
       
-      divPost.appendChild(pUser);
+      divName.appendChild(pUser);
+      divPost.appendChild(divName);
       divPost.appendChild(pPost);
       sectionPost.appendChild(divPost);
       divWall.appendChild(sectionPost);
