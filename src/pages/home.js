@@ -26,7 +26,127 @@ export const home = () => {
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
-  let divMenu = document.createElement("div");
+  let buttonLogOut = document.createElement("button");
+  buttonLogOut.setAttribute("class", "buttonLogOut");
+  buttonLogOut.setAttribute("id", "buttonLogOut");
+  buttonLogOut.textContent = "salir";
+  divHome.appendChild(buttonLogOut);
+
+
+  let divWall = document.createElement("div"); 
+  divWall.setAttribute("class","wall");
+  divHome.appendChild(divWall);
+
+  let formHome = document.createElement("form");
+  formHome.setAttribute("class", "post");
+  divWall.appendChild(formHome);
+
+  let userIcon = document.createElement("img");
+  userIcon.setAttribute("class", "userIcon");
+  userIcon.setAttribute("src", "./images/own-user-icon.svg");
+  userIcon.setAttribute("alt", "icono de usuario");
+  userIcon.setAttribute("width", "25px");
+  formHome.appendChild(userIcon);
+
+  let postArea = document.createElement("textarea");
+  postArea.setAttribute("class", "areapost");
+  postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
+  formHome.appendChild(postArea);
+
+  let buttonSubmit = document.createElement("button");
+  buttonSubmit.textContent="Publicar";
+  buttonSubmit.setAttribute("class", "buttonSubmit");
+  divWall.appendChild(buttonSubmit);
+
+  let postContainer = document.createElement("div");
+  postContainer.setAttribute("id", "postContainer");
+  postContainer.setAttribute("class", "postContainer");
+  divWall.appendChild(postContainer);
+
+
+
+
+  const createPost = async ( db, text ) => {
+    const docRef = await addDoc(collection(db, "post"), {
+      text
+    });
+    console.log("Document written with ID: ", docRef.id)
+  };
+
+  /*const prueba = async (db, text ) => {
+    const querySnapshot = await getDocs(collection(db, "post"));
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id , doc.data());
+    });
+  }*/
+
+  const showPost =  async (db, documento ) => {
+  
+  
+    const querySnapshot = await getDocs(collection(db, "post"));
+    const sectionPost = document.getElementById('postContainer');
+    sectionPost.innerHTML = '';
+    querySnapshot.forEach((documento) => {
+  
+      console.log(documento.id, '=>', documento.data());
+  
+      const divPost = document.createElement('div');
+      divPost.classList.add('divPost');
+      let userIcon = document.createElement("img");
+      userIcon.setAttribute("class", "iconPost");
+      userIcon.setAttribute("src", "./images/own-user-icon.svg");
+      userIcon.setAttribute("alt", "icono de usuario");
+      userIcon.setAttribute("width", "25px");
+      divPost.appendChild(userIcon);
+
+
+      const pPost = document.createElement('p');
+      pPost.classList.add('pPost');
+
+    pPost.innerHTML = documento.data().text;
+    console.log(documento.data())
+    divPost.appendChild(pPost);
+    sectionPost.appendChild(divPost);
+    divWall.appendChild(sectionPost);
+
+  
+    })
+  }
+
+  buttonSubmit.addEventListener("click", (post) => {
+    post.preventDefault();
+    let valuePost = postArea.value;
+    createPost(db, valuePost);
+    //prueba(db, valuePost);
+    showPost(db, valuePost);
+    formHome.reset();
+
+    //****************** */
+
+  })
+
+
+
+  buttonLogOut.addEventListener("click", () => {
+    //close.preventDefault();
+    const auth = getAuth();
+
+
+    signOut(auth) 
+     .then(() => {
+      console.log("el usuario salió");
+      sessionStorage.clear();
+      window.location.hash = "#login";
+      })
+     .catch((error) => {
+      console.log(error.message);
+      });
+
+})
+
+
+
+let divMenu = document.createElement("div");
   divMenu.setAttribute("class", "menu");
   divHome.appendChild(divMenu);
 
@@ -53,111 +173,6 @@ export const home = () => {
   perfilIcon.setAttribute("src", "./images/user-icon.svg");
   perfilIcon.setAttribute("alt", "icono perfil");
   divMenu.appendChild(perfilIcon);
-
-  let formHome = document.createElement("form");
-  formHome.setAttribute("class", "post");
-  divHome.appendChild(formHome);
-
-  let userIcon = document.createElement("img");
-  userIcon.setAttribute("class", "userIcon");
-  userIcon.setAttribute("src", "./images/own-user-icon.svg");
-  userIcon.setAttribute("alt", "icono de usuario");
-  userIcon.setAttribute("width", "25px");
-  formHome.appendChild(userIcon);
-
-  let postArea = document.createElement("textarea");
-  postArea.setAttribute("class", "areapost");
-  postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
-  formHome.appendChild(postArea);
-
-  let buttonSubmit = document.createElement("button");
-  buttonSubmit.textContent="Publicar";
-  buttonSubmit.setAttribute("class", "buttonSubmit");
-  divHome.appendChild(buttonSubmit);
-
-  let postContainer = document.createElement("section");
-  postContainer.setAttribute("id", "postContainer");
-  postContainer.setAttribute("class", "postContainer");
-  divHome.appendChild(postContainer);
-
-
-  const createPost = async ( db, text ) => {
-    const docRef = await addDoc(collection(db, "post"), {
-      text
-    });
-    console.log("Document written with ID: ", docRef.id)
-  };
-
-  /*const prueba = async (db, text ) => {
-    const querySnapshot = await getDocs(collection(db, "post"));
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id , doc.data());
-    });
-  }*/
-
-  const showPost =  async (db, documento ) => {
-  
-  
-    const querySnapshot = await getDocs(collection(db, "post"));
-    const container = document.getElementById('home');
-    const sectionPost = document.getElementById('postContainer');
-    sectionPost.innerHTML = '';
-    querySnapshot.forEach((documento) => {
-  
-      console.log(documento.id, '=>', documento.data());
-  
-      const divPost = document.createElement('div');
-      divPost.classList.add('divPost');
-      const pPost = document.createElement('p');
-      pPost.classList.add('pPost');
-
-    pPost.innerHTML = documento.data().text;
-    console.log(documento.data())
-    divPost.appendChild(pPost);
-    sectionPost.appendChild(divPost);
-    container.appendChild(sectionPost);
-    })
-  }
-
-  buttonSubmit.addEventListener("click", (post) => {
-    post.preventDefault();
-    let valuePost = postArea.value;
-    createPost(db, valuePost);
-    //prueba(db, valuePost);
-    showPost(db, valuePost);
-    formHome.reset();
-
-    //****************** */
-
-  })
-
-
-  let buttonLogOut = document.createElement("button");
-  buttonLogOut.setAttribute("class", "buttonLogOut");
-  buttonLogOut.setAttribute("id", "buttonLogOut");
-  buttonLogOut.textContent = "salir";
-  divHome.appendChild(buttonLogOut);
-
-
-  buttonLogOut.addEventListener("click", () => {
-    //close.preventDefault();
-    const auth = getAuth();
-
-
-    signOut(auth) 
-     .then(() => {
-      console.log("el usuario salió");
-      sessionStorage.clear();
-      window.location.hash = "#login";
-      })
-     .catch((error) => {
-      console.log(error.message);
-      });
-
-        
-
-})
-
 
 return divHome;
 

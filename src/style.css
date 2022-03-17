@@ -259,6 +259,77 @@ footer a:hover{
   text-decoration: underline;
 }
 
+
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+}
+
+.menu {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  padding: auto;
+  justify-content: space-evenly;
+  column-gap: 40px;
+}
+
+.menuIcon {
+  width: auto;
+  height: 30px;
+}
+
+.divWall {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.userIcon {
+  display:block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.areapost {
+width: 262px;
+height: 63px;
+left: 77px;
+top: 160px;
+
+font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 14px;
+line-height: 16px;
+background: #F9F0E2;
+color: #7374FF;
+border-color: #7374FF;
+
+}
+
+
+.buttonSubmit {
+  width: 100px;    
+  height: 30px;    
+  margin-top: 10px;
+    
+  font-family: Roboto;    
+  font-style: normal;    
+  font-weight: normal;    
+  font-size: 18px;    
+  text-align: center;    
+  color: #FFFFFF;     
+  background: #D5D5FF;  
+  border: #D5D5FF;  
+  border-radius: 10px;  
+}
+
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */
   /* .root{    display: flex;    
     flex-direction: row;    
@@ -277,7 +348,7 @@ footer a:hover{
     /*margin-top: auto;    
     margin-bottom: auto;  
   }   */ 
-  
+
   .divHeader_main {   
    /* flex: 1; */    
    margin: 3% 5% 0% 60%;    
@@ -318,35 +389,22 @@ footer a:hover{
     margin-right: 5%;
   }
   
-}
+  /******* HOME *******/
 
-#home {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  gap: 10px;
+  #home {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+  }
 
-}
+  .menu {
+    margin: 30px;
+    column-gap: 80px;
+  }
 
-.areapost {
-width: 262px;
-height: 63px;
-left: 77px;
-top: 160px;
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 16px;
-background: #F9F0E2;
-color: #7374FF;
-border-color: #F9F0E2;
+  .menuIcon {
+    width: auto;
+    height: 50px;
+  }
 
 }
-
-/* @media screen and (max-width: 770px) {
-  
-  
-} */
