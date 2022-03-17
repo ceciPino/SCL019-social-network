@@ -260,26 +260,25 @@ footer a:hover{
 }
 
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */
-  .root{    display: flex;    
+  /* .root{    display: flex;    
     flex-direction: row;    
     justify-content: center;    
     /* flex-flow: row wrap; */    
-    /* align-content: center; */  
-  }  
+    /* align-content: center;   
+  }   */
   
-  .divIllustration{    
+  /* .divIllustration{    
     /* flex: 1; */    
-    visibility: visible;    
+    /* visibility: visible;     */
     /* display: block; */    
-    width: 50%;    
+    /* width: 50%;     */
     /* max-height: 100%; */    
-    /* min-height: 100vh; */    
+    /* min-height: 100vh;    
     margin-top: auto;    
     margin-bottom: auto;  
-  }  
+  }   */
   
   .divHeader_main {   
-   /* flex: 1; */    
    margin: 3% 5% 0% 60%;    
    padding: 0% 0.1% 3% 0.1%;    
    background-color: white;    
