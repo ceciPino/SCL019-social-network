@@ -12,52 +12,11 @@ const firebaseConfig = {
   appId: "1:55216807698:web:9cef62683040f7b8afddcb"
 };
 
-
 initializeApp(firebaseConfig);
 
 const db = getFirestore();
 console.log(db);
 const auth = getAuth();
-
-
-
-// // funcion create post
-// export async function createPost(postForm) {
-//   // La declaración try...catch señala un bloque de instrucciones a intentar (try)
-//   // y especifica una respuesta si se produce una excepción (catch).
-//   try {
-//     let nameUser;
-//     // si el usuario se registró sin google (es decir no se guardó su displayName)
-//     // al momento de crear el post
-//     // su nombre será el email.
-//     if (auth.currentUser.displayName === null) {
-//       nameUser = auth.currentUser.email;
-//     } else {
-//       nameUser = auth.currentUser.displayName;
-//     }
-//     // addDoc Agregue un nuevo documento a la CollectionReference especificada con los datos
-//     // proporcionados asignándole una ID de documento automáticamente.
-//     const docRef = await addDoc(collection(firestore, 'Post'), {
-//       // especificamos los atributos que contendrá la coleccion
-//       userId: auth.currentUser.uid,
-//       name: nameUser,
-//       email: auth.currentUser.email,
-//       comentUser: postForm.coment.value,
-//       // Guarda en la base de datos la fecha en formato legible
-//       datepost: Timestamp.fromDate(new Date()),
-//       likes: [], // se guardará los id de los user que hagan like en el post
-//       likesCounter: 0, // contará los like
-//     });
-//     console.log('documento escrito con id', docRef.id);
-//     postForm.reset(); // Se limpia el input del formulario del post
-//     showPost(); // llama a la funcion showPost()
-//   } catch (err) {
-//     console.log('error : ', err);
-//   }
-// }
-
-//**************************** */
-
 
 export const home = () => {
 
@@ -67,7 +26,140 @@ export const home = () => {
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
-  let divMenu = document.createElement("div");
+  let buttonLogOut = document.createElement("button");
+  buttonLogOut.setAttribute("class", "buttonLogOut");
+  buttonLogOut.setAttribute("id", "buttonLogOut");
+  buttonLogOut.textContent = "salir";
+  divHome.appendChild(buttonLogOut);
+
+
+  let divWall = document.createElement("div"); 
+  divWall.setAttribute("class","wall");
+  divHome.appendChild(divWall);
+
+  let formHome = document.createElement("form");
+  formHome.setAttribute("class", "post");
+  divWall.appendChild(formHome);
+
+  let userIcon = document.createElement("img");
+  userIcon.setAttribute("class", "userIcon");
+  userIcon.setAttribute("src", "./images/own-user-icon.svg");
+  userIcon.setAttribute("alt", "icono de usuario");
+  userIcon.setAttribute("width", "25px");
+  formHome.appendChild(userIcon);
+
+  let postArea = document.createElement("textarea");
+  postArea.setAttribute("class", "areapost");
+  postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
+  formHome.appendChild(postArea);
+
+  let buttonSubmit = document.createElement("button");
+  buttonSubmit.textContent="Publicar";
+  buttonSubmit.setAttribute("class", "buttonSubmit");
+  divWall.appendChild(buttonSubmit);
+
+  let postContainer = document.createElement("div");
+  postContainer.setAttribute("id", "postContainer");
+  postContainer.setAttribute("class", "postContainer");
+  divWall.appendChild(postContainer);
+
+
+  const userDataGoogle = async () => {
+    const user = auth.currentUser;
+    const userName = user.displayName;
+    if (user !== null) {
+      const docRef = await addDoc(collection(db, "google"), {
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+      });
+    }
+  };
+
+  const createPost = async ( db, text ) => {
+    
+  let userName;
+  if (auth.currentUser.displayName == null) {
+     let separateEmail = auth.currentUser.email.split('@');
+      userName = separateEmail[0];
+  } else {
+     userName = auth.currentUser.displayName;
+  }  
+  const docRef = await addDoc(collection(db, "post"), {
+    uid: auth.currentUser.uid,
+    name: userName,
+    text,
+    datepost: Timestamp.fromDate(new Date()),
+
+    });
+    console.log("Document written with ID: ", docRef.id)
+  };
+
+  const showPost =  async (db, documento ) => {
+
+    const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
+    const querySnapshot = await getDocs(postAll);
+    const sectionPost = document.getElementById('postContainer');
+    sectionPost.innerHTML = '';
+    querySnapshot.forEach((documento) => {
+      console.log(documento.id, '=>', documento.data().name);
+
+    
+      const divPost = document.createElement('div');
+      divPost.classList.add('divPost');
+      let userIcon = document.createElement("img");
+      userIcon.setAttribute("class", "iconPost");
+      userIcon.setAttribute("src", "./images/own-user-icon.svg");
+      userIcon.setAttribute("alt", "icono de usuario");
+      userIcon.setAttribute("width", "25px");
+      divPost.appendChild(userIcon);
+
+      const pPost = document.createElement('p');
+      pPost.classList.add('pPost');
+
+      pPost.innerHTML = documento.data().text;
+      
+      divPost.appendChild(pPost);
+      sectionPost.appendChild(divPost);
+      divWall.appendChild(sectionPost);
+
+    })
+  }
+
+  buttonSubmit.addEventListener("click", (post) => {
+    post.preventDefault();
+    let valuePost = postArea.value;
+    createPost(db, valuePost);
+    //prueba(db, valuePost);
+    showPost(db, valuePost);
+    formHome.reset();
+
+    //****************** */
+
+  })
+
+
+
+  buttonLogOut.addEventListener("click", () => {
+    //close.preventDefault();
+    const auth = getAuth();
+
+
+    signOut(auth) 
+     .then(() => {
+      console.log("el usuario salió");
+      sessionStorage.clear();
+      window.location.hash = "#login";
+      })
+     .catch((error) => {
+      console.log(error.message);
+      });
+
+})
+
+
+
+let divMenu = document.createElement("div");
   divMenu.setAttribute("class", "menu");
   divHome.appendChild(divMenu);
 
@@ -94,125 +186,6 @@ export const home = () => {
   perfilIcon.setAttribute("src", "./images/user-icon.svg");
   perfilIcon.setAttribute("alt", "icono perfil");
   divMenu.appendChild(perfilIcon);
-
-  let formHome = document.createElement("form");
-  formHome.setAttribute("class", "post");
-  divHome.appendChild(formHome);
-
-  let userIcon = document.createElement("img");
-  userIcon.setAttribute("class", "userIcon");
-  userIcon.setAttribute("src", "./images/own-user-icon.svg");
-  userIcon.setAttribute("alt", "icono de usuario");
-  userIcon.setAttribute("width", "25px");
-  formHome.appendChild(userIcon);
-
-  let postArea = document.createElement("textarea");
-  postArea.setAttribute("class", "areapost");
-  postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
-  formHome.appendChild(postArea);
-
-  let buttonSubmit = document.createElement("button");
-  buttonSubmit.textContent="Publicar";
-  buttonSubmit.setAttribute("class", "buttonSubmit");
-  divHome.appendChild(buttonSubmit);
-
-  let postContainer = document.createElement("section");
-  postContainer.setAttribute("id", "postContainer");
-  postContainer.setAttribute("class", "postContainer");
-  divHome.appendChild(postContainer);
-
-
-  const createPost = async ( db, text ) => {
-    const docRef = await addDoc(collection(db, "post"), {
-      text
-    });
-    console.log("Document written with ID: ", docRef.id)
-  };
-
-  /*const prueba = async (db, text ) => {
-    const querySnapshot = await getDocs(collection(db, "post"));
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id , doc.data());
-    });
-  }*/
-
-  const showPost =  async (db, text ) => {
-    // mediante una query(consulta a base de datos) obtengo todos los post
-    // en orden descendiente por fecha de creacion
-    const postAll = query(collection(db, 'post'), orderBy('datepost', 'desc'));
-    // mediante get Docs(intenta proporcionar datos actualizados
-    // cuando es posible esperando datos del servidor,
-    // pero puede devolver datos almacenados en caché o fallar si está desconectado
-    // y no se puede acceder al servidor)
-  
-    const querySnapshot = await getDocs(postAll);
-    // llamamos al div Container del html y a la section de id allPost
-    const container = document.getElementById('home');
-    const sectionPost = document.getElementById('postContainer');
-    sectionPost.innerHTML = ''; // retiramos cualquier indicio de elemento anterior de la section
-    // Realizamos un forEach de cada dato proporcionado por firestore
-    // tantas vueltas como documento hayan.
-    querySnapshot.forEach((documento) => {
-      // imprimimos por consola cada post
-      console.log(documento.id, '=>', documento.data());
-      // creamos los elementos para guardar los atributos del post
-      const divPost = document.createElement('div');
-      divPost.classList.add('divPost');
-      const pPost = document.createElement('p');
-      //const h1Post = document.createElement('h1');
-      //h1Post.classList.add('h1Post');
-      pPost.classList.add('pPost');
-
-      // se agrega al div contenedor todos los elementos
-    //h1Post.innerHTML = documento.data().name;
-    pPost.innerHTML = documento.data().valuePost;
-    //divPost.appendChild(h1Post);
-    divPost.appendChild(pPost);
-    //divPost.appendChild(buttonLike);
-    sectionPost.appendChild(divPost);
-    container.appendChild(sectionPost);
-    })
-  }
-
-  buttonSubmit.addEventListener("click", (post) => {
-    post.preventDefault();
-    let valuePost = postArea.value;
-    createPost(db, valuePost);
-    //prueba(db, valuePost);
-    showPost(db, valuePost);
-    formHome.reset();
-
-    //****************** */
-
-  })
-
-
-  let buttonLogOut = document.createElement("button");
-  buttonLogOut.setAttribute("class", "buttonLogOut");
-  buttonLogOut.setAttribute("id", "buttonLogOut");
-  buttonLogOut.textContent = "salir";
-  divHome.appendChild(buttonLogOut);
-
-
-  buttonLogOut.addEventListener("click", () => {
-    //close.preventDefault();
-    const auth = getAuth();
-
-
-    signOut(auth) 
-     .then(() => {
-      console.log("el usuario salió");
-      sessionStorage.clear();
-      window.location.hash = "#login";
-      })
-     .catch((error) => {
-      console.log(error.message);
-      });
-
-        
-
-})
-
 
 return divHome;
 
