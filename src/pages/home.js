@@ -64,32 +64,47 @@ export const home = () => {
   divWall.appendChild(postContainer);
 
 
-
+  const userDataGoogle = async () => {
+    const user = auth.currentUser;
+    const userName = user.displayName;
+    if (user !== null) {
+      const docRef = await addDoc(collection(db, "google"), {
+        name: user.displayName,
+        email: user.email,
+        uid: user.uid,
+      });
+    }
+  };
 
   const createPost = async ( db, text ) => {
-    const docRef = await addDoc(collection(db, "post"), {
-      text
+    
+  let userName;
+  if (auth.currentUser.displayName == null) {
+     let separateEmail = auth.currentUser.email.split('@');
+      userName = separateEmail[0];
+  } else {
+     userName = auth.currentUser.displayName;
+  }  
+  const docRef = await addDoc(collection(db, "post"), {
+    uid: auth.currentUser.uid,
+    name: userName,
+    text,
+    datepost: Timestamp.fromDate(new Date()),
+
     });
     console.log("Document written with ID: ", docRef.id)
   };
 
-  /*const prueba = async (db, text ) => {
-    const querySnapshot = await getDocs(collection(db, "post"));
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id , doc.data());
-    });
-  }*/
-
   const showPost =  async (db, documento ) => {
-  
-  
-    const querySnapshot = await getDocs(collection(db, "post"));
+
+    const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
+    const querySnapshot = await getDocs(postAll);
     const sectionPost = document.getElementById('postContainer');
     sectionPost.innerHTML = '';
     querySnapshot.forEach((documento) => {
-  
-      console.log(documento.id, '=>', documento.data());
-  
+      console.log(documento.id, '=>', documento.data().name);
+
+    
       const divPost = document.createElement('div');
       divPost.classList.add('divPost');
       let userIcon = document.createElement("img");
@@ -99,17 +114,15 @@ export const home = () => {
       userIcon.setAttribute("width", "25px");
       divPost.appendChild(userIcon);
 
-
       const pPost = document.createElement('p');
       pPost.classList.add('pPost');
 
-    pPost.innerHTML = documento.data().text;
-    console.log(documento.data())
-    divPost.appendChild(pPost);
-    sectionPost.appendChild(divPost);
-    divWall.appendChild(sectionPost);
+      pPost.innerHTML = documento.data().text;
+      
+      divPost.appendChild(pPost);
+      sectionPost.appendChild(divPost);
+      divWall.appendChild(sectionPost);
 
-  
     })
   }
 
