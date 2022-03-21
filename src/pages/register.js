@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
 import { footerContainer } from "./footer.js";
 
@@ -113,9 +113,18 @@ export const register = () => {
   //FOOTER
   divRegister.appendChild(footerContainer());
 
-
-
+  //función verificación de email
   const auth = getAuth();
+  
+  const emailCheck = () => {
+    sendEmailVerification(auth.currentUser)
+      .then(() => {
+        alert("Hemos enviado un correo de verificación. Debe validar su correo para iniciar sesión")
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
   //función crear cuenta
   formRegister.addEventListener("submit", (send) => {
     send.preventDefault();
@@ -126,10 +135,11 @@ export const register = () => {
     createUserWithEmailAndPassword(auth, valueEmail, valuePassword)
       .then((userCredential) => {
         // Signed in
+        emailCheck();
         const user = userCredential.user;
-        // redirigir a muro
+        // redirigir a login
         console.log(user);
-        window.location.hash = "#home";
+        window.location.hash = "#login";
       })
       .catch((error) => {
         const errorCode = error.code;
