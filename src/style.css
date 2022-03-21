@@ -13,9 +13,7 @@ body {
   width: 100%;
   min-height: 100vh;
   min-height:600px; /* ? */
-
 }
-
 
  .divHeader {
   display: flex;
@@ -259,22 +257,21 @@ footer a:hover{
   text-decoration: underline;
 }
 
-
+/******* HOME MOBILE *******/
 #home {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-
 }
 
 .menu {
-  margin: 20px;
+  margin: 0;
   display: flex;
   flex-direction: row;
   padding: auto;
-  justify-content: space-evenly;
-  column-gap: 40px;
+  justify-content: space-around;
+  column-gap: 10%;
 }
 
 .menuIcon {
@@ -289,80 +286,79 @@ footer a:hover{
   align-items: center;
 }
 
+.areapost {
+  width: 262px;
+  height: 63px;
+  left: 77px;
+  top: 160px;
+  
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  background: #F9F0E2;
+  color: #7374FF;
+  border-color: #7374FF;
+  }
+  
+  .buttonSubmit {
+    width: 100px;    
+    height: 30px;    
+    margin-top: 10px;
+      
+    font-family: Roboto;    
+    font-style: normal;    
+    font-weight: normal;    
+    font-size: 18px;    
+    text-align: center;    
+    color: #FFFFFF;     
+    background: #D5D5FF;  
+    border: #D5D5FF;  
+    border-radius: 10px;  
+  }
+
+.divPost{
+  display: flex;
+  flex-direction: column;
+}
+/* .divName {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}  */
+
 .userIcon {
-  display:block;
   margin-top: 10px;
   margin-bottom: 10px;
-
-}
-
-.areapost {
-width: 262px;
-height: 63px;
-left: 77px;
-top: 160px;
-
-font-family: Roboto;
-font-style: normal;
-font-weight: normal;
-font-size: 14px;
-line-height: 16px;
-background: #F9F0E2;
-color: #7374FF;
-border-color: #7374FF;
-
-}
-
-.buttonSubmit {
-  width: 100px;    
-  height: 30px;    
-  margin-top: 10px;
-    
-  font-family: Roboto;    
-  font-style: normal;    
-  font-weight: normal;    
-  font-size: 18px;    
-  text-align: center;    
-  color: #FFFFFF;     
-  background: #D5D5FF;  
-  border: #D5D5FF;  
-  border-radius: 10px;  
 }
 
 .pUser {
-  margin: 10px;
-
   font-family: Roboto;
   font-style: normal;
-  font-weight: bolder;
-  font-size: 16px;
+  font-weight: normal;
+  font-size: 14px;
   line-height: 19px;
   display: flex;
-  align-items: center;
   letter-spacing: 0.2em;
   color: #7374FF;
-
 }
 
 .pPost {
   margin: 10px;
   padding: 10px;
-  border-color: grey;
+  display: flex;
+  align-items: center;
+  color: #7374FF;
+  text-align: justify;
 
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 19px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.2em;
-  color: #D5D5FF;
-  text-align: justify;
-
 }
-
-
 
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */
   /* .root{    display: flex;    
@@ -431,7 +427,7 @@ border-color: #7374FF;
   }
 
   .menu {
-    margin: 30px;
+    margin: 10px;
     column-gap: 80px;
   }
 
@@ -441,3 +437,4 @@ border-color: #7374FF;
   }
 
 }
+

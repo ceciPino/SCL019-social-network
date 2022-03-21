@@ -128,17 +128,20 @@ export const login = () => {
         send.preventDefault();
         let valueEmail = eMail.value;
         let valuePassword = passwordIn.value;
-        console.log(valueEmail + valuePassword);
 
         const auth = getAuth();
         signInWithEmailAndPassword(auth, valueEmail, valuePassword)
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                //console.log(user + " ingreso exitoso");
-                window.location.hash = "#home";
-
+                if (user.emailVerified) {
+                    window.location.hash = '#home';
+                  } else {
+                    window.location.hash = '#login';
+                    alert('usuario no verificado');
+                  }
             })
+            
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
