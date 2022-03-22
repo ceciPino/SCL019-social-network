@@ -43,6 +43,9 @@ h1 {
   color: #4A4BFF;
 }
 
+.divIllustration{
+  display: none;
+}
 
 /* "Crear una cuenta"-vistaResgiter */
 .titleCreate { 
@@ -286,7 +289,7 @@ footer a:hover{
   height: 30px;
 }
 
-.divWall {
+.wall {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
