@@ -76,6 +76,24 @@ export const register = () => {
   passwordError.setAttribute("class", "errorcontrasena");
   formRegister.appendChild(passwordError);
 
+  //Mostrar contraseña
+  const openEyeR = document.createElement('img');
+    openEyeR.setAttribute("class", "openEye");
+    openEyeR.setAttribute("src", "./images/openeye.png");
+    formRegister.appendChild(openEyeR);
+    
+    const showPassword = (e) => {
+        e.preventDefault();
+        const p1 = document.getElementById('passwordIn');
+        if (p1.type === 'password') {
+          p1.type = 'text';
+        } else {
+          p1.type = 'password';
+        }
+      };
+    
+    openEyeR.addEventListener('click', showPassword);
+
   //botón registrarse
   let buttonSend = document.createElement("input");
   buttonSend.setAttribute("type", "submit");
