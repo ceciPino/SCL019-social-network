@@ -70,6 +70,26 @@ export const login = () => {
     passwordError.setAttribute("class", "errorcontrasena");
     formLogIn.appendChild(passwordError);
 
+    const openEye = document.createElement('img');
+    openEye.setAttribute("class", "openEye");
+    openEye.setAttribute("src", "./images/openeye.png");
+    formLogIn.appendChild(openEye);
+    
+    const showPassword = (e) => {
+        e.preventDefault();
+        const p1 = document.getElementById('passwordIn');
+        if (p1.type === 'password') {
+          p1.type = 'text';
+        } else {
+          p1.type = 'password';
+        }
+      };
+    
+    openEye.addEventListener('click', showPassword);
+
+
+
+
     //botón iniciar sesión
     let buttonSend = document.createElement("input");
     buttonSend.setAttribute("type", "submit");
@@ -136,12 +156,12 @@ export const login = () => {
                 const user = userCredential.user;
                 if (user.emailVerified) {
                     window.location.hash = '#home';
-                  } else {
+                } else {
                     window.location.hash = '#login';
                     alert('usuario no verificado');
-                  }
+                }
             })
-            
+
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;

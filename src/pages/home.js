@@ -62,7 +62,7 @@ export const home = () => {
   let buttonSubmit = document.createElement("button");
   buttonSubmit.textContent = "Publicar";
   buttonSubmit.setAttribute("class", "buttonSubmit");
-  divWall.appendChild(buttonSubmit);
+  formHome.appendChild(buttonSubmit);
 
   let postContainer = document.createElement("div");
   postContainer.setAttribute("id", "postContainer");
@@ -195,37 +195,6 @@ export const home = () => {
 
   })
 
-
-
-  // // ********* MENU ********
-
-  //   let divMenu = document.createElement("div");
-  //   divMenu.setAttribute("class", "menu");
-  //   divHome.appendChild(divMenu);
-
-  //   let homeIcon = document.createElement("img");
-  //   homeIcon.setAttribute("class", "menuIcon");
-  //   homeIcon.setAttribute("src", "./images/home-icon.svg");
-  //   homeIcon.setAttribute("alt", "icono home");
-  //   divMenu.appendChild(homeIcon);
-
-  //   let exchangeIcon = document.createElement("img");
-  //   exchangeIcon.setAttribute("class", "menuIcon");
-  //   exchangeIcon.setAttribute("src", "./images/plant-exchange-icon.svg");
-  //   exchangeIcon.setAttribute("alt", "icono intercambio de plantas");
-  //   divMenu.appendChild(exchangeIcon);
-
-  //   let searchIcon = document.createElement("img");
-  //   searchIcon.setAttribute("class", "menuIcon");
-  //   searchIcon.setAttribute("src", "./images/search-icon.svg");
-  //   searchIcon.setAttribute("alt", "icono home");
-  //   divMenu.appendChild(searchIcon);
-
-  //   let perfilIcon = document.createElement("img");
-  //   perfilIcon.setAttribute("class", "menuIcon");
-  //   perfilIcon.setAttribute("src", "./images/user-icon.svg");
-  //   perfilIcon.setAttribute("alt", "icono perfil");
-  //   divMenu.appendChild(perfilIcon);
 
   return divHome;
 
