@@ -9,15 +9,6 @@ export const login = () => {
     let divLogin = document.createElement("div");
     divLogin.setAttribute("class", "divLogin");
 
-    //IMAGEN DESKTOP
-    // let createPicture = document.createElement("picture");
-    // divLogin.appendChild(createPicture);
-
-    // let srcPictureDesktop = document.createElement("source");
-    // srcPictureDesktop.setAttribute("srcset", "./images/ilustracion_plant_lovers.svg");
-    // srcPictureDesktop.setAttribute("media", "min-width: 992px");
-    // createPicture.appendChild(srcPictureDesktop);
-
     let divIllustration = document.createElement("div");
     divIllustration.setAttribute("class", "divIllustration");
     divLogin.appendChild(divIllustration);
