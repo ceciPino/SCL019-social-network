@@ -7,6 +7,7 @@ export const login = () => {
     history.pushState(null, 'login', '#login');
 
     let divLogin = document.createElement("div");
+    divLogin.setAttribute("class", "divLogin");
 
     //IMAGEN DESKTOP
     // let createPicture = document.createElement("picture");
