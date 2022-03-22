@@ -9,17 +9,6 @@ export const register = () => {
   let divRegister = document.createElement("div");
   divRegister.setAttribute("class", "divRegister");
 
-  //IMAGEN DESKTOP
-  let divIllustration = document.createElement("divIllustration");
-  divIllustration.setAttribute("class", "divIllustration");
-  divRegister.appendChild(divIllustration);
-
-  let illustrationPlants = document.createElement("img");
-  illustrationPlants.setAttribute("class", "illustrationPlants");
-  illustrationPlants.setAttribute("src", "./images/ilustracion_plant_lovers.svg");
-  illustrationPlants.setAttribute("alt", "ilustración de Charlotte Ager");
-  divIllustration.appendChild(illustrationPlants);
-
   //DIV PARA HEADER Y MAIN
   let divHeader_main = document.createElement("div");
   divHeader_main.setAttribute("class", "divHeader_main");

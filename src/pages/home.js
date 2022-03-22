@@ -27,13 +27,21 @@ export const home = () => {
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");
 
+  // ****** HEADER **********
+  let divHeaderMobile = document.createElement("div");
+  divHeaderMobile.setAttribute("class", "headerMobile");
+  divHome.appendChild(divHeaderMobile);
+
+  let logoHome = headerContainer().querySelector(".plantasia");
+  logoHome.classList.add("plantasiaHome"); // NO ESTÁ FUNCIONANDO
+  divHeaderMobile.appendChild(headerContainer());
 
   // ****** BOTON LOG OUT **********
-  let buttonLogOut = document.createElement("button");
+  let buttonLogOut = document.createElement("a");
   buttonLogOut.setAttribute("class", "buttonLogOut");
   buttonLogOut.setAttribute("id", "buttonLogOut");
-  buttonLogOut.textContent = "salir";
-  divHome.appendChild(buttonLogOut);
+  buttonLogOut.textContent = "Cerrar Sesión";
+  divHeaderMobile.appendChild(buttonLogOut);
 
 
 
@@ -47,22 +55,34 @@ export const home = () => {
   formHome.setAttribute("class", "post");
   divWall.appendChild(formHome);
 
+  let sectionPostArea = document.createElement("div");
+  sectionPostArea.setAttribute("class", "sectionPostArea");
+  formHome.appendChild(sectionPostArea)
+
   let userIcon = document.createElement("img");
   userIcon.setAttribute("class", "userIcon");
   userIcon.setAttribute("src", "./images/own-user-icon.svg");
   userIcon.setAttribute("alt", "icono de usuario");
   userIcon.setAttribute("width", "25px");
-  formHome.appendChild(userIcon);
+  sectionPostArea.appendChild(userIcon);
 
   let postArea = document.createElement("textarea");
   postArea.setAttribute("class", "areapost");
   postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
-  formHome.appendChild(postArea);
+  sectionPostArea.appendChild(postArea);
+
+  let divButtonSubmit = document.createElement("div");
+  divButtonSubmit.setAttribute("class", "divButtonSubmit");
+  formHome.appendChild(divButtonSubmit)
 
   let buttonSubmit = document.createElement("button");
   buttonSubmit.textContent = "Publicar";
   buttonSubmit.setAttribute("class", "buttonSubmit");
-  formHome.appendChild(buttonSubmit);
+  divButtonSubmit.appendChild(buttonSubmit);
+
+  let postAreaDivider = document.createElement("hr");
+  postAreaDivider.setAttribute("class", "postAreaDivider");
+  divWall.appendChild(postAreaDivider);
 
   let postContainer = document.createElement("div");
   postContainer.setAttribute("id", "postContainer");
@@ -116,7 +136,10 @@ export const home = () => {
       name: userName,
       text,
       datepost: Timestamp.fromDate(new Date()),
+      likes: [],
+      likesCounter: 0,
     });
+
     console.log("Document written with ID: ", docRef.id)
   };
 
@@ -127,23 +150,23 @@ export const home = () => {
     const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
     const querySnapshot = await getDocs(postAll);
 
-    const sectionPost = document.getElementById('postContainer');
-    sectionPost.innerHTML = '';
+    const sectionPost = document.getElementById("postContainer");
+    sectionPost.innerHTML = "";
     querySnapshot.forEach((documento) => {
       console.log(documento.id, '=>', documento.data().name);
 
       //creamos los componentes que contendrán cada nueva publicación
-      const divPost = document.createElement('div');
+      const divPost = document.createElement("div");
       divPost.setAttribute("class", "divPost");
 
-      const divName = document.createElement('div');
-      divPost.setAttribute("class", "divName");
+      const divName = document.createElement("div");
+      divName.setAttribute("class", "divName");
 
-      let userIcon = document.createElement("img");
-      userIcon.setAttribute("class", "iconPost");
-      userIcon.setAttribute("src", "./images/own-user-icon.svg");
-      userIcon.setAttribute("alt", "icono de usuario");
-      userIcon.setAttribute("width", "25px");
+      let iconPost = document.createElement("img");
+      iconPost.setAttribute("class", "iconPost");
+      iconPost.setAttribute("src", "./images/own-user-icon.svg");
+      iconPost.setAttribute("alt", "icono de usuario");
+      iconPost.setAttribute("width", "25px");
 
       const pUser = document.createElement("p");
       pUser.setAttribute("class", "pUser");
@@ -154,12 +177,16 @@ export const home = () => {
       pUser.innerHTML = documento.data().name;
       pPost.innerHTML = documento.data().text;
 
+      let likeButton = document.createElement("button");
+      likeButton.setAttribute("class", "likeButton");
+      
+      divWall.appendChild(sectionPost);
+      sectionPost.appendChild(divPost);
       divPost.appendChild(divName);
-      divName.appendChild(userIcon);
+      divName.appendChild(iconPost);
       divName.appendChild(pUser);
       divPost.appendChild(pPost);
-      sectionPost.appendChild(divPost);
-      divWall.appendChild(sectionPost);
+      //divPost.appendChild(likeButton);
     })
   }
 

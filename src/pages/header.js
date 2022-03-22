@@ -13,6 +13,7 @@ export const headerContainer = () => {
     createHeader.appendChild(logo);
 
     let titlePlantasia = document.createElement("h1");
+    titlePlantasia.classList.add("plantasia");
     titlePlantasia.textContent = "Plantasia";
     createHeader.appendChild(titlePlantasia);
 

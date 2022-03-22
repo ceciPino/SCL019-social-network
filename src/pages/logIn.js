@@ -9,25 +9,6 @@ export const login = () => {
     let divLogin = document.createElement("div");
     divLogin.setAttribute("class", "divLogin");
 
-    //IMAGEN DESKTOP
-    // let createPicture = document.createElement("picture");
-    // divLogin.appendChild(createPicture);
-
-    // let srcPictureDesktop = document.createElement("source");
-    // srcPictureDesktop.setAttribute("srcset", "./images/ilustracion_plant_lovers.svg");
-    // srcPictureDesktop.setAttribute("media", "min-width: 992px");
-    // createPicture.appendChild(srcPictureDesktop);
-
-    let divIllustration = document.createElement("div");
-    divIllustration.setAttribute("class", "divIllustration");
-    divLogin.appendChild(divIllustration);
-
-    let illustrationPlants = document.createElement("img");
-    illustrationPlants.setAttribute("class", "illustrationPlants");
-    illustrationPlants.setAttribute("src", "./images/ilustracion_plant_lovers.svg");
-    illustrationPlants.setAttribute("alt", "ilustración de Charlotte Ager");
-    divIllustration.appendChild(illustrationPlants);
-
     //DIV PARA HEADER Y MAIN
     let divHeader_main = document.createElement("div");
     divHeader_main.setAttribute("class", "divHeader_main");
@@ -142,7 +123,7 @@ export const login = () => {
     divUnregistered.appendChild(linkRegister);
 
     //FOOTER
-    // divLogin.appendChild(footerContainer());
+    divLogin.appendChild(footerContainer());
 
     //Función iniciar sesión
     formLogIn.addEventListener("submit", (send) => {
