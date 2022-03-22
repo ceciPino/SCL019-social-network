@@ -7,6 +7,7 @@ export const register = () => {
   history.pushState(null, 'register', '#register');
 
   let divRegister = document.createElement("div");
+  divRegister.setAttribute("class", "divRegister");
 
   //IMAGEN DESKTOP
   let divIllustration = document.createElement("divIllustration");

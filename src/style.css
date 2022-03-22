@@ -389,7 +389,7 @@ border-color: #7374FF;
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */
 
 
-  #root {
+  .divLogin, .divRegister {
     background-image: url(./images/ilustracion_plant_lovers.svg);
     background-position-x: 15%;
     background-position-y: 70%;
