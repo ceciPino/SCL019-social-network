@@ -16,7 +16,7 @@ body {
 
 }
 
-
+/* logo y h1 */
  .divHeader {
   display: flex;
   flex-direction: column;
@@ -33,7 +33,8 @@ body {
   height: auto;
 }
 
-h1 {
+/* Título "Plantasia" */
+ h1 { 
   text-align: center;
   font-family: 'Arima Madurai';
   font-style: normal;
@@ -43,26 +44,23 @@ h1 {
   color: #4A4BFF;
 }
 
-.divIllustration{
-  display: none;
-}
-
 /* "Crear una cuenta"-vistaResgiter */
 .titleCreate { 
   display: flex;
   justify-content: flex-start;
-  margin-top: 20px;
+  margin-top: 8px;
   margin-left: auto; 
   margin-right: auto;
 
   font-family: Roboto;
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 40px;
   color: #7374FF;  
 } 
 
+/* contiene todo el form */
 .register {
   display: flex;
   flex-direction: column;
@@ -71,6 +69,7 @@ h1 {
   gap: 10px;
 }
 
+/* mensajes de error */
 .errorcorreo, .errorcontrasena {
   font-family: Roboto;
   font-style: normal;
@@ -100,15 +99,14 @@ h1 {
 ::placeholder {
   font-family: Roboto;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
-  line-height: 19px;
   display: flex;
   align-items: center;
-  letter-spacing: 0.2em;
   color: #AEAEAE;
 }
 
+/* mostrar contraseña */
 .openEye {
   width: 20px;
   height: 20px;
@@ -121,7 +119,7 @@ h1 {
   position: relative;
 }
 
-
+/* botón "iniciar sesión" y "registrarse" */
 .buttonsubmit {    
   width: 300px;    
   height: 40px;    
@@ -143,6 +141,7 @@ h1 {
   background: #7374FF;
 }
 
+/* SECCIÓN GOOGLE LOGIN/REGISTER */
 .optionEnterWithGoogle{
   display: flex;
   flex-direction: column;
@@ -153,7 +152,7 @@ h1 {
   display: inline-block;
   position: relative;
   text-align: center;
-  margin: 20px 0px 20px 0px; /* text-decoration-line: line-through; */
+  margin: 20px 0px 20px 0px;
 
   font-family: Roboto;
   font-style: normal;    
@@ -206,6 +205,7 @@ h1 {
   width: 10%;
 } 
 
+/* texto botón */
 .buttonGoogle p {
   font-family: Roboto;    
   font-style: normal;    
@@ -214,6 +214,7 @@ h1 {
   color: #7374FF; 
 }
 
+/* link "Regístrate" - vista login */
 .unregisteredText_Link{
   display: flex;
   flex-direction: row;
@@ -257,6 +258,7 @@ footer {
 
 }
 
+/* links footer */
 footer a {
   color:#7374FF;
   text-decoration: none;
@@ -266,22 +268,35 @@ footer a:hover{
   text-decoration: underline;
 }
 
-
+/* VISTA HOME */
 #home {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-
 }
 
-.menu {
-  margin: 20px;
+.headerMobile {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ /* NO FUNCIONA 
+.plantasiaHome {
+  font-size: 16px;
+} */
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  column-gap: 60px;
+  margin: 20px;
   padding: auto;
-  justify-content: space-evenly;
-  column-gap: 40px;
+
 }
 
 .menuIcon {
@@ -289,13 +304,23 @@ footer a:hover{
   height: 30px;
 }
 
+.buttonLogOut {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #4A4BFF;
+  text-decoration: underline;
+}
+
+/* contiene todo menos menu  */
 .wall {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
 }
 
+ /* icono areapost */
 .userIcon {
   display:block;
   margin-top: 10px;
@@ -303,83 +328,97 @@ footer a:hover{
 
 }
 
+/* form  */
 .post {
-  margin:auto;
   display: flex;
   flex-direction: column;
-  justify-items: center;
-
+  margin:auto;
 }
 
+/* user icon + textarea */
+.sectionPostArea {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 15px;
+}
+
+/* textarea */
 .areapost {
 width: 290px;
 height: 63px;
-left: 77px;
-top: 160px;
 
 font-family: Roboto;
 font-style: normal;
-font-weight: normal;
-font-size: 14px;
+font-weight: 400;
+font-size: 12px;
 line-height: 16px;
 background: #F9F0E2;
 color: #7374FF;
-border-color: #7374FF;
-
+border-color: #F9F0E2;
 }
 
+.divButtonSubmit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* botón publicar */
 .buttonSubmit {
   width: 100px;    
   height: 30px;    
   margin-top: 10px;
-  justify-content: end;
     
   font-family: Roboto;    
   font-style: normal;    
-  font-weight: normal;    
-  font-size: 18px;    
+  font-weight: 400;    
+  font-size: 14px;    
   text-align: center;    
   color: #FFFFFF;     
-  background: #D5D5FF;  
-  border: #D5D5FF;  
-  border-radius: 10px;  
+  background: #4A4BFF;  
+  border: none;  
+  border-radius: 15px;  
 }
 
+.postAreaDivider {
+  width: 90%;
+  border-top: 1px solid #D5D5FF;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.divPost {
+  margin:auto;
+  padding-bottom: 25px;
+}
+
+/* iconPost + pUser */
 .divName {
-  margin: 10px;
-  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding-bottom: 10px;
 }
 
 .pUser {
-  margin: 10px;
-
-
   font-family: Roboto;
   font-style: normal;
-  font-weight: bolder;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 19px;
   display: flex;
   align-items: center;
-  letter-spacing: 0.2em;
   color: #7374FF;
-
 }
 
-.pPost {
-  margin: 10px;
-  padding: 10px;
-  border: grey;
-
+/* texto post publicado */
+.pPost {  
   font-family: Roboto;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.2em;
-  color: #D5D5FF;
+  color: #4A4BFF;
   text-align: justify;
 
 }
@@ -388,7 +427,7 @@ border-color: #7374FF;
 
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */
 
-
+  /* VISTA LOGIN/REGISTER */
   .divLogin, .divRegister {
     background-image: url(./images/ilustracion_plant_lovers.svg);
     background-position-x: 15%;
@@ -472,7 +511,7 @@ border-color: #7374FF;
 
   .menuIcon {
     width: auto;
-    height: 50px;
+    height: 35px;
   }
 
 }
