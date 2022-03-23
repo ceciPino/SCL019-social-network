@@ -61,6 +61,7 @@ export const register = () => {
   passwordIn.setAttribute("class", "input");
   passwordIn.setAttribute("required", "");
   formRegister.appendChild(passwordIn);
+  
   //mensaje error contraseña
   let passwordError = document.createElement("span");
   passwordError.setAttribute("class", "errorcontrasena");
