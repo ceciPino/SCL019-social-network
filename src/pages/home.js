@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
-import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
+//import { login } from "./logIn.js";
+import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy, updateDoc, arrayUnion, arrayRemove, increment } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBC5o7sgTl7cbHM5DF4pjLP5Wx2H-S8RA",
@@ -143,86 +144,120 @@ export const home = () => {
     console.log("Document written with ID: ", docRef.id)
   };
 
-
-  // FUNCION PARA MOSTRAR POST CON NOMBRE DE USUARIO
-  const showPost = async (db, documento) => {
-
-    const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
-    const querySnapshot = await getDocs(postAll);
-
-    const sectionPost = document.getElementById("postContainer");
-    sectionPost.innerHTML = "";
-    querySnapshot.forEach((documento) => {
-      console.log(documento.id, '=>', documento.data().name);
-
-      //creamos los componentes que contendrán cada nueva publicación
-      const divPost = document.createElement("div");
-      divPost.setAttribute("class", "divPost");
-
-      const divName = document.createElement("div");
-      divName.setAttribute("class", "divName");
-
-      let iconPost = document.createElement("img");
-      iconPost.setAttribute("class", "iconPost");
-      iconPost.setAttribute("src", "./images/own-user-icon.svg");
-      iconPost.setAttribute("alt", "icono de usuario");
-      iconPost.setAttribute("width", "25px");
-
-      const pUser = document.createElement("p");
-      pUser.setAttribute("class", "pUser");
-
-      const pPost = document.createElement("p");
-      pPost.setAttribute("class", "pPost");
-
-      pUser.innerHTML = documento.data().name;
-      pPost.innerHTML = documento.data().text;
-
-      let likeButton = document.createElement("button");
-      likeButton.setAttribute("class", "likeButton");
-      
-      divWall.appendChild(sectionPost);
-      sectionPost.appendChild(divPost);
-      divPost.appendChild(divName);
-      divName.appendChild(iconPost);
-      divName.appendChild(pUser);
-      divPost.appendChild(pPost);
-      //divPost.appendChild(likeButton);
-    })
+  function like(post) {
+    updateDoc(post, { likes: arrayUnion(sessionStorage.getItem('userId')) });
+    return updateDoc(post, { likesCounter: increment(1) });
   }
 
-  let valuePost = postArea.value;
-  showPost(db, valuePost);
+  function unlike(post) {
+    updateDoc(post, { likes: arrayRemove(sessionStorage.getItem('userId')) });
+    return updateDoc(post, { likesCounter: increment(-1) });
+  }
 
-  //Funciones de llamada a los botones 
-  buttonSubmit.addEventListener("click", (post) => {
-    post.preventDefault();
-    let valuePost = postArea.value;
 
-    if ( valuePost === ""){
-      alert("No escribiste nada")
+
+// FUNCION PARA MOSTRAR POST CON NOMBRE DE USUARIO
+const showPost = async (db, documento) => {
+
+  const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
+  const querySnapshot = await getDocs(postAll);
+
+  const sectionPost = document.getElementById("postContainer");
+  sectionPost.innerHTML = "";
+  querySnapshot.forEach((documento) => {
+    console.log(documento.id, '=>', documento.data().name);
+
+    //creamos los componentes que contendrán cada nueva publicación
+    const divPost = document.createElement("div");
+    divPost.setAttribute("class", "divPost");
+
+    const divName = document.createElement("div");
+    divName.setAttribute("class", "divName");
+
+    let iconPost = document.createElement("img");
+    iconPost.setAttribute("class", "iconPost");
+    iconPost.setAttribute("src", "./images/own-user-icon.svg");
+    iconPost.setAttribute("alt", "icono de usuario");
+    iconPost.setAttribute("width", "25px");
+
+    const pUser = document.createElement("p");
+    pUser.setAttribute("class", "pUser");
+
+    const pPost = document.createElement("p");
+    pPost.setAttribute("class", "pPost");
+
+    pUser.innerHTML = documento.data().name;
+    pPost.innerHTML = documento.data().text;
+
+    let likeButton = document.createElement("button");
+    likeButton.setAttribute("class", "likeButton");
+
+    let likeIcon = document.createElement("img");
+    likeIcon.setAttribute("src", "./images/liked-icon.svg");
+   
+    if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
+      likeButton.appendChild(likeIcon);
+      likeButton.innerHTML = `🍃 ${documento.data().likesCounter}`;
     } else {
-      createPost(db, valuePost);
-      showPost(db, valuePost);
-      formHome.reset();
+      likeButton.innerHTML = `🍂 ${documento.data().likesCounter}`;
     }
+
+    likeButton.addEventListener('click', async () => {
+      if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
+        likeButton.innerHTML = `🍂 ${documento.data().likesCounter - 1}`;
+
+        await unlike(doc(db, 'post', documento.id)); 
+        showPost(); 
+      } else {
+        await like(doc(db, 'post', documento.id));
+        likeButton.innerHTML = `🍃 ${documento.data().likesCounter + 1}`;
+        showPost();
+      }
+    })
+
+    divWall.appendChild(sectionPost);
+    sectionPost.appendChild(divPost);
+    divPost.appendChild(divName);
+    divName.appendChild(iconPost);
+    divName.appendChild(pUser);
+    divPost.appendChild(pPost);
+    divPost.appendChild(likeButton);
   })
+}
 
-  buttonLogOut.addEventListener("click", () => {
-    const auth = getAuth();
+let valuePost = postArea.value;
+showPost(db, valuePost);
 
-    signOut(auth)
-      .then(() => {
-        console.log("el usuario salió");
-        sessionStorage.clear();
-        window.location.hash = "#login";
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+//Funciones de llamada a los botones 
+buttonSubmit.addEventListener("click", (post) => {
+  post.preventDefault();
+  let valuePost = postArea.value;
 
-  })
+  if (valuePost === "") {
+    alert("No escribiste nada")
+  } else {
+    createPost(db, valuePost);
+    showPost(db, valuePost);
+    formHome.reset();
+  }
+})
+
+buttonLogOut.addEventListener("click", () => {
+  const auth = getAuth();
+
+  signOut(auth)
+    .then(() => {
+      console.log("el usuario salió");
+      sessionStorage.clear();
+      window.location.hash = "#login";
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+
+})
 
 
-  return divHome;
+return divHome;
 
 }

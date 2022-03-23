@@ -136,6 +136,7 @@ export const login = () => {
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
+                sessionStorage.setItem('userId', user.uid);
                 if (user.emailVerified) {
                     window.location.hash = '#home';
                 } else {
@@ -178,6 +179,7 @@ export const login = () => {
                 console.log(token);
                 // The signed-in user info.
                 const user = result.user;
+                sessionStorage.setItem('userId', user.uid);
                 console.log(user);
                 window.location.hash = "#home";
             }).catch((error) => {
@@ -191,7 +193,7 @@ export const login = () => {
                 const email = error.email;
                 console.log(email)
                 // The AuthCredential type that was used.
-                const credentikal = GoogleAuthProvider.credentialFromError(error);
+                const credential = GoogleAuthProvider.credentialFromError(error);
                 console.log(credential)
             });
 
