@@ -13,7 +13,6 @@ body {
   width: 100%;
   min-height: 100vh;
   min-height:600px; /* ? */
-
 }
 
 /* logo y h1 */
@@ -274,6 +273,7 @@ footer a:hover{
   flex-direction: column;
   align-items: center;
   gap: 10px;
+  overflow: hidden;
 }
 
 .headerMobile {
@@ -333,6 +333,7 @@ footer a:hover{
   display: flex;
   flex-direction: column;
   margin:auto;
+  position: sticky;
 }
 
 /* user icon + textarea */
@@ -380,11 +381,19 @@ border-color: #F9F0E2;
   border-radius: 15px;  
 }
 
+
 .postAreaDivider {
   width: 90%;
   border-top: 1px solid #D5D5FF;
   margin-top: 15px;
   margin-bottom: 25px;
+}
+
+.postContainer {
+  width: 90%;
+  height: 54%;
+  padding: auto;
+  overflow: scroll;
 }
 
 .divPost {
@@ -497,11 +506,9 @@ border-color: #F9F0E2;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    color: var(--white-color);
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
-
   }
 
   .menu {
