@@ -145,7 +145,10 @@ export const home = () => {
   };
 
   function like(post) {
-    updateDoc(post, { likes: arrayUnion(sessionStorage.getItem('userId')) });
+    updateDoc(post, {
+      likes: arrayUnion(sessionStorage.getItem('userId')) 
+    });
+    console.log(sessionStorage.getItem('userId'))
     return updateDoc(post, { likesCounter: increment(1) });
   }
 
@@ -157,7 +160,7 @@ export const home = () => {
 
 
 // FUNCION PARA MOSTRAR POST CON NOMBRE DE USUARIO
-const showPost = async (db, documento) => {
+const showPost = async () => {
 
   const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
   const querySnapshot = await getDocs(postAll);
@@ -192,11 +195,11 @@ const showPost = async (db, documento) => {
     let likeButton = document.createElement("button");
     likeButton.setAttribute("class", "likeButton");
 
-    let likeIcon = document.createElement("img");
-    likeIcon.setAttribute("src", "./images/liked-icon.svg");
-   
+    // let likeIcon = document.createElement("img");
+    // likeIcon.setAttribute("src", "./images/liked-icon.svg");
+   console.log(documento.data().likes.includes(sessionStorage.getItem('userId')))
     if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
-      likeButton.appendChild(likeIcon);
+      //likeButton.appendChild(likeIcon);
       likeButton.innerHTML = `🍃 ${documento.data().likesCounter}`;
     } else {
       likeButton.innerHTML = `🍂 ${documento.data().likesCounter}`;
@@ -206,14 +209,15 @@ const showPost = async (db, documento) => {
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
         likeButton.innerHTML = `🍂 ${documento.data().likesCounter - 1}`;
 
-        await unlike(doc(db, 'post', documento.id)); 
+        await unlike(doc(db, "post", documento.id)); 
+        console.log(doc(db, "post", documento.id))
         showPost(); 
       } else {
-        await like(doc(db, 'post', documento.id));
+        await like(doc(db, "post", documento.id));
         likeButton.innerHTML = `🍃 ${documento.data().likesCounter + 1}`;
         showPost();
       }
-    })
+    });
 
     divWall.appendChild(sectionPost);
     sectionPost.appendChild(divPost);
