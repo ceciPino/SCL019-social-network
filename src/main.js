@@ -38,7 +38,9 @@ onAuthStateChanged(auth, (user) => {
       route(window.location.hash);
     // User is signed out
   }
-});
+
+})
+window.addEventListener("load", onAuthStateChanged);
 
 
 

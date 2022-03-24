@@ -334,7 +334,7 @@ footer a:hover{
   display: flex;
   flex-direction: column;
   margin:auto;
-  background-color: #F9F0E2;
+  background-color: #FCFCFC;
   /* position: fixed;
   align-items: center;
   padding: 20px; */
@@ -358,9 +358,9 @@ font-style: normal;
 font-weight: 400;
 font-size: 12px;
 line-height: 16px;
-background: #F9F0E2;
+background: #FCFCFC;
 color: #7374FF;
-border-color: #F9F0E2;
+border-color: #FCFCFC;
 }
 
 .divButtonSubmit {
@@ -433,10 +433,18 @@ border-color: #F9F0E2;
   font-size: 16px;
   line-height: 19px;
   color: #4A4BFF;
-  text-align: justify;
-
 }
 
+.likeButton {
+  margin-top: 15px;
+  background: none;
+  border: none;
+  
+}
+.likeIcon {
+  width: 20px;
+  height: auto;
+}
 
 
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */

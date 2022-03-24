@@ -4,7 +4,7 @@ import { footerContainer } from "./footer.js";
 
 export const login = () => {
 
-    history.pushState(null, 'login', '#login');
+    history.pushState(null, 'login', '/login');
 
     let divLogin = document.createElement("div");
     divLogin.setAttribute("class", "divLogin");
