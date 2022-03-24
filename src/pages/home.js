@@ -52,6 +52,7 @@ export const home = () => {
   divWall.setAttribute("class", "wall");
   divHome.appendChild(divWall);
 
+  // FORM
   let formHome = document.createElement("form");
   formHome.setAttribute("class", "post");
   divWall.appendChild(formHome);
@@ -72,6 +73,7 @@ export const home = () => {
   postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
   sectionPostArea.appendChild(postArea);
 
+  // BOTÓN PIBLICAR
   let divButtonSubmit = document.createElement("div");
   divButtonSubmit.setAttribute("class", "divButtonSubmit");
   formHome.appendChild(divButtonSubmit)
@@ -81,10 +83,12 @@ export const home = () => {
   buttonSubmit.setAttribute("class", "buttonSubmit");
   divButtonSubmit.appendChild(buttonSubmit);
 
+  // DIVISOR
   let postAreaDivider = document.createElement("hr");
   postAreaDivider.setAttribute("class", "postAreaDivider");
-  divWall.appendChild(postAreaDivider);
+  formHome.appendChild(postAreaDivider);
 
+  // CONTAINER POST PUBLICADOS
   let postContainer = document.createElement("div");
   postContainer.setAttribute("id", "postContainer");
   postContainer.setAttribute("class", "postContainer");
@@ -140,13 +144,12 @@ export const home = () => {
       likes: [],
       likesCounter: 0,
     });
-
     console.log("Document written with ID: ", docRef.id)
   };
 
   function like(post) {
     updateDoc(post, {
-      likes: arrayUnion(sessionStorage.getItem('userId')) 
+      likes: arrayUnion(sessionStorage.getItem('userId'))
     });
     console.log(sessionStorage.getItem('userId'))
     return updateDoc(post, { likesCounter: increment(1) });
@@ -157,111 +160,123 @@ export const home = () => {
     return updateDoc(post, { likesCounter: increment(-1) });
   }
 
+  // FUNCION PARA MOSTRAR POST CON NOMBRE DE USUARIO
+  const showPost = async () => {
 
+    const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
+    const querySnapshot = await getDocs(postAll);
 
-// FUNCION PARA MOSTRAR POST CON NOMBRE DE USUARIO
-const showPost = async () => {
+    const sectionPost = document.getElementById("postContainer");
+    sectionPost.innerHTML = "";
+    querySnapshot.forEach((documento) => {
+      console.log(documento.id, '=>', documento.data().name);
 
-  const postAll = query(collection(db, "post"), orderBy("datepost", "desc"));
-  const querySnapshot = await getDocs(postAll);
+      //creamos los componentes que contendrán cada nueva publicación
+      // div por cada post publicado
+      const divPost = document.createElement("div");
+      divPost.setAttribute("class", "divPost");
 
-  const sectionPost = document.getElementById("postContainer");
-  sectionPost.innerHTML = "";
-  querySnapshot.forEach((documento) => {
-    console.log(documento.id, '=>', documento.data().name);
+      //div user name + user icon
+      const divName = document.createElement("div");
+      divName.setAttribute("class", "divName");
 
-    //creamos los componentes que contendrán cada nueva publicación
-    const divPost = document.createElement("div");
-    divPost.setAttribute("class", "divPost");
+      let iconPost = document.createElement("img");
+      iconPost.setAttribute("class", "iconPost");
+      iconPost.setAttribute("src", "./images/own-user-icon.svg");
+      iconPost.setAttribute("alt", "icono de usuario");
+      iconPost.setAttribute("width", "25px");
 
-    const divName = document.createElement("div");
-    divName.setAttribute("class", "divName");
+      //name
+      const pUser = document.createElement("p");
+      pUser.setAttribute("class", "pUser");
 
-    let iconPost = document.createElement("img");
-    iconPost.setAttribute("class", "iconPost");
-    iconPost.setAttribute("src", "./images/own-user-icon.svg");
-    iconPost.setAttribute("alt", "icono de usuario");
-    iconPost.setAttribute("width", "25px");
+      //text 
+      const pPost = document.createElement("p");
+      pPost.setAttribute("class", "pPost");
 
-    const pUser = document.createElement("p");
-    pUser.setAttribute("class", "pUser");
+      pUser.innerHTML = documento.data().name;
+      pPost.innerHTML = documento.data().text;
 
-    const pPost = document.createElement("p");
-    pPost.setAttribute("class", "pPost");
+      let likeButton = document.createElement("button");
+      likeButton.setAttribute("class", "likeButton");
 
-    pUser.innerHTML = documento.data().name;
-    pPost.innerHTML = documento.data().text;
+      let likeIcon = document.createElement("img");
+      likeIcon.setAttribute("class", "likeIcon")
 
-    let likeButton = document.createElement("button");
-    likeButton.setAttribute("class", "likeButton");
-
-    // let likeIcon = document.createElement("img");
-    // likeIcon.setAttribute("src", "./images/liked-icon.svg");
-   console.log(documento.data().likes.includes(sessionStorage.getItem('userId')))
-    if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
-      //likeButton.appendChild(likeIcon);
-      likeButton.innerHTML = `🍃 ${documento.data().likesCounter}`;
-    } else {
-      likeButton.innerHTML = `🍂 ${documento.data().likesCounter}`;
-    }
-
-    likeButton.addEventListener('click', async () => {
+      //console.log(documento.data().likes.includes(sessionStorage.getItem('userId')))
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
-        likeButton.innerHTML = `🍂 ${documento.data().likesCounter - 1}`;
+        //mostrando icono like
+        likeIcon.setAttribute("src", "./images/like-icon2.svg");
+        likeButton.appendChild(likeIcon);
 
-        await unlike(doc(db, "post", documento.id)); 
-        console.log(doc(db, "post", documento.id))
-        showPost(); 
       } else {
-        await like(doc(db, "post", documento.id));
-        likeButton.innerHTML = `🍃 ${documento.data().likesCounter + 1}`;
-        showPost();
+        //mostrando icono unlike
+        likeIcon.setAttribute("src", "./images/unlike-icon.svg");
+        likeButton.appendChild(likeIcon);
       }
-    });
 
-    divWall.appendChild(sectionPost);
-    sectionPost.appendChild(divPost);
-    divPost.appendChild(divName);
-    divName.appendChild(iconPost);
-    divName.appendChild(pUser);
-    divPost.appendChild(pPost);
-    divPost.appendChild(likeButton);
-  })
-}
+      // click al botón like
+      likeButton.addEventListener('click', async () => {
+        if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
+          //mostrando icono like
+          likeIcon.setAttribute("src", "./images/unlike-icon.svg");
+          likeButton.appendChild(likeIcon);
+          await unlike(doc(db, "post", documento.id));
+          //console.log(doc(db, "post", documento.id))
+          showPost();
+        
+        } else {
+          //mostrando icono unlike
+          await like(doc(db, "post", documento.id));
+          likeIcon.setAttribute("src", "./images/like-icon2.svg");
+          likeButton.appendChild(likeIcon);
+          showPost();
+        }
+      });
 
-let valuePost = postArea.value;
-showPost(db, valuePost);
-
-//Funciones de llamada a los botones 
-buttonSubmit.addEventListener("click", (post) => {
-  post.preventDefault();
-  let valuePost = postArea.value;
-
-  if (valuePost === "") {
-    alert("No escribiste nada")
-  } else {
-    createPost(db, valuePost);
-    showPost(db, valuePost);
-    formHome.reset();
-  }
-})
-
-buttonLogOut.addEventListener("click", () => {
-  const auth = getAuth();
-
-  signOut(auth)
-    .then(() => {
-      console.log("el usuario salió");
-      sessionStorage.clear();
-      window.location.hash = "#login";
+      divWall.appendChild(sectionPost);
+      sectionPost.appendChild(divPost);
+      divPost.appendChild(divName);
+      divName.appendChild(iconPost);
+      divName.appendChild(pUser);
+      divPost.appendChild(pPost);
+      divPost.appendChild(likeButton);
     })
-    .catch((error) => {
-      console.log(error.message);
-    });
+  }
 
-})
+  let valuePost = postArea.value;
+  showPost(db, valuePost);
+
+  //Funciones de llamada a los botones 
+  buttonSubmit.addEventListener("click", (post) => {
+    post.preventDefault();
+    let valuePost = postArea.value;
+
+    if (valuePost === "") {
+      alert("No escribiste nada")
+    } else {
+      createPost(db, valuePost);
+      showPost(db, valuePost);
+      formHome.reset();
+    }
+  })
+
+  buttonLogOut.addEventListener("click", () => {
+    const auth = getAuth();
+
+    signOut(auth)
+      .then(() => {
+        console.log("el usuario salió");
+        sessionStorage.clear();
+        window.location.hash = "#login";
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+
+  })
 
 
-return divHome;
+  return divHome;
 
 }
