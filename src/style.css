@@ -296,7 +296,8 @@ footer a:hover{
   column-gap: 60px;
   margin: 20px;
   padding: auto;
-
+  /* bottom: 0; */
+  /* position: fixed; */
 }
 
 .menuIcon {
@@ -333,7 +334,10 @@ footer a:hover{
   display: flex;
   flex-direction: column;
   margin:auto;
-  position: sticky;
+  background-color: #F9F0E2;
+  /* position: fixed;
+  align-items: center;
+  padding: 20px; */
 }
 
 /* user icon + textarea */
@@ -393,7 +397,8 @@ border-color: #F9F0E2;
   width: 90%;
   height: 54%;
   padding: auto;
-  overflow: scroll;
+  /* overflow: scroll;
+  position: absolute; */
 }
 
 .divPost {

@@ -83,7 +83,7 @@ export const home = () => {
 
   let postAreaDivider = document.createElement("hr");
   postAreaDivider.setAttribute("class", "postAreaDivider");
-  divWall.appendChild(postAreaDivider);
+  formHome.appendChild(postAreaDivider);
 
   let postContainer = document.createElement("div");
   postContainer.setAttribute("id", "postContainer");

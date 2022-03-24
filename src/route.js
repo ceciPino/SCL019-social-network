@@ -6,26 +6,26 @@ export const route = () => {
 
   let rootDiv = document.getElementById("root");
 
-  // Mostrar HTML correcto al recargar la página
-  if (window.location.pathname === '/login') {
-    rootDiv.appendChild(login());
-  } else if (window.location.pathname === '/register') {
-    rootDiv.appendChild(register());
-  } else if (window.location.pathname === '/home') {
-    rootDiv.appendChild(home());
-  }
+  // // Mostrar HTML correcto al recargar la página
+  // if (window.location.pathname === '/login') {
+  //   rootDiv.appendChild(login());
+  // } else if (window.location.pathname === '/register') {
+  //   rootDiv.appendChild(register());
+  // } else if (window.location.pathname === 'home') {
+  //   rootDiv.appendChild(home());
+  // }
 
 
-  // Cambiar la URL para que no ocupe el #
-  const changeRoute = (hash) => {
-    if (hash === '#login') {
-      window.history.replaceState({}, 'login', '/login');
-    } else if (hash === '#register') {
-      window.history.replaceState({}, 'register', '/register');
-    } else if (hash === '#home') {
-      window.history.replaceState({}, 'home', '/home');
-    }
-  }
+  // // Cambiar la URL para que no ocupe el #
+  // const changeRoute = (hash) => {
+  //   if (hash === '#login') {
+  //     window.history.replaceState({}, 'login', '/login');
+  //   } else if (hash === '#register') {
+  //     window.history.replaceState({}, 'register', '/register');
+  //   } else if (hash === '#home') {
+  //     window.history.replaceState({}, 'home', '/home');
+  //   }
+  // }
 
   // Mostrar html después de selleccionar un link
   window.addEventListener('hashchange', () => { //hashchange es lo que ocurre cuando se agrega el # en la url
