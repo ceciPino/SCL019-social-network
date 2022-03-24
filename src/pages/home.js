@@ -23,7 +23,7 @@ const auth = getAuth();
 
 export const home = () => {
 
-  history.pushState(null, 'home', '#home');
+  history.pushState(null, 'home', '/home');
 
   let divHome = document.createElement("div");
   divHome.setAttribute("id", "home");

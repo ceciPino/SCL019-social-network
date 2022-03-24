@@ -4,7 +4,7 @@ import { footerContainer } from "./footer.js";
 
 export const register = () => {
 
-  history.pushState(null, 'register', '#register');
+  history.pushState(null, 'register', '/register');
 
   let divRegister = document.createElement("div");
   divRegister.setAttribute("class", "divRegister");

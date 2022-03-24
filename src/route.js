@@ -49,7 +49,7 @@ export const route = () => {
     }
   });
 
-  // // Mostrar HTML correcto al moverse con los botones de atrás y adelante del navegador
+  // Mostrar HTML correcto al moverse con los botones de atrás y adelante del navegador
   // window.onpopstate = () => {
   //   if (window.location.pathname === '/login') {
   //     rootDiv.appendChild(login());
