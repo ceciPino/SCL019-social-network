@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { headerContainer } from "./header.js";
+import { headerHomeContainer } from "./header-home.js";
 //import { login } from "./logIn.js";
 import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy, updateDoc, arrayUnion, arrayRemove, increment } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
 
@@ -33,9 +33,7 @@ export const home = () => {
   divHeaderMobile.setAttribute("class", "headerMobile");
   divHome.appendChild(divHeaderMobile);
 
-  let logoHome = headerContainer().querySelector(".plantasia");
-  logoHome.classList.add("plantasiaHome"); // NO ESTÁ FUNCIONANDO
-  divHeaderMobile.appendChild(headerContainer());
+  divHeaderMobile.appendChild(headerHomeContainer())
 
   // ****** BOTON LOG OUT **********
   let buttonLogOut = document.createElement("a");
@@ -197,22 +195,33 @@ export const home = () => {
       pUser.innerHTML = documento.data().name;
       pPost.innerHTML = documento.data().text;
 
+      let divLikes = document.createElement("div");
+      divLikes.setAttribute("class", "divLikes");
+
       let likeButton = document.createElement("button");
       likeButton.setAttribute("class", "likeButton");
+      divLikes.appendChild(likeButton);
 
       let likeIcon = document.createElement("img");
-      likeIcon.setAttribute("class", "likeIcon")
+      likeIcon.setAttribute("class", "likeIcon");
+
+      let pCouter = document.createElement("p");
+      pCouter.setAttribute("class", "pCounter");
+      divLikes.appendChild(pCouter);
 
       //console.log(documento.data().likes.includes(sessionStorage.getItem('userId')))
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
         //mostrando icono like
         likeIcon.setAttribute("src", "./images/like-icon2.svg");
         likeButton.appendChild(likeIcon);
+        pCouter.textContent = documento.data().likesCounter
 
       } else {
         //mostrando icono unlike
         likeIcon.setAttribute("src", "./images/unlike-icon.svg");
         likeButton.appendChild(likeIcon);
+        pCouter.textContent = documento.data().likesCounter
+
       }
 
       // click al botón like
@@ -221,6 +230,8 @@ export const home = () => {
           //mostrando icono like
           likeIcon.setAttribute("src", "./images/unlike-icon.svg");
           likeButton.appendChild(likeIcon);
+          pCouter.textContent = documento.data().likesCounter
+
           await unlike(doc(db, "post", documento.id));
           //console.log(doc(db, "post", documento.id))
           showPost();
@@ -230,6 +241,8 @@ export const home = () => {
           await like(doc(db, "post", documento.id));
           likeIcon.setAttribute("src", "./images/like-icon2.svg");
           likeButton.appendChild(likeIcon);
+          pCouter.textContent = documento.data().likesCounter
+
           showPost();
         }
       });
@@ -240,7 +253,7 @@ export const home = () => {
       divName.appendChild(iconPost);
       divName.appendChild(pUser);
       divPost.appendChild(pPost);
-      divPost.appendChild(likeButton);
+      divPost.appendChild(divLikes);
     })
   }
 
