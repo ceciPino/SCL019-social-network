@@ -281,12 +281,27 @@ footer a:hover{
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+
 }
 
- /* NO FUNCIONA 
-.plantasiaHome {
-  font-size: 16px;
+/* .divHeaderHome{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 } */
+
+.logoHome {
+  width: 50px;
+}
+
+.h1Home {
+  font-family: 'Arima Madurai';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 86px;
+  color: #4A4BFF;
+}
 
 .menu {
   display: flex;
@@ -435,15 +450,33 @@ border-color: #FCFCFC;
   color: #4A4BFF;
 }
 
+.divLikes {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
 .likeButton {
   margin-top: 15px;
   background: none;
   border: none;
   
 }
+
 .likeIcon {
-  width: 20px;
-  height: auto;
+  width: auto;
+  height: 18px;
+}
+
+.pCounter {
+  margin-top: 10px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #7374FF;
+
 }
 
 
