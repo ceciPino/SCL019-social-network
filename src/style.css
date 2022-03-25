@@ -284,11 +284,11 @@ footer a:hover{
 
 }
 
-/* .divHeaderHome{
-  display: flex;
-  flex-direction: row;
-  gap: 10px;
-} */
+.divHeaderHome{
+  margin-top: 2em;
+  margin-left: 1em;
+}
+
 
 .logoHome {
   width: 50px;
@@ -327,6 +327,8 @@ footer a:hover{
   font-size: 14px;
   color: #4A4BFF;
   text-decoration: underline;
+  margin-top: 5.5em;
+  margin-left: 2em;
 }
 
 /* contiene todo menos menu  */
