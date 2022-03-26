@@ -37,5 +37,17 @@
   },
   "dependencies": {
     "firebase": "^9.6.7"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ValeMontecinosP/SCL019-social-network.git"
+  },
+  "author": "valemontecinosp",
+  "bugs": {
+    "url": "https://github.com/ValeMontecinosP/SCL019-social-network/issues"
+  },
+  "homepage": "https://github.com/ValeMontecinosP/SCL019-social-network#readme"
 }
