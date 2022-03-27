@@ -7,10 +7,15 @@ export const headerHomeContainer = () => {
     let createHeader = document.createElement("header");
     divHeaderHome.appendChild(createHeader);
 
+    let link = document.createElement("a");
+    link.setAttribute("href", "https://youtu.be/l0vrsO3_HpU");
+    link.setAttribute("target", "_blank");
+    createHeader.appendChild(link);
+
     let logo = document.createElement("img");
     logo.setAttribute("src", "./images/logo-plantasia.svg");
     logo.setAttribute("class", "logoHome");
-    createHeader.appendChild(logo);
+    link.appendChild(logo);
 
     let titlePlantasia = document.createElement("h1");
     titlePlantasia.setAttribute("class", "h1Home")

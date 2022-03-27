@@ -61,7 +61,7 @@ export const home = () => {
 
   let userIcon = document.createElement("img");
   userIcon.setAttribute("class", "userIcon");
-  userIcon.setAttribute("src", "./images/own-user-icon.svg");
+  userIcon.setAttribute("src", "/images/own-user-icon.svg");
   userIcon.setAttribute("alt", "icono de usuario");
   userIcon.setAttribute("width", "25px");
   sectionPostArea.appendChild(userIcon);
@@ -167,7 +167,7 @@ export const home = () => {
     const sectionPost = document.getElementById("postContainer");
     sectionPost.innerHTML = "";
     querySnapshot.forEach((documento) => {
-      console.log(documento.id, '=>', documento.data().name);
+      //console.log(documento.id, '=>', documento.data().name);
 
       //creamos los componentes que contendrán cada nueva publicación
       // div por cada post publicado
