@@ -96,7 +96,7 @@ export const login = () => {
     //logo google
     let logoGoogle = document.createElement("img");
     logoGoogle.setAttribute("class", "logoGoogle");
-    logoGoogle.setAttribute("src", "src/images/logo-google.png"); 
+    logoGoogle.setAttribute("src", "./images/logo-google.png");
     logoGoogle.setAttribute("alt", "logo Google");
     buttonGoogle.appendChild(logoGoogle);
     //texto botón 

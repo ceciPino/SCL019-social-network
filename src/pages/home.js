@@ -167,7 +167,7 @@ export const home = () => {
     const sectionPost = document.getElementById("postContainer");
     sectionPost.innerHTML = "";
     querySnapshot.forEach((documento) => {
-      console.log(documento.id, '=>', documento.data().name);
+      //console.log(documento.id, '=>', documento.data().name);
 
       //creamos los componentes que contendrán cada nueva publicación
       // div por cada post publicado
