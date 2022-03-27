@@ -54,7 +54,7 @@ export const login = () => {
 
     const openEye = document.createElement('img');
     openEye.setAttribute("class", "openEye");
-    openEye.setAttribute("src", "./images/openeye.png");
+    openEye.setAttribute("src", "openeye.png");
     formLogIn.appendChild(openEye);
     
     const showPassword = (e) => {

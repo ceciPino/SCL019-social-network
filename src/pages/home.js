@@ -61,7 +61,7 @@ export const home = () => {
 
   let userIcon = document.createElement("img");
   userIcon.setAttribute("class", "userIcon");
-  userIcon.setAttribute("src", "./images/own-user-icon.svg");
+  userIcon.setAttribute("src", "/images/own-user-icon.svg");
   userIcon.setAttribute("alt", "icono de usuario");
   userIcon.setAttribute("width", "25px");
   sectionPostArea.appendChild(userIcon);
