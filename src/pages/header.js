@@ -8,7 +8,7 @@ export const headerContainer = () => {
     divHeader.appendChild(createHeader);
 
     let logo = document.createElement("img");
-    logo.setAttribute("src", "./src/images/logo-plantasia.svg");
+    logo.setAttribute("src", "../images/logo-plantasia.svg");
     logo.setAttribute("class", "logo");
     createHeader.appendChild(logo);
 
