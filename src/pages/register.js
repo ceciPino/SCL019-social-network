@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
 import { footerContainer } from "./footer.js";
 
@@ -109,7 +109,7 @@ export const register = () => {
   //logo google
   let logoGoogle = document.createElement("img");
   logoGoogle.setAttribute("class", "logoGoogle");
-  logoGoogle.setAttribute("src", "./images/logo-google.png");
+  logoGoogle.setAttribute("src", "./images/logogoogle.png");
   logoGoogle.setAttribute("alt", "logo Google");
   buttonGoogle.appendChild(logoGoogle);
   //texto botón google
@@ -149,6 +149,10 @@ export const register = () => {
         // redirigir a login
         console.log(user);
         window.location.hash = "#login";
+
+        updateProfile(auth.currentUser, {
+          displayName: userName.value
+        })
       })
       .catch((error) => {
         const errorCode = error.code;
