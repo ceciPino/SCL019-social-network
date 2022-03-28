@@ -278,20 +278,25 @@ footer a:hover{
 
 .headerMobile {
   display: flex;
-  flex-direction: row;
+  flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  gap: 75px;
+  margin-top: 1em;
+  margin-left: 20px;
+  margin-right: 20px;
 
 }
 
-.divHeaderHome{
-  margin-top: 2em;
-  margin-left: 1em;
+.headerHome{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
 }
-
 
 .logoHome {
-  width: 50px;
+  width: 60px;
 }
 
 .h1Home {
@@ -299,8 +304,19 @@ footer a:hover{
   font-style: normal;
   font-weight: 700;
   font-size: 24px;
-  line-height: 86px;
   color: #4A4BFF;
+}
+
+.buttonLogOut {
+  display: flex;
+  flex-wrap: nowrap;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #4A4BFF;
+  text-decoration: underline;
 }
 
 .menu {
@@ -320,16 +336,6 @@ footer a:hover{
   height: 30px;
 }
 
-.buttonLogOut {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  color: #4A4BFF;
-  text-decoration: underline;
-  margin-top: 5.5em;
-  margin-left: 2em;
-}
 
 /* contiene todo menos menu  */
 .wall {
@@ -338,24 +344,36 @@ footer a:hover{
   justify-content: space-around;
 }
 
- /* icono areapost */
-.userIcon {
-  display:block;
-  margin-top: 10px;
-  margin-bottom: 10px;
-
+.wallDivider {
+  width: 100%;
+  border-top: 1px solid #D5D5FF;
+  margin-bottom: 35px;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: -20px;
 }
 
 /* form  */
 .post {
   display: flex;
   flex-direction: column;
-  margin:auto;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
   background-color: #FCFCFC;
+  
   /* position: fixed;
   align-items: center;
   padding: 20px; */
 }
+
+ /* icono areapost */
+.userIcon {
+  display:block;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 /* user icon + textarea */
 .sectionPostArea {
@@ -402,25 +420,20 @@ border-color: #FCFCFC;
   border-radius: 15px;  
 }
 
-
-.postAreaDivider {
-  width: 90%;
-  border-top: 1px solid #D5D5FF;
-  margin-top: 15px;
-  margin-bottom: 25px;
-}
-
 .postContainer {
-  width: 90%;
+  width: 100%;
   height: 54%;
-  padding: auto;
+  padding: 10px;
+  background-color: #D5D5FF;
   /* overflow: scroll;
   position: absolute; */
 }
 
 .divPost {
-  margin:auto;
-  padding-bottom: 25px;
+  padding: 12px 10px 25px 10px;
+  background-color: #FCFCFC;
+  margin-bottom: 10px;
+  border-radius: 10px;
 }
 
 /* iconPost + pUser */
@@ -480,6 +493,15 @@ border-color: #FCFCFC;
   color: #7374FF;
 
 }
+
+/* .postDivider {
+  width: 100%;
+  height: 20px;
+  background-color: #D5D5FF;
+  border-top: none;
+  margin-top: 15px;
+  margin-bottom: 15px;
+} */
 
 
 @media screen and (min-width: 992px) { /* Large devices (laptops/desktops, 992px and up) */

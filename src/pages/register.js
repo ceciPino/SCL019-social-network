@@ -119,6 +119,22 @@ export const register = () => {
 
   sectionEnterWithGoogle.appendChild(buttonGoogle);
 
+  let linkLogin = document.createElement("div");
+  linkLogin.setAttribute("class", "unregisteredText_Link");
+  divMain.appendChild(linkLogin);
+
+  let linkLoginText = document.createElement("p");
+  linkLoginText.textContent = "¿Ya tienes cuenta? ";
+  linkLogin.appendChild(linkLoginText);
+
+  let linkLoginLink = document.createElement("a");
+  linkLoginLink.setAttribute("class", "logIn_linkRegister");
+  linkLoginLink.setAttribute("href", "#login"); // insertar ruta registro 
+  linkLoginLink.textContent = "Inicia sesión";
+  linkLogin.appendChild(linkLoginLink);
+
+
+  
   //FOOTER
   divRegister.appendChild(footerContainer());
 

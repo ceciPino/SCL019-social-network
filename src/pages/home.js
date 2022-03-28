@@ -42,12 +42,16 @@ export const home = () => {
   divHeaderMobile.appendChild(buttonLogOut);
 
 
-
   // ************ WALL ****************
 
   let divWall = document.createElement("div");
   divWall.setAttribute("class", "wall");
   divHome.appendChild(divWall);
+
+  // DIVISOR
+  let wallDivider = document.createElement("hr");
+  wallDivider.setAttribute("class", "wallDivider");
+  divWall.appendChild(wallDivider);
 
   // FORM
   let formHome = document.createElement("form");
@@ -79,11 +83,6 @@ export const home = () => {
   buttonSubmit.textContent = "Publicar";
   buttonSubmit.setAttribute("class", "buttonSubmit");
   divButtonSubmit.appendChild(buttonSubmit);
-
-  // DIVISOR
-  let postAreaDivider = document.createElement("hr");
-  postAreaDivider.setAttribute("class", "postAreaDivider");
-  formHome.appendChild(postAreaDivider);
 
   // CONTAINER POST PUBLICADOS
   let postContainer = document.createElement("div");

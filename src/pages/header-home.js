@@ -1,11 +1,8 @@
 export const headerHomeContainer = () => {
 
-    let divHeaderHome = document.createElement("div");
-    divHeaderHome.setAttribute("class", "divHeaderHome");
-
     //Creando header
     let createHeader = document.createElement("header");
-    divHeaderHome.appendChild(createHeader);
+    createHeader.setAttribute("class", "headerHome")
 
     let link = document.createElement("a");
     link.setAttribute("href", "https://youtu.be/l0vrsO3_HpU");
@@ -25,5 +22,5 @@ export const headerHomeContainer = () => {
     let iconHome = document.createElement("button");
     iconHome
 
-    return divHeaderHome;
+    return createHeader;
 }

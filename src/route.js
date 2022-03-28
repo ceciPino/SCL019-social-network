@@ -48,7 +48,7 @@ export const route = () => {
       rootDiv.innerHTML = "";
       //console.log(home());
       rootDiv.appendChild(home());
-      document.body.style.backgroundColor = "#FCFCFC";
+      document.body.style.backgroundColor = "#FCFCFC"; 
       //changeRoute(window.location.hash);
     }
   });
