@@ -12,6 +12,12 @@ const firebaseConfig = {
   appId: "1:55216807698:web:9cef62683040f7b8afddcb"
 };
 
+  initializeApp(firebaseConfig);
+
+  const auth = getAuth();
+  const db = getFirestore();
+  //console.log(db);
+
 /* ******** VISTA HOME ******* */
 
 export const home = () => {
@@ -115,12 +121,6 @@ export const home = () => {
   perfilIcon.setAttribute("alt", "icono perfil");
   divMenu.appendChild(perfilIcon);
 
-
-  initializeApp(firebaseConfig);
-
-  const auth = getAuth();
-  const db = getFirestore();
-  //console.log(db);
 
   // FUNCION PARA CREAR POST CON NOMBRE DE USUARIO 
   const createPost = async (db, text) => {
