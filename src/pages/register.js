@@ -1,6 +1,6 @@
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
 import { footerContainer } from "./footer.js";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 export const register = () => {
 

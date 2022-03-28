@@ -1,11 +1,6 @@
-// Este es el punto de entrada de tu aplicacion
-
-//import { myFunction } from './lib/index.js';
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
-//import { app } from "../firebase-config.js";
-import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { headerContainer } from "./pages/header.js";
 import { route } from "./route.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 //import { firestore } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js";
 
 // Configuración firebase
