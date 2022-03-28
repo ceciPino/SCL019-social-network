@@ -40,13 +40,3 @@ export const footerContainer = () => {
     return createFooter
 }
 
-/* <footer>
-        <p> 
-            <a href="https://github.com/ceciPino" target="_blank">
-            María Cecilia Pino
-            </a>,
-            <a href="https://github.com/majesuso" target="_blank"> María Jesús Oliva</a> and <a href="https://github.com/ValeMontecinosP" target="_blank">Valentina Montecinos</a>
-        </p>
-        <p>© 2022 Plantasia</p> 
-    </footer>
-*/

@@ -1,7 +1,6 @@
+import { headerHomeContainer } from "./header-home.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { headerHomeContainer } from "./header-home.js";
-//import { login } from "./logIn.js";
 import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy, updateDoc, arrayUnion, arrayRemove, increment } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
 
 const firebaseConfig = {
@@ -13,11 +12,11 @@ const firebaseConfig = {
   appId: "1:55216807698:web:9cef62683040f7b8afddcb"
 };
 
-initializeApp(firebaseConfig);
+  initializeApp(firebaseConfig);
 
-const db = getFirestore();
-console.log(db);
-const auth = getAuth();
+  const auth = getAuth();
+  const db = getFirestore();
+  //console.log(db);
 
 /* ******** VISTA HOME ******* */
 
@@ -43,12 +42,16 @@ export const home = () => {
   divHeaderMobile.appendChild(buttonLogOut);
 
 
-
   // ************ WALL ****************
 
   let divWall = document.createElement("div");
   divWall.setAttribute("class", "wall");
   divHome.appendChild(divWall);
+
+  // DIVISOR
+  let wallDivider = document.createElement("hr");
+  wallDivider.setAttribute("class", "wallDivider");
+  divWall.appendChild(wallDivider);
 
   // FORM
   let formHome = document.createElement("form");
@@ -71,7 +74,7 @@ export const home = () => {
   postArea.setAttribute("placeholder", "¿Cómo están tus plantas hoy?");
   sectionPostArea.appendChild(postArea);
 
-  // BOTÓN PIBLICAR
+  // BOTÓN PUBLICAR
   let divButtonSubmit = document.createElement("div");
   divButtonSubmit.setAttribute("class", "divButtonSubmit");
   formHome.appendChild(divButtonSubmit)
@@ -80,11 +83,6 @@ export const home = () => {
   buttonSubmit.textContent = "Publicar";
   buttonSubmit.setAttribute("class", "buttonSubmit");
   divButtonSubmit.appendChild(buttonSubmit);
-
-  // DIVISOR
-  let postAreaDivider = document.createElement("hr");
-  postAreaDivider.setAttribute("class", "postAreaDivider");
-  formHome.appendChild(postAreaDivider);
 
   // CONTAINER POST PUBLICADOS
   let postContainer = document.createElement("div");
@@ -122,11 +120,12 @@ export const home = () => {
   perfilIcon.setAttribute("alt", "icono perfil");
   divMenu.appendChild(perfilIcon);
 
+
   // FUNCION PARA CREAR POST CON NOMBRE DE USUARIO 
   const createPost = async (db, text) => {
 
     let userName;
-    if (auth.currentUser.displayName == null) {
+    if (auth.currentUser.displayName == null) { // displayname?
       let separateEmail = auth.currentUser.email.split('@');
       userName = separateEmail[0];
     } else {
@@ -142,7 +141,7 @@ export const home = () => {
       likes: [],
       likesCounter: 0,
     });
-    console.log("Document written with ID: ", docRef.id)
+    //console.log("Document written with ID: ", docRef.id)
   };
 
   function like(post) {
@@ -235,7 +234,7 @@ export const home = () => {
           await unlike(doc(db, "post", documento.id));
           //console.log(doc(db, "post", documento.id))
           showPost();
-        
+
         } else {
           //mostrando icono unlike
           await like(doc(db, "post", documento.id));

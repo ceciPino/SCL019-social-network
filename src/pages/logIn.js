@@ -1,6 +1,6 @@
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 import { headerContainer } from "./header.js";
 import { footerContainer } from "./footer.js";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
 
 export const login = () => {
 
@@ -118,7 +118,7 @@ export const login = () => {
     //link register
     let linkRegister = document.createElement("a");
     linkRegister.setAttribute("class", "logIn_linkRegister");
-    linkRegister.setAttribute("href", "#register"); // insertar ruta registro 
+    linkRegister.setAttribute("href", "#register"); 
     linkRegister.textContent = "Regístrate";
     divUnregistered.appendChild(linkRegister);
 
@@ -136,7 +136,7 @@ export const login = () => {
             .then((userCredential) => {
                 // Signed in
                 const user = userCredential.user;
-                sessionStorage.setItem('userId', user.uid);
+                sessionStorage.setItem('userId', user.uid); //se añaden elementos a nuestro objeto sessionStorage
                 if (user.emailVerified) {
                     window.location.hash = '#home';
                 } else {
