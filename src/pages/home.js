@@ -211,13 +211,13 @@ export const home = () => {
 
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
         //mostrando icono like
-        likeIcon.setAttribute("src", "./images/like-icon2.svg");
+        likeIcon.setAttribute("src", "SCL019-social-network/src/images/like-icon2.svg");
         likeButton.appendChild(likeIcon);
         pCounter.textContent = documento.data().likesCounter
 
       } else {
         //mostrando icono unlike
-        likeIcon.setAttribute("src", "./images/unlike-icon.svg");
+        likeIcon.setAttribute("src", "SCL019-social-network/src/images/unlike-icon.svg");
         likeButton.appendChild(likeIcon);
         pCounter.textContent = documento.data().likesCounter
 
@@ -227,7 +227,7 @@ export const home = () => {
       likeButton.addEventListener('click', async () => {
         if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
           //mostrando icono like
-          likeIcon.setAttribute("src", "./images/unlike-icon.svg");
+          likeIcon.setAttribute("src", "SCL019-social-network/src/images/unlike-icon.svg");
           likeButton.appendChild(likeIcon);
           pCounter.textContent = documento.data().likesCounter
 
@@ -238,7 +238,7 @@ export const home = () => {
         } else {
           //mostrando icono unlike
           await like(doc(db, "post", documento.id));
-          likeIcon.setAttribute("src", "./images/like-icon2.svg");
+          likeIcon.setAttribute("src", "SCL019-social-network/src/images/like-icon2.svg");
           likeButton.appendChild(likeIcon);
           pCounter.textContent = documento.data().likesCounter
 
