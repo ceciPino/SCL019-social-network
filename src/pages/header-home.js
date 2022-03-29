@@ -10,7 +10,7 @@ export const headerHomeContainer = () => {
     createHeader.appendChild(link);
 
     let logo = document.createElement("img");
-    logo.setAttribute("src", "./images/logo-plantasia.svg");
+    logo.setAttribute("src", "SCL019-social-network/src/images/logo-plantasia.svg");
     logo.setAttribute("class", "logoHome");
     link.appendChild(logo);
 
