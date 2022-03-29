@@ -48,10 +48,10 @@ export const home = () => {
   divWall.setAttribute("class", "wall");
   divHome.appendChild(divWall);
 
-  // DIVISOR
-  let wallDivider = document.createElement("hr");
-  wallDivider.setAttribute("class", "wallDivider");
-  divWall.appendChild(wallDivider);
+  // // DIVISOR
+  // let wallDivider = document.createElement("hr");
+  // wallDivider.setAttribute("class", "wallDivider");
+  // divWall.appendChild(wallDivider);
 
   // FORM
   let formHome = document.createElement("form");
