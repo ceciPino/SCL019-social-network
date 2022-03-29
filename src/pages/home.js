@@ -98,7 +98,7 @@ export const home = () => {
 
   let homeIcon = document.createElement("img");
   homeIcon.setAttribute("class", "menuIcon");
-  homeIcon.setAttribute("src", "  ");
+  homeIcon.setAttribute("src", "SCL019-social-network/src/images/home-icon.svg");
   homeIcon.setAttribute("alt", "icono home");
   divMenu.appendChild(homeIcon);
 
