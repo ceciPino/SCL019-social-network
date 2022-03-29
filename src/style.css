@@ -344,22 +344,21 @@ footer a:hover{
   justify-content: space-around;
 }
 
-.wallDivider {
+/* .wallDivider {
   width: 100%;
   border-top: 1px solid #D5D5FF;
   margin-bottom: 35px;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: -20px;
-}
+  margin-top: -20px; 
+}*/
 
 /* form  */
 .post {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
-  margin-right: 20px;
-  margin-bottom: 20px;
+  padding-bottom: 10px;
+
   background-color: #FCFCFC;
   
   /* position: fixed;
@@ -381,12 +380,14 @@ footer a:hover{
   flex-direction: row;
   align-items: flex-start;
   gap: 15px;
+  margin-left: 20px;
 }
 
 /* textarea */
 .areapost {
-width: 290px;
+width: 100%;
 height: 63px;
+margin-right: 20px;
 
 font-family: Roboto;
 font-style: normal;
@@ -401,6 +402,7 @@ border-color: #FCFCFC;
 .divButtonSubmit {
   display: flex;
   justify-content: flex-end;
+  margin-right: 20px;
 }
 
 /* botón publicar */
@@ -423,17 +425,16 @@ border-color: #FCFCFC;
 .postContainer {
   width: 100%;
   height: 54%;
-  padding: 10px;
-  background-color: #D5D5FF;
+  background-color: #EFEFF9;
+  padding-top: 10px;
   /* overflow: scroll;
   position: absolute; */
 }
 
 .divPost {
-  padding: 12px 10px 25px 10px;
+  padding: 12px 20px 25px 20px;
   background-color: #FCFCFC;
   margin-bottom: 10px;
-  border-radius: 10px;
 }
 
 /* iconPost + pUser */
