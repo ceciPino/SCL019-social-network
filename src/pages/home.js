@@ -1,7 +1,7 @@
 import { headerHomeContainer } from "./header-home.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-app.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/9.6.7/firebase-auth.js";
-import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy, updateDoc, arrayUnion, arrayRemove, increment } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
+import { getFirestore, collection, addDoc, Timestamp, doc, getDocs, query, orderBy, updateDoc, arrayUnion, arrayRemove, increment, deleteDoc } from 'https://www.gstatic.com/firebasejs/9.6.7/firebase-firestore.js';
 
 const firebaseConfig = {
   apiKey: "AIzaSyDBC5o7sgTl7cbHM5DF4pjLP5Wx2H-S8RA",
@@ -208,7 +208,7 @@ export const home = () => {
       pCouter.setAttribute("class", "pCounter");
       divLikes.appendChild(pCouter);
 
-      //console.log(documento.data().likes.includes(sessionStorage.getItem('userId')))
+      
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
         //mostrando icono like
         likeIcon.setAttribute("src", "./images/like-icon2.svg");
@@ -258,6 +258,34 @@ export const home = () => {
 
   let valuePost = postArea.value;
   showPost(db, valuePost);
+
+
+  // Borrar datos
+  const deletePost = async (id) => {
+  await deleteDoc(doc(db, 'posts', id));
+  console.log(await deleteDoc);
+};
+
+// Editar datos
+  const editPost = async (id, description) => {
+  const refreshPost = doc(db, 'posts', id);
+  await updateDoc(refreshPost, {
+    description: text,
+  
+  })
+}
+
+let userEdit;
+    if (element.data.userId === auth.currentUser.uid) {
+      userEdit = document.createElement ("div");
+      userEdit.setAttribute("class", "edit-delete");
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.setAttribute("class", "deletebtn");
+      
+
+
+    }
 
   //Funciones de llamada a los botones 
   buttonSubmit.addEventListener("click", (post) => {
