@@ -492,6 +492,16 @@ border-color: #FCFCFC;
   font-weight: 400;
   font-size: 14px;
   color: #7374FF;
+}
+
+.deletebtn {
+  border: none;
+  background: none;
+}
+
+.trashCan {
+  height: 15px;
+  width: auto;
 
 }
 
