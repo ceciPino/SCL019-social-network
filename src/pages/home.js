@@ -246,8 +246,8 @@ export const home = () => {
         }
       });
 
-      
-    //***** appendchilds ********
+
+      //***** appendchilds ********
 
       divWall.appendChild(sectionPost);
       sectionPost.appendChild(divPost);
@@ -259,30 +259,44 @@ export const home = () => {
 
       // ***** EDITAR POST ******
 
-      // Editar datos
+     /* // Editar datos
       const editPost = async (id, text) => {
         const refreshPost = doc(db, 'posts', id);
         await updateDoc(refreshPost, {
           description: text,
 
         })
+      }*/
+
+      // Borrar datos
+      const deletePost = async (id) => {
+        await deleteDoc(doc(db, 'post', id));
+        console.log(await deleteDoc);
+      };
+
+      if (documento.data().uid === auth.currentUser.uid) {
+      let userEditDelete = document.createElement("div");
+      userEditDelete.setAttribute("class", "edit-delete");
+
+      let deleteBtn = document.createElement("button");
+      deleteBtn.setAttribute("class", "deletebtn");
+      userEditDelete.appendChild(deleteBtn);
+
+      let imgDelete = document.createElement("img");
+      imgDelete.setAttribute("src", "images/icon-delete-post.svg");
+      imgDelete.setAttribute("class", "trashCan");
+      deleteBtn.appendChild(imgDelete);
+
+      divPost.appendChild(userEditDelete);
+
+      deleteBtn.addEventListener('click', (post) => {
+        const confirmDelete = confirm('¿Estás seguro de eliminar esta publicación?');
+        if (confirmDelete == true) {
+          deletePost(post);
+        }
+      })
       }
 
-        //if (documento.data().userId === auth.currentUser.uid) {
-        let userEditDelete = document.createElement("div");
-        userEditDelete.setAttribute("class", "edit-delete");
-
-        let deleteBtn = document.createElement("button");
-        deleteBtn.setAttribute("class", "deletebtn");
-        userEditDelete.appendChild(deleteBtn);
-
-        let imgDelete = document.createElement("img");
-        imgDelete.setAttribute("src", "images/icon-delete-post.svg");
-        imgDelete.setAttribute("class", "trashCan");
-        deleteBtn.appendChild(imgDelete);
-
-        divPost.appendChild(userEditDelete);
-      //}
 
     })
 
@@ -290,18 +304,6 @@ export const home = () => {
 
   let valuePost = postArea.value;
   showPost(db, valuePost);
-
-
-
-  /*// Borrar datos
-   const deletePost = async (id) => {
-   await deleteDoc(doc(db, 'posts', id));
-   console.log(await deleteDoc);
-  };*/
-
-
-
-
 
 
   //Funciones de llamada a los botones 
