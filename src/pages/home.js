@@ -12,11 +12,11 @@ const firebaseConfig = {
   appId: "1:55216807698:web:9cef62683040f7b8afddcb"
 };
 
-  initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-  const auth = getAuth();
-  const db = getFirestore();
-  //console.log(db);
+const auth = getAuth();
+const db = getFirestore();
+//console.log(db);
 
 /* ******** VISTA HOME ******* */
 
@@ -204,22 +204,22 @@ export const home = () => {
       let likeIcon = document.createElement("img");
       likeIcon.setAttribute("class", "likeIcon");
 
-      let pCouter = document.createElement("p");
-      pCouter.setAttribute("class", "pCounter");
-      divLikes.appendChild(pCouter);
+      let pCounter = document.createElement("p");
+      pCounter.setAttribute("class", "pCounter");
+      divLikes.appendChild(pCounter);
 
-      
+
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
         //mostrando icono like
         likeIcon.setAttribute("src", "./images/like-icon2.svg");
         likeButton.appendChild(likeIcon);
-        pCouter.textContent = documento.data().likesCounter
+        pCounter.textContent = documento.data().likesCounter
 
       } else {
         //mostrando icono unlike
         likeIcon.setAttribute("src", "./images/unlike-icon.svg");
         likeButton.appendChild(likeIcon);
-        pCouter.textContent = documento.data().likesCounter
+        pCounter.textContent = documento.data().likesCounter
 
       }
 
@@ -229,7 +229,7 @@ export const home = () => {
           //mostrando icono like
           likeIcon.setAttribute("src", "./images/unlike-icon.svg");
           likeButton.appendChild(likeIcon);
-          pCouter.textContent = documento.data().likesCounter
+          pCounter.textContent = documento.data().likesCounter
 
           await unlike(doc(db, "post", documento.id));
           //console.log(doc(db, "post", documento.id))
@@ -240,11 +240,14 @@ export const home = () => {
           await like(doc(db, "post", documento.id));
           likeIcon.setAttribute("src", "./images/like-icon2.svg");
           likeButton.appendChild(likeIcon);
-          pCouter.textContent = documento.data().likesCounter
+          pCounter.textContent = documento.data().likesCounter
 
           showPost();
         }
       });
+
+      
+    //***** appendchilds ********
 
       divWall.appendChild(sectionPost);
       sectionPost.appendChild(divPost);
@@ -253,39 +256,53 @@ export const home = () => {
       divName.appendChild(pUser);
       divPost.appendChild(pPost);
       divPost.appendChild(divLikes);
+
+      // ***** EDITAR POST ******
+
+      // Editar datos
+      const editPost = async (id, text) => {
+        const refreshPost = doc(db, 'posts', id);
+        await updateDoc(refreshPost, {
+          description: text,
+
+        })
+      }
+
+        //if (documento.data().userId === auth.currentUser.uid) {
+        let userEditDelete = document.createElement("div");
+        userEditDelete.setAttribute("class", "edit-delete");
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "deletebtn");
+        userEditDelete.appendChild(deleteBtn);
+
+        let imgDelete = document.createElement("img");
+        imgDelete.setAttribute("src", "images/icon-delete-post.svg");
+        imgDelete.setAttribute("class", "trashCan");
+        deleteBtn.appendChild(imgDelete);
+
+        divPost.appendChild(userEditDelete);
+      //}
+
     })
+
   }
 
   let valuePost = postArea.value;
   showPost(db, valuePost);
 
 
-  // Borrar datos
-  const deletePost = async (id) => {
-  await deleteDoc(doc(db, 'posts', id));
-  console.log(await deleteDoc);
-};
 
-// Editar datos
-  const editPost = async (id, description) => {
-  const refreshPost = doc(db, 'posts', id);
-  await updateDoc(refreshPost, {
-    description: text,
-  
-  })
-}
-
-let userEdit;
-    if (element.data.userId === auth.currentUser.uid) {
-      userEdit = document.createElement ("div");
-      userEdit.setAttribute("class", "edit-delete");
-
-      let deleteBtn = document.createElement("button");
-      deleteBtn.setAttribute("class", "deletebtn");
-      
+  /*// Borrar datos
+   const deletePost = async (id) => {
+   await deleteDoc(doc(db, 'posts', id));
+   console.log(await deleteDoc);
+  };*/
 
 
-    }
+
+
+
 
   //Funciones de llamada a los botones 
   buttonSubmit.addEventListener("click", (post) => {
