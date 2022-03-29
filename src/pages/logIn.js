@@ -54,7 +54,7 @@ export const login = () => {
 
     const openEye = document.createElement('img');
     openEye.setAttribute("class", "openEye");
-    openEye.setAttribute("src", "images/openeye.png");
+    openEye.setAttribute("src", "SCL019-social-network/src/images/openeye.png");
     formLogIn.appendChild(openEye);
     
     const showPassword = (e) => {
@@ -96,7 +96,7 @@ export const login = () => {
     //logo google
     let logoGoogle = document.createElement("img");
     logoGoogle.setAttribute("class", "logoGoogle");
-    logoGoogle.setAttribute("src", "./images/logogoogle.png");
+    logoGoogle.setAttribute("src", "SCL019-social-network/src/images/logogoogle.png");
     logoGoogle.setAttribute("alt", "logo Google");
     buttonGoogle.appendChild(logoGoogle);
     //texto botón 

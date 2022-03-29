@@ -70,7 +70,7 @@ export const register = () => {
   //Mostrar contraseña
   const openEyeR = document.createElement('img');
     openEyeR.setAttribute("class", "openEye");
-    openEyeR.setAttribute("src", "./images/openeye.png");
+    openEyeR.setAttribute("src", "SCL019-social-network/src/images/openeye.png");
     formRegister.appendChild(openEyeR);
     
     const showPassword = (e) => {
@@ -109,7 +109,7 @@ export const register = () => {
   //logo google
   let logoGoogle = document.createElement("img");
   logoGoogle.setAttribute("class", "logoGoogle");
-  logoGoogle.setAttribute("src", "./images/logogoogle.png");
+  logoGoogle.setAttribute("src", "SCL019-social-network/src/images/logogoogle.png");
   logoGoogle.setAttribute("alt", "logo Google");
   buttonGoogle.appendChild(logoGoogle);
   //texto botón google
