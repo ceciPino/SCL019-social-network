@@ -96,11 +96,15 @@ export const home = () => {
   divMenu.setAttribute("class", "menu");
   divHome.appendChild(divMenu);
 
+  let linkHome = document.createElement("a");
+  linkHome.setAttribute("href", "#home");
+  divMenu.appendChild(linkHome);
+
   let homeIcon = document.createElement("img");
   homeIcon.setAttribute("class", "menuIcon");
   homeIcon.setAttribute("src", "SCL019-social-network/src/images/home-icon.svg");
   homeIcon.setAttribute("alt", "icono home");
-  divMenu.appendChild(homeIcon);
+  linkHome.appendChild(homeIcon);
 
   let exchangeIcon = document.createElement("img");
   exchangeIcon.setAttribute("class", "menuIcon");
@@ -111,7 +115,7 @@ export const home = () => {
   let searchIcon = document.createElement("img");
   searchIcon.setAttribute("class", "menuIcon");
   searchIcon.setAttribute("src", "SCL019-social-network/src/images/search-icon.svg");
-  searchIcon.setAttribute("alt", "icono home");
+  searchIcon.setAttribute("alt", "icono buscar");
   divMenu.appendChild(searchIcon);
 
   let perfilIcon = document.createElement("img");
@@ -270,8 +274,8 @@ export const home = () => {
 
       // Borrar datos
       const deletePost = async (id) => {
-        await deleteDoc(doc(db, 'post', id));
-        console.log(await deleteDoc);
+        await deleteDoc(doc(db, 'post', documento.id));
+        console.log(deleteDoc);
       };
 
       if (documento.data().uid === auth.currentUser.uid) {
@@ -279,26 +283,31 @@ export const home = () => {
       userEditDelete.setAttribute("class", "edit-delete");
 
       let deleteBtn = document.createElement("button");
-      deleteBtn.setAttribute("class", "deletebtn");
-      userEditDelete.appendChild(deleteBtn);
+        deleteBtn.setAttribute("class", "deletebtn");
+        userEditDelete.appendChild(deleteBtn);
 
-      let imgDelete = document.createElement("img");
-      imgDelete.setAttribute("src", "SCL019-social-network/src/images/icon-delete-post.svg");
-      imgDelete.setAttribute("class", "trashCan");
-      deleteBtn.appendChild(imgDelete);
+        let imgDelete = document.createElement("img");
+        imgDelete.setAttribute("src", "SCL019-social-network/src/images/icon-delete-post.svg");
+        imgDelete.setAttribute("class", "trashCan");
+        deleteBtn.appendChild(imgDelete);
 
-      divPost.appendChild(userEditDelete);
+        divPost.appendChild(userEditDelete);
 
-      deleteBtn.addEventListener('click', (post) => {
-        const confirmDelete = confirm('¿Estás seguro de eliminar esta publicación?');
-        if (confirmDelete == true) {
-          deletePost(post);
-        }
-      })
+        deleteBtn.addEventListener('click', (post) => {
+          // eslint-disable-next-line no-restricted-globals
+          const confirmDelete = confirm('¿Estás seguro de eliminar esta publicación?');
+          if (confirmDelete == true) {
+            deletePost(post);
+            location.reload(post);
+          
+          }
+          
+        })
       }
 
 
     })
+    
 
   }
 
