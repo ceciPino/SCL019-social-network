@@ -96,7 +96,7 @@ Una de las restricciones añadidas a través del ruteo de flujo de nuestra pági
 
 ## Proceso de diseño
 
-<img src="src/images/readme/iteraciónLogo.png" height="34%" width="34%" >
+<img src="src/images/readme/iteraciónLogo.png" height="34%" width="34%" align = "left">
 <img src="src/images/readme/eleccionTipografica.png" height="34%" width="34%" >
 
 ## Tecnologías
