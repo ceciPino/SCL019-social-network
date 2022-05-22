@@ -20,6 +20,10 @@ Plantasia es una red social orientada a conectar a personas amantes de las plant
 
 La temática de nuestro proyecto la determinamos definiendo 3 propuestas iniciales, para luego decidir la opción que desarrollaríamos.  Encuestamos a un grupo de alrededor de 40 personas, quienes escogieron la opción de desarrollar una red social de plantas. 
 
+Después de ya seleccionar la temática, se hicieron algunas encuestas para definir bien a nuestro usuario.
+
+
+
 <!-- Con este input editamos nuestra primera historia de usuario añadiendo el diseño del logo de inicio y escogiendo una paleta de colores. -->
 
 ## Historias de Usuario
@@ -28,7 +32,15 @@ La temática de nuestro proyecto la determinamos definiendo 3 propuestas inicial
 
 En nuestra primera Historia de Usuario definimos la vista de registro de cuenta, investigando e implementando las funcionalidades de Firebase de crear usuario de forma manual o con una cuenta de Google.
 
-<img src="https://user-images.githubusercontent.com/95260008/160394133-690b9b07-9aaa-4864-b509-54d4c0a3ed90.jpg" height="40%" width="45%" >
+#### **Criterios de Aceptación**
+
+- Que el usuario pueda iniciar sesión con correo y contraseña (****)
+- Que el usuario pueda usar su cuenta de google para iniciar sesión
+- Que la contraseña se oculte/muestre
+- Que el usuario si es que no tiene una cuenta, pueda dirigirse a la vista de registro.
+- Que la plataforma responsive
+
+<img src="src/images/readme/protBajaFidelidadLogIn.jpeg" height="40%" width="45%" >
 
 <img src="src/images/readme/log in sin datos ingresados.jpg" height="50%" width="45%">
 <img src="src/images/readme/log in datos ingresados.jpg" height="50%" width="45%" align="rigth">
@@ -39,6 +51,13 @@ En nuestra primera Historia de Usuario definimos la vista de registro de cuenta,
 ### HU2
 En la segunda Historia de Usuario definimos la vista de inicio de sesión, nuevamente investigando e implementando las funcionalidades de Firebase para iniciar sesión de forma manual, y/o utilizando la autenticación a través de una cuenta de Google. 
 
+#### **Criterios de Aceptación**
+
+- Que el usuario pueda crear una cuenta con correo, nombre de usuario y contraseña (****)
+- Que el usuario pueda usar su cuenta de google para registrarse
+- Que la contraseña se oculte/muestre
+- Que el usuario si es que ya se creó una cuenta, pueda dirigirse a la vista de iniciar sesión.
+- Que la plataforma responsive
 
 <img src="https://user-images.githubusercontent.com/95260008/160394544-3203ef91-0079-4c7e-b5c3-3cc11d37b8b7.jpeg" width="48%" > 
 
@@ -50,7 +69,16 @@ En nuestra tercera Historia de Usuario definimos la vista del muro en el cual se
 
 Una de las restricciones añadidas a través del ruteo de flujo de nuestra página web fue la de poder acceder al muro solo si el usuario ha iniciado sesión. 
 
-<img src="https://user-images.githubusercontent.com/95260008/160394216-4b22c13f-b177-44ac-9b9e-a52a812262c1.jpg" width="45%" >
+#### **Criterios de Aceptación**
+
+- Que el usuario pueda publicar texto en el muro con un text area y con un botón de publicar
+- Que se guarden las publicaciones en tiempo real
+- Que el usuario pueda ver las publicacione ordenadas desde el más reciente al más antiguo
+- Que el usuario pueda darle like a un post
+- Que usuario pueda ver un contador de likes por publicación
+- Que la plataforma responsive
+
+<img src="src/images/readme/protBajaFidelidadHome.jpeg" width="45%" >
 
 <img src="src/images/readme/homeTextMobile.jpg" width="45%" >
 <img src="src/images/readme/homeText&Images.jpg" width="45%">
@@ -64,3 +92,15 @@ Una de las restricciones añadidas a través del ruteo de flujo de nuestra pági
 <img src="src/images/readme/eleccionTipografica.png" height="34%" width="34%" >
 
 ## Tecnologías
+
+![Icono JavaScript](https://img.icons8.com/color/40/ffffff/javascript--v1.png "JavaScript")
+![Icono HTML5](https://img.icons8.com/color/40/ffffff/html-5--v1.png "HTML5")
+![Icono CSS](https://img.icons8.com/color/40/ffffff/css3.png "CSS")
+![Icono Firebase](https://img.icons8.com/color/40/ffffff/firebase.png "Firebase")
+![Icono Git](https://img.icons8.com/color/40/ffffff/git.png "Git")
+![Icono GitHub](https://img.icons8.com/ios-glyphs/40/ffffff/github.png "GitHub")
+![Icono Visual Studio Code](https://img.icons8.com/color/40/ffffff/visual-studio-code-2019.png "Visual Studio Code")
+![Icono Figma](https://img.icons8.com/color/40/ffffff/figma--v1.png "Figma")
+![Icono Trello](https://img.icons8.com/color/40/000000/trello.png "Trello")
+
+Palabras clave: JavaScript, HTML5, CSS3, Firebase, Git, GitHub, Visual Studio Code, Figma, Trello.
