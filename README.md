@@ -22,7 +22,8 @@ La temática de nuestro proyecto la determinamos definiendo 3 propuestas inicial
 
 Después de ya seleccionar la temática, se hicieron algunas encuestas para definir bien a nuestro usuario.
 
-
+<img src="src/images/readme/invUsuario1.png" width="100%" >
+<img src="src/images/readme/invUsuario2.png" width="100%" >
 
 <!-- Con este input editamos nuestra primera historia de usuario añadiendo el diseño del logo de inicio y escogiendo una paleta de colores. -->
 
