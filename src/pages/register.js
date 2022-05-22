@@ -69,21 +69,21 @@ export const register = () => {
 
   //Mostrar contraseña
   const openEyeR = document.createElement('img');
-  openEyeR.setAttribute("class", "openEye");
-  openEyeR.setAttribute("src", "./images/openeye.png");
-  formRegister.appendChild(openEyeR);
-
-  const showPassword = (e) => {
-    e.preventDefault();
-    const p1 = document.getElementById('passwordIn');
-    if (p1.type === 'password') {
-      p1.type = 'text';
-    } else {
-      p1.type = 'password';
-    }
-  };
-
-  openEyeR.addEventListener('click', showPassword);
+    openEyeR.setAttribute("class", "openEye");
+    openEyeR.setAttribute("src", "SCL019-social-network/src/images/openeye.png");
+    formRegister.appendChild(openEyeR);
+    
+    const showPassword = (e) => {
+        e.preventDefault();
+        const p1 = document.getElementById('passwordIn');
+        if (p1.type === 'password') {
+          p1.type = 'text';
+        } else {
+          p1.type = 'password';
+        }
+      };
+    
+    openEyeR.addEventListener('click', showPassword);
 
   //botón registrarse
   let buttonSend = document.createElement("input");
@@ -109,7 +109,7 @@ export const register = () => {
   //logo google
   let logoGoogle = document.createElement("img");
   logoGoogle.setAttribute("class", "logoGoogle");
-  logoGoogle.setAttribute("src", "./images/logogoogle.png");
+  logoGoogle.setAttribute("src", "SCL019-social-network/src/images/logogoogle.png");
   logoGoogle.setAttribute("alt", "logo Google");
   buttonGoogle.appendChild(logoGoogle);
   //texto botón google

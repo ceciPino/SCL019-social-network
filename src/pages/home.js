@@ -12,11 +12,11 @@ const firebaseConfig = {
   appId: "1:55216807698:web:9cef62683040f7b8afddcb"
 };
 
-  initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
-  const auth = getAuth();
-  const db = getFirestore();
-  //console.log(db);
+const auth = getAuth();
+const db = getFirestore();
+//console.log(db);
 
 /* ******** VISTA HOME ******* */
 
@@ -64,7 +64,7 @@ export const home = () => {
 
   let userIcon = document.createElement("img");
   userIcon.setAttribute("class", "userIcon");
-  userIcon.setAttribute("src", "/images/own-user-icon.svg");
+  userIcon.setAttribute("src", "SCL019-social-network/src/images/own-user-icon.svg");
   userIcon.setAttribute("alt", "icono de usuario");
   userIcon.setAttribute("width", "25px");
   sectionPostArea.appendChild(userIcon);
@@ -96,27 +96,31 @@ export const home = () => {
   divMenu.setAttribute("class", "menu");
   divHome.appendChild(divMenu);
 
+  let linkHome = document.createElement("a");
+  linkHome.setAttribute("href", "#home");
+  divMenu.appendChild(linkHome);
+
   let homeIcon = document.createElement("img");
   homeIcon.setAttribute("class", "menuIcon");
-  homeIcon.setAttribute("src", "./images/home-icon.svg");
+  homeIcon.setAttribute("src", "SCL019-social-network/src/images/home-icon.svg");
   homeIcon.setAttribute("alt", "icono home");
-  divMenu.appendChild(homeIcon);
+  linkHome.appendChild(homeIcon);
 
   let exchangeIcon = document.createElement("img");
   exchangeIcon.setAttribute("class", "menuIcon");
-  exchangeIcon.setAttribute("src", "./images/plant-exchange-icon.svg");
+  exchangeIcon.setAttribute("src", "SCL019-social-network/src/images/plant-exchange-icon.svg");
   exchangeIcon.setAttribute("alt", "icono intercambio de plantas");
   divMenu.appendChild(exchangeIcon);
 
   let searchIcon = document.createElement("img");
   searchIcon.setAttribute("class", "menuIcon");
-  searchIcon.setAttribute("src", "./images/search-icon.svg");
-  searchIcon.setAttribute("alt", "icono home");
+  searchIcon.setAttribute("src", "SCL019-social-network/src/images/search-icon.svg");
+  searchIcon.setAttribute("alt", "icono buscar");
   divMenu.appendChild(searchIcon);
 
   let perfilIcon = document.createElement("img");
   perfilIcon.setAttribute("class", "menuIcon");
-  perfilIcon.setAttribute("src", "./images/user-icon.svg");
+  perfilIcon.setAttribute("src", "SCL019-social-network/src/images/user-icon.svg");
   perfilIcon.setAttribute("alt", "icono perfil");
   divMenu.appendChild(perfilIcon);
 
@@ -179,7 +183,7 @@ export const home = () => {
 
       let iconPost = document.createElement("img");
       iconPost.setAttribute("class", "iconPost");
-      iconPost.setAttribute("src", "./images/own-user-icon.svg");
+      iconPost.setAttribute("src", "SCL019-social-network/src/images/own-user-icon.svg");
       iconPost.setAttribute("alt", "icono de usuario");
       iconPost.setAttribute("width", "25px");
 
@@ -204,22 +208,22 @@ export const home = () => {
       let likeIcon = document.createElement("img");
       likeIcon.setAttribute("class", "likeIcon");
 
-      let pCouter = document.createElement("p");
-      pCouter.setAttribute("class", "pCounter");
-      divLikes.appendChild(pCouter);
+      let pCounter = document.createElement("p");
+      pCounter.setAttribute("class", "pCounter");
+      divLikes.appendChild(pCounter);
 
-      
+
       if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
         //mostrando icono like
-        likeIcon.setAttribute("src", "./images/like-icon2.svg");
+        likeIcon.setAttribute("src", "SCL019-social-network/src/images/like-icon2.svg");
         likeButton.appendChild(likeIcon);
-        pCouter.textContent = documento.data().likesCounter
+        pCounter.textContent = documento.data().likesCounter
 
       } else {
         //mostrando icono unlike
-        likeIcon.setAttribute("src", "./images/unlike-icon.svg");
+        likeIcon.setAttribute("src", "SCL019-social-network/src/images/unlike-icon.svg");
         likeButton.appendChild(likeIcon);
-        pCouter.textContent = documento.data().likesCounter
+        pCounter.textContent = documento.data().likesCounter
 
       }
 
@@ -227,9 +231,9 @@ export const home = () => {
       likeButton.addEventListener('click', async () => {
         if (documento.data().likes.includes(sessionStorage.getItem('userId'))) {
           //mostrando icono like
-          likeIcon.setAttribute("src", "./images/unlike-icon.svg");
+          likeIcon.setAttribute("src", "SCL019-social-network/src/images/unlike-icon.svg");
           likeButton.appendChild(likeIcon);
-          pCouter.textContent = documento.data().likesCounter
+          pCounter.textContent = documento.data().likesCounter
 
           await unlike(doc(db, "post", documento.id));
           //console.log(doc(db, "post", documento.id))
@@ -238,13 +242,16 @@ export const home = () => {
         } else {
           //mostrando icono unlike
           await like(doc(db, "post", documento.id));
-          likeIcon.setAttribute("src", "./images/like-icon2.svg");
+          likeIcon.setAttribute("src", "SCL019-social-network/src/images/like-icon2.svg");
           likeButton.appendChild(likeIcon);
-          pCouter.textContent = documento.data().likesCounter
+          pCounter.textContent = documento.data().likesCounter
 
           showPost();
         }
       });
+
+
+      //***** appendchilds ********
 
       divWall.appendChild(sectionPost);
       sectionPost.appendChild(divPost);
@@ -253,39 +260,60 @@ export const home = () => {
       divName.appendChild(pUser);
       divPost.appendChild(pPost);
       divPost.appendChild(divLikes);
+
+      // ***** EDITAR POST ******
+
+     /* // Editar datos
+      const editPost = async (id, text) => {
+        const refreshPost = doc(db, 'posts', id);
+        await updateDoc(refreshPost, {
+          description: text,
+
+        })
+      }*/
+
+      // Borrar datos
+      const deletePost = async (id) => {
+        await deleteDoc(doc(db, 'post', documento.id));
+        console.log(deleteDoc);
+      };
+
+      if (documento.data().uid === auth.currentUser.uid) {
+      let userEditDelete = document.createElement("div");
+      userEditDelete.setAttribute("class", "edit-delete");
+
+      let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "deletebtn");
+        userEditDelete.appendChild(deleteBtn);
+
+        let imgDelete = document.createElement("img");
+        imgDelete.setAttribute("src", "SCL019-social-network/src/images/icon-delete-post.svg");
+        imgDelete.setAttribute("class", "trashCan");
+        deleteBtn.appendChild(imgDelete);
+
+        divPost.appendChild(userEditDelete);
+
+        deleteBtn.addEventListener('click', (post) => {
+          // eslint-disable-next-line no-restricted-globals
+          const confirmDelete = confirm('¿Estás seguro de eliminar esta publicación?');
+          if (confirmDelete == true) {
+            deletePost(post);
+            location.reload(post);
+          
+          }
+          
+        })
+      }
+
+
     })
+    
+
   }
 
   let valuePost = postArea.value;
   showPost(db, valuePost);
 
-
-  // Borrar datos
-  const deletePost = async (id) => {
-  await deleteDoc(doc(db, 'posts', id));
-  console.log(await deleteDoc);
-};
-
-// Editar datos
-  const editPost = async (id, description) => {
-  const refreshPost = doc(db, 'posts', id);
-  await updateDoc(refreshPost, {
-    description: text,
-  
-  })
-}
-
-let userEdit;
-    if (element.data.userId === auth.currentUser.uid) {
-      userEdit = document.createElement ("div");
-      userEdit.setAttribute("class", "edit-delete");
-
-      let deleteBtn = document.createElement("button");
-      deleteBtn.setAttribute("class", "deletebtn");
-      
-
-
-    }
 
   //Funciones de llamada a los botones 
   buttonSubmit.addEventListener("click", (post) => {
