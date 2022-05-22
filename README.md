@@ -40,12 +40,16 @@ En nuestra primera Historia de Usuario definimos la vista de registro de cuenta,
 - Que el usuario si es que no tiene una cuenta, pueda dirigirse a la vista de registro.
 - Que la plataforma responsive
 
-<img src="src/images/readme/protBajaFidelidadLogIn.jpeg" height="40%" width="45%" >
+#### **Prototipo formato mobile**
 
-<img src="src/images/readme/log in sin datos ingresados.jpg" height="50%" width="45%">
-<img src="src/images/readme/log in datos ingresados.jpg" height="50%" width="45%" align="rigth">
+<img src="src/images/readme/protBajaFidelidadLogIn.jpeg" width="45%" >
 
-<img src="src/images/readme/loginDesktop.png" width="90.5%">
+<img src="src/images/readme/log in sin datos ingresados.jpg" width="45%" align = "left">
+<img src="src/images/readme/log in datos ingresados.jpg" width="45%">
+
+#### **Prototipo formato desktop**
+
+<img src="src/images/readme/loginDesktop.png" width="96.5%">
 
 
 ### HU2
@@ -78,12 +82,16 @@ Una de las restricciones añadidas a través del ruteo de flujo de nuestra pági
 - Que usuario pueda ver un contador de likes por publicación
 - Que la plataforma responsive
 
+#### **Prototipo formato mobile**
+
 <img src="src/images/readme/protBajaFidelidadHome.jpeg" width="45%" >
 
-<img src="src/images/readme/homeTextMobile.jpg" width="45%" >
+<img src="src/images/readme/homeTextMobile.jpg" width="45%" align = "left">
 <img src="src/images/readme/homeText&Images.jpg" width="45%">
 
-<img src="src/images/readme/homeTextDesktop.jpg" width="90.5%">
+#### **Prototipo formato desktop**
+
+<img src="src/images/readme/homeTextDesktop.jpg" width="96.5%">
 
 
 ## Proceso de diseño
